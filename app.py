@@ -18,3 +18,4 @@ def thankyou():
 	return render_template("thankyou.html")
 
 app.run(port=3000)
+#preview測試
