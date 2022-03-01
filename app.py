@@ -19,3 +19,5 @@ def thankyou():
 
 app.run(port=3000)
 #preview測試
+
+${{ secrets.APISecret }}
