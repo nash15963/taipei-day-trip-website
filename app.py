@@ -6,7 +6,7 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 ###line####
 import pymysql
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv #python-dotenv
 import json
 
 
