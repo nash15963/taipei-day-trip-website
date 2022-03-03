@@ -1,3 +1,5 @@
+#本機端測試檔
+
 from flask import *
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
@@ -12,7 +14,7 @@ import json
 
 
 load_dotenv()
-connection  = pymysql.connect(host='ubuntu@ec2-15-165-73-175.ap-northeast-2.compute.amazonaws.com',
+connection  = pymysql.connect(host='127.0.0.1',
                               user='root',
                               password= os.getenv('mysql_password'),
                               database='taipeitrip',
