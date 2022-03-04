@@ -1,3 +1,4 @@
+
 from flask import *
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
@@ -12,8 +13,10 @@ import json
 
 
 load_dotenv()
-connection  = pymysql.connect(host='ubuntu@ec2-15-165-73-175.ap-northeast-2.compute.amazonaws.com',
+# ec2-15-165-73-175.ap-northeast-2.compute.amazonaws.com(AWS EC2上測試之用)
+connection  = pymysql.connect(host='127.0.0.1',
                               user='root',
+                              port= 3306 ,
                               password= os.getenv('mysql_password'),
                               database='taipeitrip',
                               charset='utf8',
@@ -86,8 +89,17 @@ def thankyou():
 
 app.run(host="0.0.0.0",port=3000)
 
-#http://127.0.0.1:3000/api/attraction/1
-#http://127.0.0.1:3000/api/attractions?page=0
-#http://127.0.0.1:3000/api/attractions?page=0&keyword=公園
 
-## http://15.165.73.175:3000/api/attraction/1 
+
+# http://15.165.73.175:3000/api/attraction/1
+# http://15.165.73.175:3000/api/attraction/99
+# http://15.165.73.175:3000/api/attractions?page=0
+# http://15.165.73.175:3000/api/attractions?page=0&keyword=公園
+# http://15.165.73.175:3000/api/attractions?page=0&keyword=小貓
+
+# note :
+# 1.測試第一個api可以運行
+# 2.測試第一個api的error狀態
+# 3.測試第二個api可以篩選page
+# 4.測試第二個api可以篩選page+keyword
+# 5.測試第二個api的error狀態

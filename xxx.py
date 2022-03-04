@@ -16,7 +16,7 @@ import json
 load_dotenv()
 connection  = pymysql.connect(host='127.0.0.1',
                               user='root',
-                              password= os.getenv('mysql_password'),
+                              password= os.getenv('self_mysql_PW'),
                               database='taipeitrip',
                               charset='utf8',
                               cursorclass=pymysql.cursors.DictCursor)
