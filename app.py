@@ -84,8 +84,10 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-app.run(port=3000)
+app.run(host="0.0.0.0",port=3000)
 
 #http://127.0.0.1:3000/api/attraction/1
 #http://127.0.0.1:3000/api/attractions?page=0
 #http://127.0.0.1:3000/api/attractions?page=0&keyword=公園
+
+## http://15.165.73.175:3000/api/attraction/1 
