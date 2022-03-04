@@ -27,8 +27,9 @@ def attractionId(attractionId):
     print('id : ',attractionId)
     sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where id = %s; "
     sql_run = cursor.execute(sql,(attractionId))
-    result = cursor.fetchone()
+    result = cursor.fetchone()          
     if sql_run == 1:
+        result['img'] = result['img'].split(',')
         result_JSON = json.dumps({"data":result},ensure_ascii=False)	    
     else :
         result_JSON = json.dumps({"error": bool(True) ,"message": "自訂的錯誤訊息"},ensure_ascii=False)
@@ -48,12 +49,14 @@ def api_attraction():
     else:
         sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where name like %s limit %s,12;"
         sql_run = cursor.execute(sql,(now_keyword,now_page))
-    result = cursor.fetchall() 
+    result = cursor.fetchall()
     if sql_run < 12 :
         page_now = None
     else :
         page_now = int(page)+1
     if sql_run > 0 :
+        for i in range(len(result)):
+            result[i]['img'] = result[i]['img'].split(',') 
         result_JSON = json.dumps({'nextPage':page_now,"data":result},ensure_ascii=False)
         
     else :
