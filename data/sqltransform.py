@@ -19,7 +19,8 @@ for i in range(0,58):
         comstr = 'https' + j
         if j.endswith("jpg") == True or j.endswith("png") == True :
             em.append(comstr)
-    data_dict[i]['img'] = str(em)
+            Str = ",".join(em)
+    data_dict[i]['img'] = Str
 
 
 
@@ -53,10 +54,8 @@ exp_all.rename(columns={'stitle':'name',
                        'MRT':'mrt'
                        }, inplace=True)
 
+exp_all.to_csv("exp_all.csv") 
 
 
 engine = create_engine("mysql+pymysql://root:xu3t;3u4xl3-4284@localhost:3306/taipeitrip",encoding='utf8')
 exp_all.to_sql(name = 'location' , con = engine)
-
-
-
