@@ -40,6 +40,6 @@ function fetchdata(URL){
 
 }
     
-fetchdata(dataUrl2)
+fetchdata(dataUrl)
 
 

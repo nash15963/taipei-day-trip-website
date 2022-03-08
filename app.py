@@ -1,7 +1,9 @@
 from flask import *
 app=Flask(__name__)
-from flask_cors import CORS
+from flask_cors import CORS ,cross_origin
 
+cors = CORS(app, resources={r"/api": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
@@ -25,6 +27,7 @@ connection  = pymysql.connect(host='127.0.0.1',
 cursor = connection.cursor()
 
 @app.route("/api/attraction/<attractionId>")
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def attractionId(attractionId):
     print('id : ',attractionId)
     sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where id = %s; "
@@ -38,6 +41,7 @@ def attractionId(attractionId):
     return Response(result_JSON, mimetype='application/json')
 
 @app.route('/api/attractions', methods=['GET'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def api_attraction():
     args = request.args
     page = args.get('page')
@@ -90,8 +94,8 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
-    
-CORS(app)
+
+
 app.run(host="0.0.0.0",port=3000)
 
 
