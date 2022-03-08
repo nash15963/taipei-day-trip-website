@@ -1,7 +1,9 @@
 #本機端測試檔
 
 from flask import *
+from flask_socketio import SocketIO
 app=Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins='*')
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 

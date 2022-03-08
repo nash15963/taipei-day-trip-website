@@ -171,11 +171,53 @@
         justify-content: space-between;
     }
     .box{
-        background-color: green;
+        background-color: rgba(245, 245, 245, 0.664);
         width: 270px;
         height: 242px;
-        
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 4fr 0.5fr 0.5fr ;
     }
+    .box div:nth-child(1){
+        
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2 ; 
+    }
+    .box div:nth-child(1) img{
+        object-fit: scale-down;
+        width: 100%;
+        height: 190px;
+    }
+    .box p{
+        margin: 0px;
+    }
+    .box p:nth-child(2){
+        background-color: tomato;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        padding: 5px;
+    }
+    .box p:nth-child(3){
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: left;
+        padding: 5px;
+    }
+    .box p:nth-child(4){
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: right;
+        padding: 5px;
+    }
+
     
     .foot{
         background-color: rgb(25, 0, 255);
@@ -227,7 +269,16 @@
     </div>
     <div class="barleft"></div>
     <div class="content">
-        <div class="box"></div>
+        <div class="box">
+            <div>
+                <img src="./pokemon snorlax 1024.png" alt="我是範例">
+            </div>
+            
+            <p>名稱</p>
+            <p>地點</p>
+            <p>特色</p>
+        </div>
+        
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
