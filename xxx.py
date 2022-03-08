@@ -1,7 +1,8 @@
 #本機端測試檔
-
 from flask import *
 app=Flask(__name__)
+from flask_cors import CORS
+CORS(app)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
@@ -10,8 +11,7 @@ import pymysql
 import os
 from dotenv import load_dotenv #python-dotenv
 import json
-from flask_cors import CORS
-CORS(app)
+
 
 load_dotenv()
 connection  = pymysql.connect(host='127.0.0.1',
