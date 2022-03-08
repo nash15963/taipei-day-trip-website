@@ -1,9 +1,9 @@
 #本機端測試檔
 
 from flask import *
-from flask_socketio import SocketIO
+from flask_cors import CORS
 app=Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins='*')
+CORS(app)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
@@ -32,10 +32,17 @@ def attractionId(attractionId):
     result = cursor.fetchone()          
     if sql_run == 1:
         result['img'] = result['img'].split(',')
-        result_JSON = json.dumps({"data":result},ensure_ascii=False)	    
+        result_JSON = json.dumps({"data":result,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'},ensure_ascii=False)	    
     else :
-        result_JSON = json.dumps({"error": bool(True) ,"message": "自訂的錯誤訊息"},ensure_ascii=False)
-    return Response(result_JSON, mimetype='application/json')
+        result_JSON = json.dumps({"error": bool(True) ,
+        "message": "自訂的錯誤訊息",
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'},
+        ensure_ascii=False)
+    # result_JSON.headers["Access-Control-Allow-Origin"] = "*"
+    return Response(result_JSON)
 
 @app.route('/api/attractions', methods=['GET'])
 def api_attraction():
@@ -59,11 +66,17 @@ def api_attraction():
     if sql_run > 0 :
         for i in range(len(result)):
             result[i]['img'] = result[i]['img'].split(',') 
-        result_JSON = json.dumps({'nextPage':page_now,"data":result},ensure_ascii=False)
+        result_JSON = json.dumps({'nextPage':page_now,
+        "data":result,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'},ensure_ascii=False)
         
     else :
-        result_JSON = json.dumps({"error": bool(True) ,"message": "自訂的錯誤訊息"},ensure_ascii=False)
-    return Response(result_JSON, mimetype='application/json')
+        result_JSON = json.dumps({"error": bool(True) ,
+        "message": "自訂的錯誤訊息",
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'},ensure_ascii=False)
+    return Response(result_JSON)
 
 
 
@@ -91,7 +104,7 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-app.run(port=3000)
+app.run(port=3000,debug=True)
 
 #http://127.0.0.1:3000/api/attraction/1
 #http://127.0.0.1:3000/api/attractions?page=0
