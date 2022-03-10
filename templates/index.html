@@ -1,299 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="index.css" rel="stylesheet" type="text/css" /> -->
-    <title>台北一日遊</title>
-    
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link href="{{url_for('static',filename='index.css')}}" rel="stylesheet" type="text/css">
+	<title>台北一日遊</title>
 </head>
-<style>
-    body{
-        margin: 0px;
-        display: grid;
-        grid-template-columns: 1fr 1200px 1fr;
-        grid-template-rows: 50px 300px 900px 110px ;
-        font-family: Noto Sans;
-    }
-/* This is Title part */
-    .title{
-        position: sticky;
-        top: 0;
-        align-self: start;
-        background-color: #F8F8F8;
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 2;
-    }
-    .title_content{
-        margin: 0px auto 0px auto;
-        max-width: 1200px;
-        height: 50px;
-        display: flex;
-        justify-content:space-between ;
-        align-items:center ;
-        font-family: Noto Sans TC;
-        font-style: normal;
-        
-    }
-    .title_content div:nth-child(1) {
-        width: 50%;
-        text-align:left;
-
-    }
-    .title_content div:nth-child(2) {
-        width: 50%;
-        text-align:right;
-
-    }
-    .title_content div a{
-        display: inline-block ;
-        margin: 5px 0px 5px 0px;
-        font-size: 30px;
-
-    }
-    .title_content div a:nth-child(2){    
-        margin: 15px 0px 5px 20px;
-    }
-    .title_content div:nth-child(1) a{    
-        font-weight: bold;
-        color: rgba(68, 136, 153, 1);
-    }
-    .title_content div:nth-child(2) a{    
-        font-weight: normal;
-        font-size: 16px;
-    }
-/* end */
-
-/* This is main part  */
-    .main{
-        position: sticky;
-        align-self: start;
-        top: 50px;
-        background-color: rgba(170, 221, 238, 1);
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 2;
-        grid-row-end: 3;
-    }
-    .main_content{
-        max-width: 1200px;
-        height: 300px;
-        margin: 0px auto 0px auto;
-        display: flex;
-    }
-    .main_text{
-        width: 600px;
-        height: 300px;
-    }
-    .main_text p{
-        position: relative;
-        top: 50px;
-    }
-    .main_text p:nth-child(1){
-        font-family: Noto Sans TC;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 28px;
-        color: #F8F8F8;
-        text-shadow: 0px 0px 30px #AABBCC;
-    }
-    .main_text p:nth-child(2){
-        font-family: Noto Sans TC;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-        color: #F8F8F8;
-    }
-    .search-container{
-        position: relative;
-        top: 60px;
-    }
-    .search-container input{
-        width: 370px;
-        height: 15px;
-        padding: 15px;
-        margin: 0px;
-        float: left;
-        border: none;
-    }
-    ::placeholder { 
-        font-family: Noto Sans TC;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-    }
-    .search-container button{
-        width: 40px;
-        height: 46px;
-        float: left;
-        border: none;
-        background-color : rgba(68, 136, 153, 1)
-    }
-    .search-container button img{
-        width: 15px;
-        height: 15px;
-    }
-    .main_img{
-        width: 600px;
-        height: 300px;
-    }
-    .main_img img{
-        width: 100%;
-        height: 100%;
-    }
-/* end */
-
-    .barleft{
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    .barright{
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-
-/* This is content part  */
-    .content{
-        margin-top: 50px;
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    .box{
-        /* background-color: rgba(245, 245, 245, 0.664); */
-        background-color: tomato;
-        width: 270px;
-        height: 242px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 4fr 0.5fr 0.5fr ;
-    }
-    .box div:nth-child(1){
-        overflow:hidden;
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 2 ; 
-    }
-    .box div:nth-child(1) img{
-        width: 100%;
-        
-    }
-    .box p{
-        margin: 0px;
-    }
-    .box p:nth-child(2){
-        background-color: tomato;
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 2;
-        grid-row-end: 3;
-        padding: 5px;
-    }
-    .box p:nth-child(3){
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        text-align: left;
-        padding: 5px;
-    }
-    .box p:nth-child(4){
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        text-align: right;
-        padding: 5px;
-    }
-
-    
-    .foot{
-        background-color: rgb(25, 0, 255);
-        
-
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 4;
-        grid-row-end: 5;
-
-    }
-    
-
-</style>
 <body>
-    <div class="title">
-        <div class="title_content">
-            <div>
-                <a href="./index.html">台北一日遊</a>
-            </div>
-            
-            <div>
-                <a href="./index.html">排定行程</a>
-                <a href="./index.html">登入/註冊</a>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="main">
-        <div class="main_content">
-            <div class="main_text">
-                <p>輕鬆享受台北一日悠閒</p>
-                <p>探索每個角落，體驗城市的深度旅遊行程</p>
-                <div class="search-container">
-                      <input type="text" placeholder="輸入景點名稱查詢" name="search">
-                      <button type="submit"><img src="./icon_search.png" alt="searchpng"></button>
-                  </div>
-                </div>
-                <div class="main_img">
-                    <img src="./welcome 1.png" alt="mainpic">
-                </div>
-            </div>
-            
-            
-        </div>
-        
-        
-    </div>
-    <div class="barleft"></div>
-    <div class="content">
-        <div class="box">
-            <!-- <div>
-                <img src="./pokemon snorlax 1024.png" alt="我是範例">
-            </div>
-            
-            <p>名稱</p>
-            <p>地點</p>
-            <p>特色</p> -->
-        </div>
-        
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-    </div>
-    <div class="barright"></div>
-    <div class="foot"></div>
-    <script  type="text/javascript" src="index.js"></script>
+	<div class="title">
+		<div class="title_content">
+			<div>
+				<a href="./index.html">台北一日遊</a>
+			</div>
+			<div>
+				<a href="./index.html">排定行程</a> <a href="./index.html">登入/註冊</a>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<div class="main_content">
+			<div class="main_text">
+				<p>輕鬆享受台北一日悠閒</p>
+				<p>探索每個角落，體驗城市的深度旅遊行程</p>
+				<div class="search">
+					<form>
+						<input id="keyWord" name="search" placeholder="輸入景點名稱查詢" type="text"> <button id="btn" type="submit"><img src="https://nash15963.github.io/taipei-day-trip-website/templates/icon_search.png"></button>
+					</form>
+				</div>
+			</div>
+			<div class="main_img"><img alt="" src="https://nash15963.github.io/taipei-day-trip-website/templates/welcome%201.png"></div>
+		</div>
+	</div>
+	<div class="content"></div>
+	<div class="foot">
+		<p>COPYRIGHT © 2021 台北一日遊</p>
+	</div>
+	<script src="{{url_for('static',filename='index_1.js')}}">
+	</script>
 </body>
-
 </html>
