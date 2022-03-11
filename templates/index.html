@@ -25,18 +25,18 @@
 				<p>探索每個角落，體驗城市的深度旅遊行程</p>
 				<div class="search">
 					<form>
-						<input id="keyWord" name="search" placeholder="輸入景點名稱查詢" type="text"> <button id="btn" type="submit"><img src="https://nash15963.github.io/taipei-day-trip-website/templates/icon_search.png"></button>
+						<input id="keyWord" name="search" placeholder="輸入景點名稱查詢" type="text"> <button id="btn" type="submit"><img src="{{url_for('static',filename='icon_search.png')}}"></button>
 					</form>
 				</div>
 			</div>
-			<div class="main_img"><img alt="" src="https://nash15963.github.io/taipei-day-trip-website/templates/welcome%201.png"></div>
+			<div class="main_img"><img alt="" src="{{url_for('static',filename='welcome 1.png')}}"></div>
 		</div>
 	</div>
 	<div class="content"></div>
 	<div class="foot">
 		<p>COPYRIGHT © 2021 台北一日遊</p>
 	</div>
-	<script src="{{url_for('static',filename='index_1.js')}}">
+	<script src="{{url_for('static',filename='index.js')}}">
 	</script>
 </body>
 </html>
