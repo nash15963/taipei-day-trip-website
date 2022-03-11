@@ -1,7 +1,7 @@
 #本機端測試檔
-
 from flask import *
 app=Flask(__name__)
+
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
@@ -10,7 +10,6 @@ import pymysql
 import os
 from dotenv import load_dotenv #python-dotenv
 import json
-
 
 
 load_dotenv()
