@@ -1,8 +1,6 @@
-let input = ''; //預設沒有輸入關鍵字查找
+//一進入頁面就載入資料
 let content = document.querySelector('.content');
 let btn = document.querySelector('#btn');
-let nextPage = 0;
-//取得fetch資料
 const getDatas = async (page) => {
 	if (input != '') {
 		API_URL = `/api/attractions?page=${page}&keyword=${input}`;
@@ -17,7 +15,6 @@ const getDatas = async (page) => {
 	}
 	return await response.json();
 }
-//插入元素box，裡面置入圖片存放點
 const showDatas = (dataList) => {
 	dataList.forEach(data => {
 		const boxEle = document.createElement('div');
@@ -34,44 +31,27 @@ const showDatas = (dataList) => {
 		content.appendChild(boxEle);
 	});
 };
-//過濾字串
-let queryKeyword = (e) => {
-	e.preventDefault();
-	input = document.querySelector('#keyWord').value;
-	content.innerHTML = '';
-	loadDatas(page, input); //過濾完字串則抓取api，空白字串則進入沒有keyword路徑
-};
-btn.addEventListener('click', queryKeyword);
-// search api
+let nextPage = 0;
 const hasMoreDatas = (e) => {
 	console.log(e !== null)
 	return e !== null;
 };
-const loadDatas = async (page, input) => {
+const loadDatas = async (page) => {
 	// // show the loader(keep it)
 	// 0.5 second later
 	setTimeout(async () => {
-		try {
-			// if having more data to fetch
-			if (hasMoreDatas(nextPage)) {
-				// call the API to get data
-				const response = await getDatas(nextPage, input);
-				// show data
-				showDatas(response.data);
-				// update the total
-				nextPage = response.nextPage;
-				console.log(nextPage)
-				// console.log('input:', input); 除錯輸入字串
-			}
-		} catch (error) {
-			content.innerHTML = '';
-			const errorMessage = document.createElement('h3')
-			errorMessage.innerText = '找不到您所要的資料'
-			errorMessage.style.color = '#666666'
-			content.append(errorMessage)
+		// if having more data to fetch
+		if (hasMoreDatas(nextPage)) {
+			// call the API to get data
+			const response = await getDatas(nextPage);
+			// show data
+			showDatas(response.data);
+			currentPage++;
+			// update the total
+			nextPage = response.nextPage;
+			// console.log('input:', input); 除錯輸入字串
 		}
-	}, 1000);
-	//可以嘗試增加讀取動畫(不然看起來很像當機)
+	}, 800);
 };
 let currentPage = 0;
 window.addEventListener('scroll', () => {
@@ -81,12 +61,43 @@ window.addEventListener('scroll', () => {
 		clientHeight
 	} = document.documentElement;
 	//滑到底部則讀取api資料
-	if (scrollTop + clientHeight >= scrollHeight - 5 && hasMoreDatas(nextPage)) {
-		currentPage++;
+	if (scrollTop + clientHeight == scrollHeight && hasMoreDatas(nextPage)) {
 		loadDatas(currentPage);
 	}
 }, {
 	passive: true
 });
 // initialize
-loadDatas(currentPage, input);
+let input = ''; //預設沒有輸入關鍵字查找
+
+//查詢功能
+loadDatas(currentPage);
+let queryKeyword = (e) => {
+	e.preventDefault();
+	input = document.querySelector('#keyWord').value;
+	quert_nextPage = 0;
+	content.innerHTML = '';
+	setTimeout(async () => {
+		try {
+			// if having more data to fetch
+			if (hasMoreDatas(quert_nextPage)) {
+				// call the API to get data
+				const response = await getDatas(quert_nextPage, input);
+				// show data
+				showDatas(response.data);
+				// update the total
+				nextPage = response.nextPage;
+				console.log('nextPage :', nextPage)
+				// console.log('input:', input); 除錯輸入字串
+			}
+		} catch (error) {
+			content.innerHTML = '';
+			const errorMessage = document.createElement('h3')
+			errorMessage.innerText = '沒有更多資料可以顯示'
+			errorMessage.style.color = '#666666'
+			content.append(errorMessage)
+		}
+	}, 800);
+}
+btn.addEventListener('click', queryKeyword);
+
