@@ -67,6 +67,7 @@ const loadDatas = async (page, input) => {
                 
             }
         } catch (error) {
+            content.innerHTML = '';
             const errorMessage = document.createElement('h3')
             errorMessage.innerText = '找不到您所要的資料'
             errorMessage.style.color = '#666666'
