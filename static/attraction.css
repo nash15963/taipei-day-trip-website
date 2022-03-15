@@ -161,7 +161,7 @@ body {
 	margin: 0px;
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 50px 1200px auto 110px;
+	grid-template-rows: 50px 900px auto 110px;
 	font-family: Noto Sans TC;
 	}
 
@@ -219,7 +219,7 @@ body {
 		/* 裡面再切版成三塊 */
 		display: grid;
 		grid-template-columns: 100%;
-		grid-template-rows: 1fr 0.2fr 0.8fr;
+		grid-template-rows: 0.3fr 0.2fr 0.5fr;
 		border-bottom: 1px gray dashed;
 		
 	}
