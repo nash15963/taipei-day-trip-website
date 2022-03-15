@@ -219,7 +219,7 @@ body {
 		/* 裡面再切版成三塊 */
 		display: grid;
 		grid-template-columns: 100%;
-		grid-template-rows: 0.3fr 0.2fr 0.5fr;
+		grid-template-rows: 1fr 0.2fr 1fr;
 		border-bottom: 1px gray dashed;
 		
 	}
@@ -227,7 +227,7 @@ body {
 		overflow: hidden;
 		grid-column: 1/1;
 		grid-row: 1/2;
-		padding: 40px 30px 100px 30px;
+		padding: 40px 30px 50px 30px;
 		position: relative;
 	}
 	.top-img img{
@@ -276,7 +276,7 @@ body {
 		grid-column: 1/1;
 		grid-row: 3/4;
 		margin: 0px 20px 100px 20px;
-		padding: 0px 0px 0px 20px;
+		padding: 0px 0px 20px 20px;
 		background-color: rgba(232, 232, 232, 1);
 	}
 	.top-main button{
