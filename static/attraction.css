@@ -161,7 +161,7 @@ body {
 	margin: 0px;
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 50px 900px auto 110px;
+	grid-template-rows: 50px 850px auto 110px;
 	font-family: Noto Sans TC;
 	}
 
@@ -219,7 +219,7 @@ body {
 		/* 裡面再切版成三塊 */
 		display: grid;
 		grid-template-columns: 100%;
-		grid-template-rows: 1fr 0.2fr 1fr;
+		grid-template-rows: 0.7fr 0.2fr 1fr;
 		border-bottom: 1px gray dashed;
 		
 	}
@@ -227,7 +227,7 @@ body {
 		overflow: hidden;
 		grid-column: 1/1;
 		grid-row: 1/2;
-		padding: 40px 30px 50px 30px;
+		padding: 20px 30px 20px 30px;
 		position: relative;
 	}
 	.top-img img{
