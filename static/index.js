@@ -20,6 +20,7 @@ const getDatas = async (page) => {
 
 //將資料填入box裡
 const showDatas = (dataList) => {
+
 	dataList.forEach(data => {
 		const boxEle = document.createElement('div');
 		boxEle.classList.add('box');
@@ -32,6 +33,7 @@ const showDatas = (dataList) => {
         <p>${data.mrt}</p>
         <p>${data.category}</p>
     `;
+		boxEle.onclick = () => {window.location.href=`/attraction/${data.id}`}//增加超連結在每個元素中
 		content.appendChild(boxEle);
 	});
 };
@@ -113,3 +115,8 @@ let queryKeyword = (e) => {
 }
 btn.addEventListener('click', queryKeyword);
 
+
+//點擊box跳轉到相對應的
+const addHyperlink =async()=> {
+	response =  await getDatas(quert_nextPage, input);
+}

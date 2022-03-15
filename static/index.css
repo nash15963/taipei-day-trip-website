@@ -1,4 +1,3 @@
-
 body {
 	margin: 0px;
 	display: grid;
@@ -238,10 +237,12 @@ body {
 	.title_content div:nth-child(1) {
 		width: 50%;
 		text-align: left;
+		padding: 0px 0px 0px 10px;
 	}
 	.title_content div:nth-child(2) {
 		width: 50%;
 		text-align: right;
+		padding: 0px 10px 0px 0px;
 	}
 	.title_content div a {
 		display: inline-block;
