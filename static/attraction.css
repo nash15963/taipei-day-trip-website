@@ -75,26 +75,64 @@ body {
 	
     width: 100%;
     height: 100%;
-	object-fit: over;
+	object-fit: cover;
 	/* background-image: url(./load.jpg)  no-repeat;
 	background-size: cover; */
+}
+.cirbox{
+	position: absolute;
+	top: 78%;
+	width: 540px;
+	height: 26px;
+	display: flex;
+	justify-content:center ;
+
+}
+.cir{
+	
+	z-index: 100;
+	width: auto;
+	/* 用來定位整個主塊 */
+	/* background-color: brown; */
+	margin: 0px auto 0px auto;
 	
 }
+
+.cir li{
+	z-index: 110;
+	border: solid 3px white;
+	background-color: white;
+	border-radius:60%;
+	width:12px;
+	height:12px;
+	margin:3px 3px 0px 3px;
+	display: inline-block;
+	list-style: none;  
+	/* 關鍵語法，轉換成一排 */
+   
+}
+
+.cir_focus{
+	background-color: black !important;	
+}
+
 #leftArrow{
+	cursor: pointer;
 	position: absolute;
 	z-index: 100;
 	width: 30px;
 	height: 30px;
 	top: 45%;
-	left: 7%;
+	left: 8%;
 	
 }
 #rightArrow{
+	cursor: pointer;
 	position: absolute;
 	z-index: 100;
 	width: 30px;
 	height: 30px;
-	left: 88%;
+	left: 87%;
 	top: 45%;
 }
 .top-introduction{
@@ -123,7 +161,46 @@ body {
 	padding: 0px 0px 0px 20px;
 	background-color: rgba(232, 232, 232, 1);
 }
+ /* .fullday_moring ,.fullday_evening {
+	width: 18px;
+	height: 18px;
+	margin: 6px 3px 0px 5px;
+	cursor: pointer;
+	color: rgba(68, 136, 153, 1);
+	
+  }
+  input:checked +  .fullday_moring ,.fullday_evening ::before{ /* 當check時 按鈕顏色改變 
+    background-color: rgba(68, 136, 153, 1);;
+} */
+/*  */
+input[type="radio"] {
+	/* remove standard background appearance */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	/* create custom radiobutton appearance */
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	padding: 0px;
+	/* background-color only for content */
+	background-clip: content-box;
+	border: 1px solid white;
+	background-color: white;
+	border-radius: 50%;
+	position: relative;
+	top: 2px;
+  }
+/* appearance for checked radiobutton */
+input[type="radio"]:checked {
+	background-color: rgba(68, 136, 153, 1);
+  }
+/*  */
 .top-main button{
+	border: 0px;
+	box-shadow: none;
+	width: 154px;
+	height: 36px;
 	font-size: 20px;
 	background-color: #448899;;
 	color: rgba(255, 255, 255, 1);
@@ -156,12 +233,13 @@ body {
 	grid-column: 1/4;
 	grid-row : 4/5;
 }
-@media (max-width:600px){
+/* 平板 */
+@media (max-width:1024px){
 	body {
 	margin: 0px;
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 50px 850px auto 110px;
+	grid-template-rows: 50px 1200px auto 110px;
 	font-family: Noto Sans TC;
 	}
 
@@ -219,22 +297,48 @@ body {
 		/* 裡面再切版成三塊 */
 		display: grid;
 		grid-template-columns: 100%;
-		grid-template-rows: 0.7fr 0.2fr 1fr;
+		grid-template-rows: 6fr 2fr 4fr;
 		border-bottom: 1px gray dashed;
 		
 	}
 	.top-img{
-		overflow: hidden;
 		grid-column: 1/1;
 		grid-row: 1/2;
-		padding: 20px 30px 20px 30px;
+		padding: 0px;
 		position: relative;
 	}
 	.top-img img{
-		
+		object-fit: cover;
+	}
+	.cirbox{
+		position: absolute;
+		top: 90%;
 		width: 100%;
-		height: 100%;
-		object-fit: over;
+		height: 26px;
+		display: flex;
+		justify-content:center ;
+	
+	}
+	.cir{
+		position:absolute;
+		z-index: 100;
+		/* 用來定位整個主塊 */
+	}
+	
+	.cir li{
+		z-index: 110;
+		border: solid 3px white;
+		border-radius:60%;
+		width:12px;
+		height:12px;
+		margin:3px 3px 0px 3px;
+		display: inline-block;
+		list-style: none;  
+		/* 關鍵語法，轉換成一排 */
+	   
+	}
+	.cir_focus{
+		background-color: black;	
 	}
 	#leftArrow{
 		position: absolute;
@@ -242,7 +346,7 @@ body {
 		width: 30px;
 		height: 30px;
 		top: 50%;
-		left: 7%;
+		left: 3%;
 		
 	}
 	#rightArrow{
@@ -250,7 +354,7 @@ body {
 		z-index: 100;
 		width: 30px;
 		height: 30px;
-		left: 88%;
+		left: 92%;
 		top: 50%;
 	}
 	.top-introduction{
@@ -277,6 +381,193 @@ body {
 		grid-row: 3/4;
 		margin: 0px 20px 100px 20px;
 		padding: 0px 0px 20px 20px;
+		background-color: rgba(232, 232, 232, 1);
+	}
+	.top-main button{
+		font-size: 20px;
+		background-color: #448899;;
+		color: rgba(255, 255, 255, 1);
+		border-radius: 5px;
+		padding:10px, 20px, 10px, 20px;
+	}
+	/* .top-main p:nth-child(3){
+		display: inline-block;
+	} */
+	/* .top-main p:nth-child(5){
+		display: inline-block;
+	} */
+	/* end */
+	.bottom-content{
+		margin: 90px 0px 20px 0px;
+		grid-column: 1/1;
+		grid-row : 3/4;
+		font-style: normal;
+	}
+	.bottom-content p{
+		margin: 0px 15px 50px 15px;
+	}
+	.bottom-content h4{
+		margin: 0px 15px 10px 15px;
+	}
+	.foot{
+		padding-top: 20px;
+		background-color: rgba(117, 117, 117, 1);
+		text-align: center;
+		grid-column: 1/4;
+		grid-row : 4/5;
+	}	
+	}
+
+/* 手機大小 */
+@media (max-width:600px){
+	body {
+	margin: 0px;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 50px 1000px auto 110px;
+	font-family: Noto Sans TC;
+	}
+
+	/* This is Title part */
+	.title{
+		z-index: 999;    /* 可以蓋過頁面其他部分，為最大值 */
+		position: sticky;
+		top: 0;
+		align-self: start;
+		background-color: #F8F8F8;
+		grid-column: 1/1;
+		grid-row : 1/2;
+	}
+	.title_content {
+		margin: 0px auto 0px auto;
+		max-width: 1200px;
+		height: 50px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-style: normal;
+	}
+	.title_content div:nth-child(1) {
+		width: 50%;
+		text-align: left;
+		padding: 0px 0px 0px 10px;
+	}
+	.title_content div:nth-child(2) {
+		width: 50%;
+		text-align: right;
+		padding: 0px 10px 0px 0px;
+	}
+	.title_content div a {
+		display: inline-block;
+		margin: 5px 0px 5px 0px;
+		font-size: 30px;
+	}
+	.title_content div a:nth-child(2) {
+		margin: 15px 0px 5px 20px;
+	}
+	.title_content div:nth-child(1) a {
+		font-weight: bold;
+		color: rgba(68, 136, 153, 1);
+	}
+	.title_content div:nth-child(2) a {
+		font-weight: normal;
+		font-size: 16px;
+	}
+	/* end */
+
+	/* This is top-content part */
+	.top-content{
+		grid-column: 1/1;
+		grid-row : 2/3;
+		/* 裡面再切版成三塊 */
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 7fr 2fr 3fr;
+		border-bottom: 1px gray dashed;
+		padding: 0px;
+		
+	}
+	.top-img{
+		overflow: hidden;
+		grid-column: 1/1;
+		grid-row: 1/2;
+		margin: 0px 0px 0px 0px;
+		padding: 0px;
+		position: relative;
+	}
+	.top-img img{
+		object-fit: cover;
+	}
+	.cirbox{
+		position: absolute;
+		top: 90%;
+		width: 100%;
+		height: 26px;
+		display: flex;
+		justify-content:center ;
+	
+	}
+	.cir{
+		z-index: 100;
+		/* 用來定位整個主塊 */
+	}
+	
+	.cir li{
+		z-index: 110;
+		border: solid 3px white;
+		border-radius:60%;
+		width:12px;
+		height:12px;
+		margin:3px 3px 0px 3px;
+		display: inline-block;
+		list-style: none;  
+		/* 關鍵語法，轉換成一排 */
+	   
+	}
+	.cir_focus{
+		background-color: black;	
+	}
+	#leftArrow{
+		position: absolute;
+		z-index: 100;
+		width: 30px;
+		height: 30px;
+		top: 50%;
+		left: 3%;	
+	}
+	#rightArrow{
+		position: absolute;
+		z-index: 100;
+		width: 30px;
+		height: 30px;
+		top: 50%;
+		left: 90%;
+	}
+	.top-introduction{
+		grid-column: 1/1;
+		grid-row: 2/3;
+	}
+	.top-introduction h3{
+		margin: 0px ;
+		padding: 40px 40px 0px 20px;
+		color: rgba(102, 102, 102, 1);
+	}
+
+	.top-introduction p{
+		display: inline-block;
+		margin-bottom: 40px;
+		color: rgba(102, 102, 102, 1);
+		font-size: 16px;
+	}
+	.top-introduction p:nth-child(2){
+		padding: 0px 0px 0px 20px;
+	}
+	.top-main{
+		font-size: 18px;
+		grid-column: 1/1;
+		grid-row: 3/4;
+		margin: 0px 10px 90px 10px;
+		padding: 0px 20px 20px 20px;
 		background-color: rgba(232, 232, 232, 1);
 	}
 	.top-main button{

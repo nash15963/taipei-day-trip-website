@@ -19,14 +19,24 @@
 		</div>
 	</div>
 	<div class="top-content">
-		<div class="top-img"><img alt="leftArrow" id="leftArrow" src="{{url_for('static',filename='leftArrow.png')}}"> <img alt="rightArrow" id="rightArrow" src="{{url_for('static',filename='rightArrow.png')}}"></div>
+	
+		<div class="top-img">
+			<div class="cirbox"><div class="cir"></div></div>
+			<img alt="leftArrow" id="leftArrow" src="{{url_for('static',filename='leftArrow.png')}}"> 
+			<img alt="rightArrow" id="rightArrow" src="{{url_for('static',filename='rightArrow.png')}}">
+		</div>
 		<div class="top-introduction"></div>
 		<div class="top-main">
 			<h4>訂購導覽行程</h4>
 			<p>以此景點為中心的一日行程，帶您探索城市角落故事</p>
 			<form action="">
-				<p>選擇日期：<input id="top-main-date" max="2024-12-31" min="2022-01-01" name="trip-start" type="date" value="2022-01-01"></p>
-				<p>選擇時間： <input checked class="fullday_moring" name="fullday" type="radio" value="2000"> 上半天 <input class="fullday_evening" name="fullday" type="radio" value="2500"> 下半天</p>
+				<p>選擇日期：<input id="top-main-date" max="2024-12-31" min="2022-01-01" name="trip-start" type="date"></p>
+				<p>選擇時間： 
+					<input checked class="fullday_moring" name="fullday" type="radio" value="2000"> 
+					<label for="fullday_moring">上半天</label> 
+					<input class="fullday_evening" name="fullday" type="radio" value="2500">
+					<label for="fullday_evening">下半天</label> 
+					</p>
 				<p>導覽費用：新台幣 <span id="TWdollar">2000</span> 元</p><button>開始預訂行程</button>
 			</form>
 		</div>
