@@ -61,7 +61,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 5fr;
-	border-bottom: 1px gray dashed;
+	border-bottom: 1px #E8E8E8 solid;
 	
 }
 .top-img{
@@ -228,7 +228,8 @@ input[type="radio"]:checked {
 }
 .foot{
     padding-top: 20px;
-	background-color: rgba(117, 117, 117, 1);
+	background-color: #757575;
+	color: white;
     text-align: center;
 	grid-column: 1/4;
 	grid-row : 4/5;
@@ -298,7 +299,7 @@ input[type="radio"]:checked {
 		display: grid;
 		grid-template-columns: 100%;
 		grid-template-rows: 6fr 2fr 4fr;
-		border-bottom: 1px gray dashed;
+		
 		
 	}
 	.top-img{
@@ -411,7 +412,6 @@ input[type="radio"]:checked {
 	}
 	.foot{
 		padding-top: 20px;
-		background-color: rgba(117, 117, 117, 1);
 		text-align: center;
 		grid-column: 1/4;
 		grid-row : 4/5;
@@ -483,7 +483,6 @@ input[type="radio"]:checked {
 		display: grid;
 		grid-template-columns: 100%;
 		grid-template-rows: 7fr 2fr 3fr;
-		border-bottom: 1px gray dashed;
 		padding: 0px;
 		
 	}
@@ -571,7 +570,7 @@ input[type="radio"]:checked {
 		background-color: rgba(232, 232, 232, 1);
 	}
 	.top-main button{
-		font-size: 20px;
+		font-size: 18px;
 		background-color: #448899;;
 		color: rgba(255, 255, 255, 1);
 		border-radius: 5px;
@@ -598,7 +597,6 @@ input[type="radio"]:checked {
 	}
 	.foot{
 		padding-top: 20px;
-		background-color: rgba(117, 117, 117, 1);
 		text-align: center;
 		grid-column: 1/4;
 		grid-row : 4/5;
