@@ -14,7 +14,8 @@ body {
 	position: sticky;
 	top: 0;
 	align-self: start;
-	background-color: #F8F8F8;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #E8E8E8;
 	grid-column: 1/4;
 	grid-row : 1/2;
 }
@@ -250,7 +251,6 @@ input[type="radio"]:checked {
 		position: sticky;
 		top: 0;
 		align-self: start;
-		background-color: #F8F8F8;
 		grid-column: 1/1;
 		grid-row : 1/2;
 	}
@@ -434,7 +434,6 @@ input[type="radio"]:checked {
 		position: sticky;
 		top: 0;
 		align-self: start;
-		background-color: #F8F8F8;
 		grid-column: 1/1;
 		grid-row : 1/2;
 	}
