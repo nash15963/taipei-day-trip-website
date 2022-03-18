@@ -32,6 +32,7 @@ POOL = PooledDB(
 )
 
 
+
 @app.route("/api/attraction/<attractionId>")
 def attractionId(attractionId):
     print('id : ',attractionId)
@@ -40,6 +41,7 @@ def attractionId(attractionId):
     sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where id = %s; "
     sql_run = cursor.execute(sql,(attractionId))
     result = cursor.fetchone() 
+    cursor.close()
     conn.close()         
     if sql_run == 1:
         result['img'] = result['img'].split(',')
@@ -65,6 +67,7 @@ def api_attraction():
         sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where name like %s limit %s,12;"
         sql_run = cursor.execute(sql,(now_keyword,now_page))
     result = cursor.fetchall()
+    cursor.close()
     conn.close()
     if sql_run < 12 :
         page_now = None
@@ -78,7 +81,6 @@ def api_attraction():
     else :
         result_JSON = json.dumps({"error": bool(True) ,"message": "自訂的錯誤訊息"},ensure_ascii=False)
     return Response(result_JSON, mimetype='application/json')
-
 
 
 
