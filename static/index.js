@@ -45,7 +45,7 @@ const hasMoreDatas = (e) => {
 	return e !== null;
 };
 const loadDatas = async (page) => {
-	// // show the loader(keep it)
+	// show the loader(keep it)
 	// 0.5 second later
 	setTimeout(async () => {
 		// if having more data to fetch
@@ -120,3 +120,4 @@ btn.addEventListener('click', queryKeyword);
 const addHyperlink =async()=> {
 	response =  await getDatas(quert_nextPage, input);
 }
+

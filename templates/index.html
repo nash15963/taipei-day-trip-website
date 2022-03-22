@@ -8,13 +8,41 @@
 	<title>台北一日遊</title>
 </head>
 <body>
+<div id="shadow"></div>
+
+<div id="login">
+	<form action="/api/user" id="login_form" method="post">
+		<p>登入會員帳號 <span class="close">X</span> </p>
+		<input name="email" type="email" placeholder="輸入電子信箱">
+		<input name='password' type="password" placeholder="輸入密碼"><br>
+		<button id="login_formBtn" type="submit">登入帳戶</button>
+		<!-- <input class="formBtn" type="submit" value="登入帳戶"> -->
+		<p class="signupPage">還沒有帳戶?點此註冊</p>
+		<p class="message"></p>
+	</form>
+</div>
+
+<div id="signup">
+	<form action="/api/user" id="signup_form" method="post">
+		<p>註冊會員帳號 <span class="close">X</span> </p>
+		<input name="name" type="text" placeholder="輸入姓名">
+		<input name="email" type="email" placeholder="輸入電子信箱">
+		<input name='password' type="password" placeholder="輸入密碼"><br>
+		<button id="signup_formBtn" type="submit">註冊新帳戶</button>
+		<!-- <input class="formBtn" type="submit" value="註冊新帳戶"> -->
+		<p class="logInPage">已經有帳戶了？點此登入</p>
+		<p class="message"></p>
+	</form>
+</div>
 	<div class="title">
 		<div class="title_content">
 			<div>
 				<a href="/">台北一日遊</a>
 			</div>
-			<div>
-				<a href="./index.html">排定行程</a> <a href="./index.html">登入/註冊</a>
+			<div class="title_box">
+				<a href="./booking.html">排定行程</a> 
+				<p class="signin">登入/註冊</p>
+				<p class="signout">登出</p>
 			</div>
 		</div>
 	</div>
@@ -25,7 +53,8 @@
 				<p>探索每個角落，體驗城市的深度旅遊行程</p>
 				<div class="search">
 					<form>
-						<input id="keyWord" name="search" placeholder="輸入景點名稱查詢" type="text"> <button id="btn" type="submit"><img src="{{url_for('static',filename='icon_search.png')}}"></button>
+						<input id="keyWord" name="search" placeholder="輸入景點名稱查詢" type="text"> 
+						<button id="btn" type="submit"><img src="{{url_for('static',filename='icon_search.png')}}"></button>
 					</form>
 				</div>
 			</div>
@@ -36,7 +65,8 @@
 	<div class="foot">
 		<p>COPYRIGHT © 2021 台北一日遊</p>
 	</div>
-	<script src="{{url_for('static',filename='index.js')}}">
-	</script>
+
+	<script src="{{url_for('static',filename='index.js')}}"></script>
+	<script src="{{url_for('static',filename='member.js')}}"></script>
 </body>
 </html>

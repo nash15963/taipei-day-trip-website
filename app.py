@@ -1,3 +1,4 @@
+from ast import dump
 from flask import *
 app=Flask(__name__)
 
@@ -24,7 +25,7 @@ POOL = PooledDB(
     ping=0, #自己看文件(好麻煩)
     host='127.0.0.1',
     user='root',
-    port= 3306 ,
+    port=3306 ,
     password= os.getenv('mysql_password'),
     database='taipeitrip',
     charset='utf8',
@@ -32,16 +33,17 @@ POOL = PooledDB(
 )
 
 
+
 @app.route("/api/attraction/<attractionId>")
 def attractionId(attractionId):
-    print('id : ',attractionId)
+    # print('id : ',attractionId)
     conn = POOL.connection()
     cursor = conn.cursor()
     sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where id = %s; "
     sql_run = cursor.execute(sql,(attractionId))
     result = cursor.fetchone() 
-    cursor.close()
-    conn.close()         
+    conn.close()
+    cursor.close()       
     if sql_run == 1:
         result['img'] = result['img'].split(',')
         result_JSON = json.dumps({"data":result},ensure_ascii=False)	    
@@ -66,8 +68,8 @@ def api_attraction():
         sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where name like %s limit %s,12;"
         sql_run = cursor.execute(sql,(now_keyword,now_page))
     result = cursor.fetchall()
-    cursor.close()
     conn.close()
+    cursor.close() 
     if sql_run < 12 :
         page_now = None
     else :
@@ -80,7 +82,6 @@ def api_attraction():
     else :
         result_JSON = json.dumps({"error": bool(True) ,"message": "自訂的錯誤訊息"},ensure_ascii=False)
     return Response(result_JSON, mimetype='application/json')
-
 
 
 
