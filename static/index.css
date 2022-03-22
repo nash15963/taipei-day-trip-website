@@ -504,6 +504,7 @@ body {
 	border-radius: 6px;
 	box-shadow: 0px 4px 60px #AAAAAA;
 }
+
 #signup form p:nth-child(1){
 	font-weight: 700;
 	font-size: 24px;

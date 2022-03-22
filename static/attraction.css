@@ -738,6 +738,16 @@ input[type="radio"]:checked {
 	grid-template-rows: 50px 1000px auto 110px;
 	font-family: Noto Sans TC;
 	}
+	.signout{
+		margin: 5px 5px 5px 5px;
+		color: rgba(102, 102, 102, 1);
+		cursor: pointer;
+	}
+	.signin{
+		margin: 5px 5px 5px 5px;
+		color: rgba(102, 102, 102, 1);
+		cursor: pointer;
+	}
 
 	/* This is Title part */
 	.title{
@@ -779,10 +789,10 @@ input[type="radio"]:checked {
 		font-weight: bold;
 		color: rgba(68, 136, 153, 1);
 	}
-	.title_content div:nth-child(2) a {
-		font-weight: 400;
-	font-size: 16px;
-	margin: 10px 30px 5px 0px;;
+	.title_content div:nth-child(2) p {
+	font-weight: 400;
+	font-size: 12px;
+	margin: 5px 5px 5px 5px;;
 	color: rgba(102, 102, 102, 1);
 	}
 	/* end */
