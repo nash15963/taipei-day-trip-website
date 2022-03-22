@@ -1,16 +1,12 @@
+
+/* This is Body */
 body {
 	margin: 0px;
 	display: grid;
 	grid-template-columns: 1fr 1200px 1fr;
-	grid-template-rows: 50px 300px auto 110px;
-	font-family: Noto Sans;
-	/* 載入顯示拉軸 */
-	/* overflow-y:hidden ; */
+	grid-template-rows: 50px 600px auto 110px;
+	font-family: Noto Sans TC;
 }
-/* .title div a:nth-child(2){
-	color: red;
-} */
-
 /* login-part start */
 #shadow{
 	/* 載入不顯示 */
@@ -196,19 +192,30 @@ body {
 	color: #666666;
 	cursor: pointer;
 }
+.signout{
+	display: none;
+	margin: 15px 5px 5px 20px;
+	color: rgba(102, 102, 102, 1);
+	cursor: pointer;
+}
+.signin{
+	display: inline-block;
+	margin: 15px 5px 5px 20px;
+	color: rgba(102, 102, 102, 1);
+	cursor: pointer;
+}
 /* sign up page end */
+
 /* This is Title part */
-.title {
-	z-index: 100;
+.title{
+    z-index: 999;    /* 可以蓋過頁面其他部分，為最大值 */
 	position: sticky;
 	top: 0;
 	align-self: start;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #E8E8E8;
-	grid-column-start: 1;
-	grid-column-end: 4;
-	grid-row-start: 1;
-	grid-row-end: 2;
+	grid-column: 1/4;
+	grid-row : 1/2;
 }
 .title_content {
 	margin: 0px auto 0px auto;
@@ -217,7 +224,6 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	font-family: Noto Sans TC;
 	font-style: normal;
 }
 .title_content div:nth-child(1) {
@@ -232,23 +238,9 @@ body {
 	display: inline-block;
 	margin: 5px 0px 5px 0px;
 	font-size: 30px;
-	cursor: pointer;
 }
-.title_content div p{
-	margin: 5px 0px 5px 0px;
-	font-size: 16px;
-	cursor: pointer;
-	font-weight: normal;
-}
-.signout{
-	display: none;
-	margin: 15px 5px 5px 20px;
-	color: rgba(102, 102, 102, 1);
-}
-.signin{
-	display: inline-block;
-	margin: 15px 5px 5px 20px;
-	color: rgba(102, 102, 102, 1);
+.title_content div a:nth-child(2) {
+	margin: 15px 0px 5px 20px;
 }
 .title_content div:nth-child(1) a {
 	font-weight: bold;
@@ -260,7 +252,6 @@ body {
 	margin: 10px 30px 5px 0px;;
 	color: rgba(102, 102, 102, 1);
 }
-
 /* end */
 
 /* This is top-content part */
@@ -465,6 +456,7 @@ input[type="radio"]:checked {
 	grid-row-end: 5;
 	background-color: rgba(0, 0, 0, 1);
 	opacity: 25%;
+	
 }
 #login{
 	z-index: 999 ;
@@ -472,6 +464,7 @@ input[type="radio"]:checked {
 	left: 2%;
 	width: 88%;
 	background-color: white;
+	
 	text-align: center;
 	padding: 15px;
 	border-radius: 6px;
@@ -602,8 +595,10 @@ input[type="radio"]:checked {
 		color: rgba(68, 136, 153, 1);
 	}
 	.title_content div:nth-child(2) a {
-		font-weight: normal;
-		font-size: 16px;
+		font-weight: 400;
+	font-size: 16px;
+	margin: 10px 30px 5px 0px;;
+	color: rgba(102, 102, 102, 1);
 	}
 	/* end */
 
@@ -785,8 +780,10 @@ input[type="radio"]:checked {
 		color: rgba(68, 136, 153, 1);
 	}
 	.title_content div:nth-child(2) a {
-		font-weight: normal;
-		font-size: 16px;
+		font-weight: 400;
+	font-size: 16px;
+	margin: 10px 30px 5px 0px;;
+	color: rgba(102, 102, 102, 1);
 	}
 	/* end */
 

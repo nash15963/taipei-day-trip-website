@@ -12,6 +12,7 @@ from dotenv import load_dotenv #python-dotenv
 import json
 from dbutils.pooled_db import PooledDB
 load_dotenv()
+app.config['SECRET_KEY'] = os.getenv('secret_key')
 
 POOL = PooledDB(
     creator=pymysql,  # 負責連結的python模組
@@ -37,6 +38,7 @@ POOL = PooledDB(
 @app.route("/api/attraction/<attractionId>")
 def attractionId(attractionId):
     # print('id : ',attractionId)
+    print('POOL :',POOL)
     conn = POOL.connection()
     cursor = conn.cursor()
     sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where id = %s; "
@@ -81,6 +83,93 @@ def api_attraction():
         
     else :
         result_JSON = json.dumps({"error": bool(True) ,"message": "自訂的錯誤訊息"},ensure_ascii=False)
+    return Response(result_JSON, mimetype='application/json')
+
+
+#會員登入SQL_table = member
+#取得當前使用者的資料
+@app.route('/api/user', methods=['GET']) 
+def user_get():
+    print('session from user_get',session)
+    if "id" in session :
+        id = session['id']
+        email = session['email'] 
+        name = session['name'] 
+        data = {'id':id,'email':email,'name':name}
+        result_JSON = json.dumps({"data":data}) 
+    else :
+        result_JSON = json.dumps({"data":None}) 
+    return Response(result_JSON, mimetype='application/json')
+
+#註冊帳戶
+#文字篩選功能(未新增)
+@app.route('/api/user', methods=['POST']) 
+def user_signup():
+    req_data = request.get_json()
+    print(req_data)
+    name =req_data['Name']
+    email = req_data['Email']
+    password = req_data['Password']
+    print("name :",name,"email :",email,"password :",password)
+    if name == '' or email == '' or password == '' : #篩選填入資料不得為空
+        print("Null data")
+        result_JSON = json.dumps({"error": bool(True) ,"message": "填入資料不得為空"})
+    else:
+        conn = POOL.connection()
+        cursor = conn.cursor()
+        sql = "SELECT COUNT(*) FROM member WHERE email = %s"
+        cursor.execute(sql, (email))
+        result = cursor.fetchone() #不得重複ID_name，如果result大於1則表示，此帳號已被註冊
+        print("RESULT",result)
+        #判斷是否被註冊
+        if result['COUNT(*)'] > 0:
+            print('error')
+            result_JSON = json.dumps({"error": bool(True) ,"message": "此帳號已被註冊"})
+        else :
+            sql = "INSERT INTO member (name, email, password) VALUES (%s,%s,%s)"
+            cursor.execute(sql, (name, email, password))
+            conn.commit()
+            print("Done")
+            result_JSON = json.dumps({"ok": bool(True)})
+        conn.close()
+        cursor.close()
+    return Response(result_JSON, mimetype='application/json')
+
+#登入帳戶
+@app.route('/api/user', methods=['PATCH']) 
+def user_signin():
+    req_data = request.get_json()
+    print(req_data)
+    # return json.dumps({"data": req_data})
+    email =req_data['Email']
+    password = req_data['Password']
+    print("email:"+email,"memeber_code:"+password)
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    sql = "SELECT id ,email,name,password FROM member WHERE email = %s and password = %s;"
+    cursor.execute(sql, (email,password))
+    result = cursor.fetchone()
+    conn.close()
+    cursor.close()
+    if result['email'] == email :
+        session['id']= result['id']
+        session['email'] = result['email']
+        session['name'] = result['name']
+        # session.user = {
+        #     'email': result['email'],
+        #     'password':result['password']
+        # }
+        print('from session :',session)
+        result_JSON = json.dumps({"ok": bool(True)})
+    else :
+        result_JSON = json.dumps({"error": bool(True) ,"message": "登入錯誤"})
+    return Response(result_JSON, mimetype='application/json')
+
+#登出帳戶
+@app.route('/api/user', methods=['DELETE']) 
+def user_logout():
+    session.clear()
+    result_JSON = json.dumps({"ok": bool(True)})
     return Response(result_JSON, mimetype='application/json')
 
 

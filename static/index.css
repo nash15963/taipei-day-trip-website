@@ -244,11 +244,13 @@ body {
 	display: none;
 	margin: 15px 5px 5px 20px;
 	color: rgba(102, 102, 102, 1);
+	cursor: pointer;
 }
 .signin{
 	display: inline-block;
 	margin: 15px 5px 5px 20px;
 	color: rgba(102, 102, 102, 1);
+	cursor: pointer;
 }
 .title_content div:nth-child(1) a {
 	font-weight: bold;
