@@ -5,13 +5,10 @@ body {
 	grid-template-rows: 50px 300px auto 110px;
 	font-family: Noto Sans;
 	/* 載入顯示拉軸 */
-	/* overflow-y:hidden ; */
+	/* overflow-y:hidden ;
+	*/
 }
-/* .title div a:nth-child(2){
-	color: red;
-} */
 
-/* login-part start */
 #shadow{
 	/* 載入不顯示 */
 	display: none;
@@ -28,7 +25,8 @@ body {
 	background-color: rgba(0, 0, 0, 1);
 	opacity: 25%;
 }
-#login{/*登入頁面*/
+#login{
+	/*登入頁面*/
 	/* 載入不顯示 */
 	display: none;
 	position: fixed;
@@ -48,7 +46,6 @@ body {
 	font-size: 24px;
 	color: #666666;
 	margin: 0px;
-	
 }
 #login .close{
 	float: right;
@@ -68,7 +65,7 @@ body {
 	box-sizing: border-box;
 	margin: 8px 0px 8px 0px;
 }
-#login input::placeholder{	
+#login input::placeholder{
 	margin: 8px 0px 8px 0px;
 	font-family: 'Noto Sans TC';
 	font-weight: normal ;
@@ -115,7 +112,8 @@ body {
 }
 /* login-part end */
 /* this is sign-up page */
-#signup{/*登入頁面*/
+#signup{
+	/*登入頁面*/
 	/* 載入不顯示 */
 	display: none;
 	position: fixed;
@@ -135,7 +133,6 @@ body {
 	font-size: 24px;
 	color: #666666;
 	margin: 0px;
-	
 }
 #signup .close{
 	float: right;
@@ -155,7 +152,7 @@ body {
 	box-sizing: border-box;
 	margin: 8px 0px 8px 0px;
 }
-#signup input::placeholder{	
+#signup input::placeholder{
 	margin: 8px 0px 8px 0px;
 	font-family: 'Noto Sans TC';
 	font-weight: normal ;
@@ -242,13 +239,13 @@ body {
 }
 .signout{
 	display: none;
-	margin: 15px 5px 5px 20px;
+	margin: 5px 0px 5px 0px;
 	color: rgba(102, 102, 102, 1);
 	cursor: pointer;
 }
 .signin{
 	display: inline-block;
-	margin: 15px 5px 5px 20px;
+	margin: 5px 0px 5px 0px;
 	color: rgba(102, 102, 102, 1);
 	cursor: pointer;
 }
@@ -259,14 +256,12 @@ body {
 .title_content div:nth-child(2) a {
 	font-weight: 400;
 	font-size: 16px;
-	margin: 10px 30px 5px 0px;;
+	margin: 10px 30px 5px 0px;
+	;
 	color: rgba(102, 102, 102, 1);
 }
-
 /* end */
-
-/* This is main part  */
-
+/* This is main part */
 .main {
 	background-color: rgba(170, 221, 238, 1);
 	grid-column-start: 1;
@@ -340,9 +335,7 @@ body {
 	height: 100%;
 }
 /* end */
-
-/* This is content part  */
-
+/* This is content part */
 .content {
 	margin-top: 50px;
 	margin-bottom: 50px;
@@ -360,7 +353,8 @@ body {
 	min-height: 500px;
 }
 .box {
-	/* border: 0.5px black solid; */
+	/* border: 0.5px black solid;
+	*/
 	cursor: pointer;
 	border-bottom: 1px solid #E8E8E8;
 	background-color: white;
@@ -433,115 +427,108 @@ body {
 		font-style: normal;
 	}
 	/* login-part start */
-#shadow{
-	z-index: 500 ;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	grid-column-start: 1;
-	grid-column-end: 1;
-	grid-row-start: 1;
-	grid-row-end: 5;
-	background-color: rgba(0, 0, 0, 1);
-	opacity: 25%;
-}
-#login{
-	z-index: 999 ;
-	top: 80px;
-	left: 2%;
-	width: 88%;
-	background-color: white;
-	text-align: center;
-	padding: 15px;
-	border-radius: 6px;
-	box-shadow: 0px 4px 60px #AAAAAA;
-}
-#login form p:nth-child(1){
-	font-weight: 700;
-	font-size: 24px;
-	color: #666666;
-	margin: 0px;
-	
-}
-#login .close{
-	float: right;
-	font-size: 16px;
-	font-weight: 50;
-	line-height: 15px;
-	color: black;
-}
-#login input{
-	height: 47px;
-	width: 95%;
-	border-radius: 5px;
-	padding: 15px;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
-	box-sizing: border-box;
-	margin: 8px 0px 8px 0px;
-}
-#login input::placeholder{	
-	margin: 8px 0px 8px 0px;
-	font-family: 'Noto Sans TC';
-	font-weight: normal ;
-	font-size: 16px;
-	color: #666666;
-}
-
-/* login-part end */
-/* this is sign-up page */
-#signup{/*登入頁面*/
-	/* 載入不顯示 */
-	display: none;
-	z-index: 999 ;
-	top: 80px;
-	left: 2%;
-	width: 88%;
-	background-color: white;
-	text-align: center;
-	padding: 15px;
-	border-radius: 6px;
-	box-shadow: 0px 4px 60px #AAAAAA;
-}
-
-#signup form p:nth-child(1){
-	font-weight: 700;
-	font-size: 24px;
-	color: #666666;
-	margin: 0px;
-	
-}
-#signup .close{
-	float: right;
-	font-size: 16px;
-	font-weight: 50;
-	line-height: 15px;
-	color: black;
-	cursor: pointer;
-}
-#signup input{
-	height: 47px;
-	width: 95%;
-	border-radius: 5px;
-	padding: 15px;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
-	box-sizing: border-box;
-	margin: 8px 0px 8px 0px;
-}
-#signup input::placeholder{	
-	margin: 8px 0px 8px 0px;
-	font-family: 'Noto Sans TC';
-	font-weight: normal ;
-	font-size: 16px;
-	color: #666666;
-}
-#signup #signup_form .logInPage{
-	cursor: pointer;
-}
-
-/* sign up page end */
+	#shadow{
+		z-index: 500 ;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		grid-column-start: 1;
+		grid-column-end: 1;
+		grid-row-start: 1;
+		grid-row-end: 5;
+		background-color: rgba(0, 0, 0, 1);
+		opacity: 25%;
+	}
+	#login{
+		z-index: 999 ;
+		top: 80px;
+		left: 2%;
+		width: 88%;
+		background-color: white;
+		text-align: center;
+		padding: 15px;
+		border-radius: 6px;
+		box-shadow: 0px 4px 60px #AAAAAA;
+	}
+	#login form p:nth-child(1){
+		font-weight: 700;
+		font-size: 24px;
+		color: #666666;
+		margin: 0px;
+	}
+	#login .close{
+		float: right;
+		font-size: 16px;
+		font-weight: 50;
+		line-height: 15px;
+		color: black;
+	}
+	#login input{
+		height: 47px;
+		width: 95%;
+		border-radius: 5px;
+		padding: 15px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+		box-sizing: border-box;
+		margin: 8px 0px 8px 0px;
+	}
+	#login input::placeholder{
+		margin: 8px 0px 8px 0px;
+		font-family: 'Noto Sans TC';
+		font-weight: normal ;
+		font-size: 16px;
+		color: #666666;
+	}
+	/* login-part end */
+	/* this is sign-up page */
+	#signup{
+		/*登入頁面*/
+		/* 載入不顯示 */
+		display: none;
+		z-index: 999 ;
+		top: 80px;
+		left: 2%;
+		width: 88%;
+		background-color: white;
+		text-align: center;
+		padding: 15px;
+		border-radius: 6px;
+		box-shadow: 0px 4px 60px #AAAAAA;
+	}
+	#signup form p:nth-child(1){
+		font-weight: 700;
+		font-size: 24px;
+		color: #666666;
+		margin: 0px;
+	}
+	#signup .close{
+		float: right;
+		font-size: 16px;
+		font-weight: 50;
+		line-height: 15px;
+		color: black;
+		cursor: pointer;
+	}
+	#signup input{
+		height: 47px;
+		width: 95%;
+		border-radius: 5px;
+		padding: 15px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+		box-sizing: border-box;
+		margin: 8px 0px 8px 0px;
+	}
+	#signup input::placeholder{
+		margin: 8px 0px 8px 0px;
+		font-family: 'Noto Sans TC';
+		font-weight: normal ;
+		font-size: 16px;
+		color: #666666;
+	}
+	/* sign up page end */
 	.title {
 		padding: 10px;
 		z-index: 100;
@@ -585,14 +572,21 @@ body {
 		font-weight: bold;
 		color: rgba(68, 136, 153, 1);
 	}
-	.title_content div:nth-child(2) a {
+	.title_content div:nth-child(2) p {
 		font-size: 16px;
 	}
-	.title_content div:nth-child(2) a:nth-child(2) {
+	.title_content div:nth-child(2) p:nth-child(2) {
+		font-size: 14px;
 		margin: 15px;
 	}
+	.title_content div:nth-child(2) a {
+		font-weight: 400;
+		font-size: 14px;
+		margin: 10px 10px 5px 0px;
+		color: rgba(102, 102, 102, 1);
+	}
 	/* end */
-	/* This is main part  */
+	/* This is main part */
 	.main {
 		background-color: rgba(170, 221, 238, 1);
 		grid-column-start: 1;
@@ -605,8 +599,9 @@ body {
 	.main_content {
 		width: 100%;
 		/* height: 300px;
-        margin: 0px auto 0px auto;
-        display: flex; */
+		margin: 0px auto 0px auto;
+		display: flex;
+		*/
 	}
 	.main_text {
 		position: absolute;
@@ -619,7 +614,8 @@ body {
 	}
 	.main_img {
 		/* width: 600px;
-        height: 300px; */
+		height: 300px;
+		*/
 		width: 50%;
 		height: auto;
 		position: absolute;
@@ -671,13 +667,13 @@ body {
 		float: left;
 		border: none;
 		background-color: rgba(68, 136, 153, 1)
-	}
+}
 	.search button img {
 		width: 15px;
 		height: 15px;
 	}
 	/* end */
-	/* This is content part  */
+	/* This is content part */
 	.content {
 		margin-top: 50px;
 		margin-bottom: 50px;
@@ -693,7 +689,8 @@ body {
 		flex-direction: row;
 	}
 	.box {
-		/* border: 0.5px black solid; */
+		/* border: 0.5px black solid;
+		*/
 		width: 90%;
 		height: 300px;
 		display: grid;

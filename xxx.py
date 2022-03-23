@@ -151,21 +151,20 @@ def user_signin():
     sql = "SELECT id ,email,name,password FROM member WHERE email = %s and password = %s;"
     cursor.execute(sql, (email,password))
     result = cursor.fetchone()
+    print(result)
     conn.close()
     cursor.close()
-    if result['email'] == email :
+    if result != None :
         session['id']= result['id']
         session['email'] = result['email']
         session['name'] = result['name']
-        # session.user = {
-        #     'email': result['email'],
-        #     'password':result['password']
-        # }
         print('from session :',session)
         result_JSON = json.dumps({"ok": bool(True)})
     else :
-        result_JSON = json.dumps({"error": bool(True) ,"message": "登入錯誤"})
+        result_JSON = json.dumps({"error": bool(True) ,"message": "帳號或密碼錯誤"})
     return Response(result_JSON, mimetype='application/json')
+        
+    
 
 #登出帳戶
 @app.route('/api/user', methods=['DELETE']) 
@@ -196,17 +195,3 @@ def thankyou():
 
 app.run(host='0.0.0.0' ,port=3000,debug=True)
 
-
-
-# http://15.165.73.175:3000/api/attraction/1
-# http://15.165.73.175:3000/api/attraction/99
-# http://15.165.73.175:3000/api/attractions?page=0
-# http://15.165.73.175:3000/api/attractions?page=0&keyword=公園
-# http://15.165.73.175:3000/api/attractions?page=0&keyword=小貓
-
-# note :
-# 1.測試第一個api可以運行
-# 2.測試第一個api的error狀態
-# 3.測試第二個api可以篩選page
-# 4.測試第二個api可以篩選page+keyword
-# 5.測試第二個api的error狀態

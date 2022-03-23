@@ -149,21 +149,20 @@ def user_signin():
     sql = "SELECT id ,email,name,password FROM member WHERE email = %s and password = %s;"
     cursor.execute(sql, (email,password))
     result = cursor.fetchone()
+    print(result)
     conn.close()
     cursor.close()
-    if result['email'] == email :
+    if result != None :
         session['id']= result['id']
         session['email'] = result['email']
         session['name'] = result['name']
-        # session.user = {
-        #     'email': result['email'],
-        #     'password':result['password']
-        # }
         print('from session :',session)
         result_JSON = json.dumps({"ok": bool(True)})
     else :
-        result_JSON = json.dumps({"error": bool(True) ,"message": "登入錯誤"})
+        result_JSON = json.dumps({"error": bool(True) ,"message": "帳號或密碼錯誤"})
     return Response(result_JSON, mimetype='application/json')
+        
+    
 
 #登出帳戶
 @app.route('/api/user', methods=['DELETE']) 
