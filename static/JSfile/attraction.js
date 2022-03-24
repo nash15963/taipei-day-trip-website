@@ -46,7 +46,6 @@ const showDatas = (response) => {
 };
 
 let imgId = 0 //圖片ID位置
-
 let topImg = document.querySelector('.top-img') //圖片父代
 let leftArrow = document.querySelector('#leftArrow') //左箭頭元素
 let rightArrow = document.querySelector('#rightArrow') //右箭頭元素
@@ -83,7 +82,6 @@ const shadowImg = (response)=>{
 			shadow.removeAttribute('src')
 			Img.src = response.data.img[imgId] //換圖片讀取
 			addFocusFlip() //用函數替換
-
 		}
 	}
 	rightArrow.addEventListener('click', nextImg)
