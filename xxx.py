@@ -1,11 +1,13 @@
-from ast import dump
+import email
 from flask import *
+from pymysql import NULL
 app=Flask(__name__)
 
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
 ###line####
+
 import pymysql
 import os
 from dotenv import load_dotenv #python-dotenv
@@ -23,11 +25,11 @@ POOL = PooledDB(
     blocking=True,  # 連接池中如果没有可用連接後，進行等待:True，等待；False，不等待然後error
     maxusage=None,  # 一個鍊結最多被重複使用的次數
     setsession=[],  # 開始會話前的命令列。如：["set datestyle to ...", "set time zone ..."]
-    ping=0, #自己看文件(好麻煩)
+    ping=0, 
     host='127.0.0.1',
     user='root',
     port=3306 ,
-    password= os.getenv('mysql_password'),
+    password= os.getenv('self_mysql_PW'),
     database='taipeitrip',
     charset='utf8',
     cursorclass=pymysql.cursors.DictCursor
@@ -175,12 +177,6 @@ def user_logout():
 
 
 
-
-
-
-
-
-
 ###line###
 # Pages
 @app.route("/")
@@ -197,19 +193,5 @@ def thankyou():
 	return render_template("thankyou.html")
 
 
-app.run(host="0.0.0.0",port=3000)
+app.run(host='0.0.0.0' ,port=3000,debug=True)
 
-
-
-# http://15.165.73.175:3000/api/attraction/1
-# http://15.165.73.175:3000/api/attraction/99
-# http://15.165.73.175:3000/api/attractions?page=0
-# http://15.165.73.175:3000/api/attractions?page=0&keyword=公園
-# http://15.165.73.175:3000/api/attractions?page=0&keyword=小貓
-
-# note :
-# 1.測試第一個api可以運行
-# 2.測試第一個api的error狀態
-# 3.測試第二個api可以篩選page
-# 4.測試第二個api可以篩選page+keyword
-# 5.測試第二個api的error狀態
