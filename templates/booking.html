@@ -31,13 +31,45 @@
 				<a href="/">台北一日遊</a>
 			</div>
 			<div class="title_box">
-				<a href="/booking">排定行程</a>
+				<a class="booking">排定行程</a>
 				<p class="signin">登入/註冊</p>
 				<p class="signout">登出</p>
 			</div>
 		</div>
 	</div>
+	<div class="content">
+		<h4>您好，帥哥，待預訂的行程如下：</h4>
+		<div class="contentImg"><img src="/static/imgfile/welcome 1.png" alt="範例"></div>
+		<div class="contentText">
+		<p>台北一日遊: <span class="userName">標題</span></p>
+		<p>日期: <span>不知道</span></p>
+		<p>時間: <span></span></p>
+		<p>費用: <span></span></p>
+		<p>地點: <span></span></p>
+		</div>
+		<div class="contentDelete"><img src="/static/imgfile/icon_delete.png"" alt="垃圾桶範例"></div>
+	</div>
+	<div class="information">
+		<h4>您的聯絡資訊</h4>
+		<p><label for="bookName">聯絡姓名：<input type="text" id="bookName"></label></p>
+		<p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail"></label></p>
+		<p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile"></label></p>
+		<p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
+	</div>
+	<div class="creditCard">
+		<h4>信用卡付款資訊</h4>
+		<p><label for="CardCode">卡片號碼：<input type="text" id="CardCode"></label></p>
+		<p><label for="CardDate">過期時間：<input type="text" id="CardDate"></label></p>
+		<p><label for="CardPassWord">驗證密碼：<input type="text" id="CardPassWord"></label></p>
+	</div>
+	<div class="price">
+		<p>總價：新台幣 2000 元</p>
+		<button>確認訂購並付款</button>
+	</div>
+	<div class="foot">
+		COPYRIGHT © 2021 台北一日遊
+	</div>
 <script src="/static/JSfile/member.js"></script>
- 
+<script src="/static/JSfile/booking_GET.js"></script>
 </body>
 </html>

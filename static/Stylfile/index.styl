@@ -1,3 +1,4 @@
+//cd C:\WeHelp_Taipei_Trip\develop\static\Stylfile
 //stylus -w index.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\index2.css
 body{
     margin: 0px
@@ -213,7 +214,7 @@ body{
 	position: sticky
 	top: 0
 	align-self: start
-	background-color: #F8F8F8
+	background-color: #FFFFFF
 	border-bottom: 1px solid #E8E8E8
 	grid-column-start: 1
 	grid-column-end: 4
@@ -281,20 +282,16 @@ body{
         }
         
     }
-    .signout{
-        display: none
-        margin: 5px 0px 5px 0px
-        color: rgba(102, 102, 102, 1)
-        cursor: pointer
-    }
-    .signin{
-        display: inline-block
-        margin: 5px 0px 5px 0px
-        color: rgba(102, 102, 102, 1)
-        cursor: pointer
-    }
 }
-
+.signout, .signin {
+	display: none
+	margin: 5px 0px 5px 0px
+	color: rgba(102, 102, 102, 1)
+	cursor: pointer
+}
+.booking{
+    cursor : pointer
+}
 .main{ 
     background-color: rgba(170, 221, 238, 1)
     grid-column-start: 1

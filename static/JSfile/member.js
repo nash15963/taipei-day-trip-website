@@ -9,6 +9,7 @@ const signupPage = document.querySelector('.signupPage');
 const logInPage = document.querySelector('.logInPage')
 const closeloginPageBtn = document.querySelector('.close');
 const closesignupPageBtn2 = document.querySelector('#signup .close');
+const booking = document.querySelector('.booking')
 logInPage.style = 'color: #666666; cursor: pointer;'
 let memberData = null ;
 //進入登入頁面
@@ -172,3 +173,17 @@ async function signinCheck() {
         })
 }
 signinCheck();
+
+//點擊預定行程後判斷進入哪個網頁，如果沒有登入就進入登入頁面，登入就導入booking.html
+let bookingClick =()=>{
+    if(memberData == true){
+        window.location.href='/booking';
+    }
+    else{
+        signinBtn.click() ;
+    }
+}
+booking.addEventListener('click', bookingClick)
+
+
+

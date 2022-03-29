@@ -171,25 +171,43 @@ def user_logout():
     return Response(result_JSON, mimetype='application/json')
 
 ###boking api###
-#尚未確認下單的預定行程資料，null 表示沒有資料
-#booking_get
 @app.route('/api/booking', methods=['GET'])
 def  booking_get():
-    args = request.args
-    id = args.get('id')
-    print(id)
-    # req_data = request.get_json()
-    # print(req_data)
-    # if "id" in session :
-    #     id = req_data['id']
-    #     name = req_data['name']
-    #     address = req_data['address']
-    #     image = req_data['image']
-    #     attraction = {'id':id,'name':name,'address':address,'image':image}
-    #     result_JSON = json.dumps({"data":attraction}) 
-    # else :
-    #     result_JSON = json.dumps({"data":None}) 
-    # return Response(result_JSON, mimetype='application/json')
+    if "id" in session :
+        userid = session['id']
+        conn = POOL.connection()
+        cursor = conn.cursor()
+        sql = "select BookingID,UserID,AttractionId FROM taipeitrip.book where (UserID = '%s') ;"
+        sql_run =  cursor.execute(sql, (userid))
+        result_from_order = cursor.fetchone()
+        # print(result_from_order)
+        AttractionId = result_from_order['AttractionId']
+        if sql_run == True: #有訂購資料
+            sql = "select A.BookingID,A.UserID,A.AttractionId,A.Date,A.Time,A.Price,\
+            B.id,B.name,B.address,B.img\
+            FROM taipeitrip.book as A inner join taipeitrip.location as B\
+            on A.AttractionId = B.id\
+            where (UserID = '%s') ;"  
+            cursor.execute(sql, (userid))
+            result = cursor.fetchone()
+            conn.close()
+            cursor.close()
+            attraction ={
+                'id':result['id'],
+                'name':result['name'],
+                'address':result['address'],
+                'image':result['img'].split(',')[0]
+                }
+            result_JSON = json.dumps({'data':attraction,
+                                      'date':result['Date'],
+                                      'time':result['Time'],
+                                      'price':result['Price']},ensure_ascii=False)
+            print(result_JSON)
+        elif sql_run == False: #沒有訂購資料
+            result_JSON = json.dumps({"data": None,"message": "沒有訂購資料"})
+    else:
+        result_JSON = json.dumps({"error": True,"message": "沒有登入帳戶"})
+    return Response(result_JSON, mimetype='application/json')
 
 
 #booking POST api 編寫邏輯
