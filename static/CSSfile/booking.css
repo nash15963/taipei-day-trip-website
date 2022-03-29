@@ -1,0 +1,301 @@
+body {
+  margin: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1200px 1fr;
+  grid-template-rows: 50px 300px auto 110px;
+  font-family: Noto Sans;
+  font-style: normal;
+}
+@media (max-width: 600px) {
+  body {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 300px minmax(100px, max-content) 110px;
+  }
+}
+#shadow {
+  display: none /* 載入不顯示 */;
+  position: fixed;
+  z-index: 500;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 5;
+  background-color: #000;
+  opacity: 25%;
+}
+#login {
+/*登入頁面*/
+/* 載入不顯示 */
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 80px;
+  left: 35%;
+  width: 340px;
+  height: 280px;
+  background-color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 60px #aaa;
+}
+@media (max-width: 600px) {
+  #login {
+    left: 2%;
+    width: 88%;
+  }
+}
+#login form p:nth-child(1) {
+  font-weight: 700;
+  font-size: 24px;
+  color: #666;
+  margin: 0px;
+}
+#login .close {
+  float: right;
+  font-size: 16px;
+  font-weight: 50;
+  line-height: 15px;
+  color: #000;
+  cursor: pointer;
+}
+#login input {
+  height: 47px;
+  width: 95%;
+  border-radius: 5px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin: 8px 0px 8px 0px;
+}
+#login input::placeholder {
+  margin: 8px 0px 8px 0px;
+  font-family: 'Noto Sans TC';
+  font-weight: normal;
+  font-size: 16px;
+  color: #666;
+}
+#login input[type=submit] {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
+}
+#login button {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
+}
+#login form p:nth-child(6) {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 8px 0px 4px 0px;
+  color: #666;
+  cursor: pointer;
+}
+.message {
+  margin: 0px auto 10px auto;
+  color: #666;
+}
+#signup {
+/*登入頁面*/
+/* 載入不顯示 */
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 80px;
+  left: 35%;
+  width: 340px;
+  height: 360px;
+  background-color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 60px #aaa;
+}
+@media (max-width: 600px) {
+  #signup {
+    left: 2%;
+    width: 88%;
+  }
+}
+#signup form p:nth-child(1) {
+  font-weight: 700;
+  font-size: 24px;
+  color: #666;
+  margin: 0px;
+}
+#signup .close {
+  float: right;
+  font-size: 16px;
+  font-weight: 50;
+  line-height: 15px;
+  color: #000;
+  cursor: pointer;
+}
+#signup input {
+  height: 47px;
+  width: 95%;
+  border-radius: 5px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin: 8px 0px 8px 0px;
+}
+#signup input::placeholder {
+  margin: 8px 0px 8px 0px;
+  font-family: 'Noto Sans TC';
+  font-weight: normal;
+  font-size: 16px;
+  color: #666;
+}
+#signup input[type=submit] {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
+}
+#signup button {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
+}
+#signup form p:nth-child(6) {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 8px 0px 4px 0px;
+  color: #666;
+  cursor: pointer;
+}
+.title {
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e8e8e8;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+@media (max-width: 600px) {
+  .title {
+    padding: 10px;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+}
+.title .title_content {
+  margin: 0px auto 0px auto;
+  max-width: 1200px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+}
+@media (max-width: 600px) {
+  .title .title_content {
+    max-width: 100%;
+  }
+}
+.title .title_content div:nth-child(1) {
+  width: 50%;
+  text-align: left;
+}
+@media (max-width: 600px) {
+  .title .title_content div:nth-child(1) {
+    padding: 0px 0px 0px 5px;
+  }
+}
+.title .title_content div:nth-child(2) {
+  width: 50%;
+  text-align: right;
+}
+.title .title_content div a {
+  display: inline-block;
+  margin: 5px 0px 5px 0px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.title .title_content div:nth-child(1) a {
+  font-weight: bold;
+  color: #489;
+}
+@media (max-width: 600px) {
+  .title .title_content div:nth-child(1) a {
+    font-size: 27px;
+  }
+}
+.title .title_content div:nth-child(2) a {
+  font-weight: 400;
+  font-size: 16px;
+  margin: 10px 30px 5px 0px;
+  color: #666;
+}
+@media (max-width: 600px) {
+  .title .title_content div:nth-child(2) a {
+    margin: 10px 15px 5px 0px;
+  }
+}
+.title .title_content div p {
+  margin: 5px 0px 5px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: normal;
+}
+.title .signout {
+  display: none;
+  margin: 5px 0px 5px 0px;
+  color: #666;
+  cursor: pointer;
+}
+.title .signin {
+  display: inline-block;
+  margin: 5px 0px 5px 0px;
+  color: #666;
+  cursor: pointer;
+}

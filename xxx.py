@@ -1,6 +1,4 @@
-import email
 from flask import *
-from pymysql import NULL
 app=Flask(__name__)
 
 app.config["JSON_AS_ASCII"]=False
@@ -164,7 +162,6 @@ def user_signin():
         result_JSON = json.dumps({"error": bool(True) ,"message": "帳號或密碼錯誤"})
     return Response(result_JSON, mimetype='application/json')
         
-    
 
 #登出帳戶
 @app.route('/api/user', methods=['DELETE']) 
@@ -173,9 +170,80 @@ def user_logout():
     result_JSON = json.dumps({"ok": bool(True)})
     return Response(result_JSON, mimetype='application/json')
 
+###boking api###
+#尚未確認下單的預定行程資料，null 表示沒有資料
+#booking_get
+@app.route('/api/booking', methods=['GET'])
+def  booking_get():
+    args = request.args
+    id = args.get('id')
+    print(id)
+    # req_data = request.get_json()
+    # print(req_data)
+    # if "id" in session :
+    #     id = req_data['id']
+    #     name = req_data['name']
+    #     address = req_data['address']
+    #     image = req_data['image']
+    #     attraction = {'id':id,'name':name,'address':address,'image':image}
+    #     result_JSON = json.dumps({"data":attraction}) 
+    # else :
+    #     result_JSON = json.dumps({"data":None}) 
+    # return Response(result_JSON, mimetype='application/json')
 
 
+#booking POST api 編寫邏輯
+#如果訂單有重複使用者ID則delete掉，一個使用者最多一筆訂單(本網頁邏輯，因為沒有設計訂購清單)
+#步驟如下:
+#1.先搜尋此使用者訂單有幾筆(正常來說應該最多一筆或沒有訂單)
+#當個人訂單數量清空後才能掛上新單
+@app.route('/api/booking', methods=['POST'])
+def  booking_post():
+    req_data = request.get_json()
+    print(req_data)
+    id = session['id']
+    AttractionId = req_data['attractionId']
+    Date =req_data['Date']
+    Price = req_data['Price']
+    Time = req_data['Time']
+    # print(id,req_data)
+    # return req_data
+    if Date == '' or Price == '' or Time == '' : #篩選填入資料不得為空
+        print("Null data")
+        result_JSON = json.dumps({"error": bool(True) ,"message": "填入資料不得為空"})
+    elif id == '':
+        print("need to log in")
+        result_JSON = json.dumps({"error": bool(True) ,"message": "需要登入會員"})
+    else:
+        conn = POOL.connection()
+        cursor = conn.cursor()
+        sql = "select UserID FROM taipeitrip.book where (UserID = '%s') ;"
+        sql_run =  cursor.execute(sql, (id))
+        if sql_run !=0:
+            cursor.execute("SET SQL_SAFE_UPDATES=0;")
+            cursor.execute("DELETE FROM `taipeitrip`.`book` WHERE (UserID = '%s');",(id))
+            cursor.execute("SET SQL_SAFE_UPDATES=1;")
+        sql = "INSERT INTO book (UserID,AttractionID,Date, Price, Time) VALUES (%s,%s,%s,%s,%s)"
+        sql_run =  cursor.execute(sql, (id,AttractionId, Date, Price, Time))
+        print('sql_run :',sql_run)   #成功執行結果等於1
+        conn.commit()
+        conn.close()
+        cursor.close()
+        if sql_run == True :
+            print("Done")
+            result_JSON = json.dumps({"ok": bool(True)})
+        else :
+            print("error")
+            result_JSON = json.dumps({"error": bool(True) ,"message": "資料上傳錯誤"})
+    return Response(result_JSON, mimetype='application/json')
 
+
+@app.route('/api/booking', methods=['DELETE'])
+def  booking_DELETE():
+    req_data = request.get_json()
+    print(req_data)
+    result_JSON = json.dumps({"ok": bool(True)})
+    return Response(result_JSON, mimetype='application/json')
 
 ###line###
 # Pages

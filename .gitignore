@@ -140,3 +140,4 @@ cython_debug/
 
 #我做的東西
 xxx.py
+node_modules

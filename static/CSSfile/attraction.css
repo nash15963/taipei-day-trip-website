@@ -480,6 +480,9 @@ body {
     font-size: 18px;
   }
 }
+.bookingMessage {
+  color: #d61515;
+}
 input[type="radio"] {
 /* remove standard background appearance */
   -webkit-appearance: none;

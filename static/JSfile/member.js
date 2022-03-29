@@ -10,7 +10,7 @@ const logInPage = document.querySelector('.logInPage')
 const closeloginPageBtn = document.querySelector('.close');
 const closesignupPageBtn2 = document.querySelector('#signup .close');
 logInPage.style = 'color: #666666; cursor: pointer;'
-
+let memberData = null ;
 //進入登入頁面
 let signPageOpen = () => {
     Body.style = 'overflow-y:hidden';
@@ -67,7 +67,7 @@ async function SignUpFunc(e) {
         Email: signup_form['email'].value,
         Password: signup_form['password'].value,
     }
-    console.log(data)
+    // console.log(data)
     if (data['Name'] == '' | data['Email'] == '' | data['Password'] == '') {
         message.innerText = '請確認填寫'
     } else {
@@ -91,7 +91,6 @@ async function SignUpFunc(e) {
             })
 
     }
-
 }
 signupFormBtn.addEventListener('click', SignUpFunc)
 
@@ -99,7 +98,6 @@ signupFormBtn.addEventListener('click', SignUpFunc)
 const loginFormBtn = document.querySelector('#login_formBtn')
 async function LogInFunc(e) {
     e.preventDefault();
-
     const login_form = document.querySelector('#login_form')
     let message = document.querySelector('#login .message')
     message.innerText = '';
@@ -124,8 +122,9 @@ async function LogInFunc(e) {
             .then(data => {
                 if (data.ok) {
                     signInClose()
-                    signinBtn.style = 'display : none'
-                    signoutBtn.style = 'display : inline-block'
+                    signinBtn.style = 'display : none' ;
+                    signoutBtn.style = 'display : inline-block' ;
+                    memberData = true ;
                 } else {
                     message.innerText = data.message;
                 }
@@ -149,6 +148,7 @@ async function SignOutFunc(e) {
     alert('您已登出網站')
     signinBtn.style = 'display : inline-block'
     signoutBtn.style = 'display : none'
+    memberData = false ;
 }
 signoutBtn.addEventListener('click', SignOutFunc)
 
@@ -159,11 +159,13 @@ async function signinCheck() {
     await fetch(UserApi)
         .then(res => res.json())
         .then(result => {
-            console.log(result.data, result.data != null)
+            // console.log(result.data, result.data != null)
             if (result.data != null) { //如果api不等於空，也就是session沒有掛上
+                memberData = true ;
                 signinBtn.style = 'display : none'
                 signoutBtn.style = 'display : inline-block'
             } else {
+                memberData = false ;
                 signinBtn.style = 'display : inline-block'
                 signoutBtn.style = 'display : none'
             }
