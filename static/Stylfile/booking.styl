@@ -1,19 +1,23 @@
 //cd C:\WeHelp_Taipei_Trip\develop\static\Stylfile
-//stylus -w booking.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\booking.css
+//stylus -w booking.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\booking2.css
 body{
-    margin: 0px
-    display: grid
-    grid-template-columns: 1fr 1200px 1fr
-    grid-template-rows: 50px 300px auto 110px
-    font-family: Noto Sans
-    font-style: normal
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1200px 1fr;
+    grid-template-rows: 50px 400px 300px 250px 200px 100px;
+    font-family: Noto Sans;
+    font-style: normal;
 // overflow-y:hidden 隱藏拉軸
 
-    @media (max-width:600px) {
-        display: grid
-        grid-template-columns: 100%
-        grid-template-rows: 50px 300px minmax(100px, max-content) 110px
-    }
+    @media (max-width:1024px){
+		grid-template-columns: 100%
+		grid-template-rows: 50px 6fr 2fr 2fr 1fr 100px;
+	}
+    @media (max-width:600px){
+		grid-template-columns: 100%
+		grid-template-rows: 50px 600px 300px 250px 200px 100px;
+	}
+
 }
 //鎖上灰幕控制頁面滑動
 #shadow{
@@ -293,3 +297,270 @@ body{
 .booking{
         cursor : pointer
 }
+.content{
+    grid-column: 2/3 
+    grid-row: 2/3 
+    display: flex 
+    flex-wrap: wrap 
+    border-bottom: 1px #e8e8e8 solid 
+    @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 2/3 
+        display: block
+	}
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 2/3 
+    }
+    h4{
+        width: 100% 
+        margin: 60px 20px 20px 50px 
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+        padding: 10px 0px 10px 10px
+        @media (max-width:1024px){
+		margin: 20px 20px 20px 5px
+        padding: 0px
+        text-align: center
+	    }
+        @media (max-width:600px) {
+        margin: 20px 20px 20px 5px
+        padding: 0px
+        } 
+    }
+
+    p:nth-child(1){
+    /* 名稱要改粗體 */
+        font-weight: 700 
+        font-size: 16px 
+        color: #448899 
+        @media (max-width:1024px){
+            width: 100% 
+            margin: 5px auto 5px auto
+            padding: 0px
+	    }
+        @media (max-width:600px) {
+        } 
+    }
+    p:nth-child(n+2){
+        font-weight: 700 
+        font-size: 16px 
+        color: #666666 
+        margin: 10px 0px 10px 0px 
+         @media (max-width:1024px){
+            margin: 5px auto 5px auto
+            
+	    }
+        @media (max-width:600px) {
+            margin: 5px auto 5px auto
+        } 
+    }
+    span{
+        font-weight: 400 
+    }
+}
+.contentTitle{
+  width: 100% 
+}
+.contentImg{
+  overflow: hidden 
+  width: 266px 
+  height: 200px 
+  margin: 20px 20px 20px 30px 
+    @media (max-width:1024px){
+        width: 95% 
+        height: auto 
+        margin: 10px auto 10px auto 
+    }
+    @media (max-width:600px) {
+    } 
+    img{
+        width: 90% 
+        object-fit: over 
+        object-position: bottom
+        @media (max-width:1024px){
+            width: 100%
+            height: 100%
+        }
+        @media (max-width:600px) {
+    
+        }  
+    }
+}
+.contentText{
+  width: 55% 
+  padding: 0px 20px 20px 20px 
+    @media (max-width:1024px){
+		width: 100% 
+    }
+    @media (max-width:600px) {
+        
+    }
+}
+.contentDelete{
+  width: 5% 
+  cursor: pointer 
+        @media (max-width:1024px){
+            float: right
+	    }
+        @media (max-width:600px) {
+        
+        }
+}
+.NullMessage{
+  grid-column: 2/3 
+  grid-row: 2/3 
+
+    h4{
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+    }
+
+    p{
+        font-weight: 400 
+        font-size: 16px 
+        color: #666666 
+    }
+}
+.information{
+  grid-column: 2/3 
+  grid-row: 3/4 
+  border-bottom: 1px #e8e8e8 solid 
+  padding: 30px 20px 20px 30px
+  @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 3/4 
+	}
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 3/4 
+    } 
+
+    h4{
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+        margin: 0px 0px 20px 0px 
+    }
+    p{
+        font-weight: 400 
+        font-size: 16px 
+        color: #666666 
+    }
+    p:nth-child(5){
+        font-weight: 700 
+        margin: 30px 0px 10px 0px 
+    }
+    input{
+        width: 250px 
+        height: 38px 
+        background: #FFFFFF 
+        border: 1px solid #E8E8E8 
+        box-sizing: border-box 
+        border-radius: 5px 
+        padding: 0px 0px 0px 15px 
+        color: #666 
+    }
+}
+.creditCard{
+  grid-column: 2/3  
+  grid-row: 4/5 
+  border-bottom: 1px #e8e8e8 solid 
+  padding: 30px 20px 20px 30px 
+    @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 4/5 
+	}
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 4/5 
+    }
+    h4{
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+        margin: 0px 0px 20px 0px 
+    }
+    p{
+        font-weight: 400 
+        font-size: 16px 
+        color: #666666 
+    }
+    input{
+        width: 250px 
+        height: 38px 
+        background: #FFFFFF 
+        border: 1px solid #E8E8E8 
+        box-sizing: border-box 
+        border-radius: 5px 
+        padding: 0px 0px 0px 15px 
+        color: #666 
+    }
+}
+.information input[type="text"] ,.creditCard input[type="text"]{
+  font-family: 'Noto Sans TC' 
+  font-weight: normal 
+  font-size: 16px 
+}
+
+.price{
+  grid-column: 2/3 
+  grid-row: 5/6 
+  padding: 10px 10px 10px 80% 
+  @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 5/6 
+        padding: 0px
+	}
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 5/6 
+        padding: 0px
+    } 
+
+    p{
+        font-weight: 700 
+        font-size: 16px 
+        color: #666666 
+        padding: 15px 0px 15px 30px  
+    }
+    button{
+        border: 0px 
+        box-shadow: none 
+        width: 173px 
+        height: 36px 
+        font-size: 20px 
+        background-color: #489 
+        color: #fff 
+        border-radius: 5px 
+        padding: 10px, 20px, 10px, 20px 
+    }
+}
+.foot{
+  grid-column: 1/4 
+  grid-row: 6/7 
+  padding-top: 20px 
+  background-color: #757575 
+  color: #fff 
+  text-align: center
+    @media (max-width:1024px){
+            grid-column: 1/1 
+            grid-row: 6/7 
+        }
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 6/7 
+    }
+}
+
+
+
+
+    // @media (max-width:1024px){
+		
+    // }
+    // @media (max-width:600px) {
+        
+    // }

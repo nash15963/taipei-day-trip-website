@@ -51,6 +51,21 @@ const bookingDataGet = async() =>{
         contentTitle.innerHTML =`
         <h4>您好，${UserId}，待預訂的行程如下：</h4>
         `
+        let information = document.querySelector('.information')
+        information.innerHTML= `
+        <h4>您的聯絡資訊</h4>
+		<p><label for="bookName">聯絡姓名：<input type="text" id="bookName"></label></p>
+		<p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail"></label></p>
+		<p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile"></label></p>
+		<p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
+        `
+        let creditCard = document.querySelector('.creditCard')
+        creditCard.innerHTML=`
+        <h4>信用卡付款資訊</h4>
+		<p><label for="CardCode">卡片號碼：<input type="text" id="CardCode"></label></p>
+		<p><label for="CardDate">過期時間：<input type="text" id="CardDate"></label></p>
+		<p><label for="CardPassWord">驗證密碼：<input type="text" id="CardPassWord"></label></p>
+        `
         }
         else{
             let body = document.querySelector('body')

@@ -237,6 +237,9 @@ body {
   color: #666;
   cursor: pointer;
 }
+.booking {
+  cursor: pointer;
+}
 .title {
   z-index: 400;
 /* 可以蓋過頁面其他部分，為最大值 */
@@ -455,6 +458,8 @@ body {
   .top-main {
     grid-column: 1/1;
     grid-row: 3/4;
+    margin: 0px 10px 90px 10px;
+    padding: 0px 20px 20px 20px;
   }
 }
 @media (max-width: 600px) {
