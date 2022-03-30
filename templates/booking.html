@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/CSSfile/booking.css" rel="stylesheet" type="text/css">
-    <title>booking啦</title>
+    <title>booking</title>
 </head>
 <body>
     <div id="shadow"></div>
@@ -25,6 +25,11 @@
 			<p class="message"></p>
 		</form>
 	</div>
+	<!-- <div id="deleteBooking">
+		<form id="delete_form">
+
+		</form>
+	</div> -->
 	<div class="title">
 		<div class="title_content">
 			<div>
@@ -33,21 +38,18 @@
 			<div class="title_box">
 				<a class="booking">排定行程</a>
 				<p class="signin">登入/註冊</p>
-				<p class="signout">登出</p>
+				<p class="signout">登出</p> 
 			</div>
 		</div>
 	</div>
 	<div class="content">
-		<h4>您好，帥哥，待預訂的行程如下：</h4>
-		<div class="contentImg"><img src="/static/imgfile/welcome 1.png" alt="範例"></div>
-		<div class="contentText">
-		<p>台北一日遊: <span class="userName">標題</span></p>
-		<p>日期: <span>不知道</span></p>
-		<p>時間: <span></span></p>
-		<p>費用: <span></span></p>
-		<p>地點: <span></span></p>
+		<div class="contentTitle"></div>
+		<!-- <h4>您好，<span class="userName"></span>，待預訂的行程如下：</h4> -->
+		<div class="contentImg"></div>
+		<div class="contentText"></div> 
+		<div class="contentDelete">
+			<img src="/static/imgfile/icon_delete.png" alt="垃圾桶範例">
 		</div>
-		<div class="contentDelete"><img src="/static/imgfile/icon_delete.png"" alt="垃圾桶範例"></div>
 	</div>
 	<div class="information">
 		<h4>您的聯絡資訊</h4>
@@ -63,13 +65,12 @@
 		<p><label for="CardPassWord">驗證密碼：<input type="text" id="CardPassWord"></label></p>
 	</div>
 	<div class="price">
-		<p>總價：新台幣 2000 元</p>
+		<p>總價：新台幣 <span class="dollar"></span> 元</p>
 		<button>確認訂購並付款</button>
 	</div>
 	<div class="foot">
 		COPYRIGHT © 2021 台北一日遊
 	</div>
-<script src="/static/JSfile/member.js"></script>
 <script src="/static/JSfile/booking_GET.js"></script>
 </body>
 </html>

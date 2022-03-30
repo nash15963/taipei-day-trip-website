@@ -181,7 +181,6 @@ def  booking_get():
         sql_run =  cursor.execute(sql, (userid))
         result_from_order = cursor.fetchone()
         # print(result_from_order)
-        AttractionId = result_from_order['AttractionId']
         if sql_run == True: #有訂購資料
             sql = "select A.BookingID,A.UserID,A.AttractionId,A.Date,A.Time,A.Price,\
             B.id,B.name,B.address,B.img\
@@ -258,10 +257,32 @@ def  booking_post():
 
 @app.route('/api/booking', methods=['DELETE'])
 def  booking_DELETE():
-    req_data = request.get_json()
-    print(req_data)
-    result_JSON = json.dumps({"ok": bool(True)})
-    return Response(result_JSON, mimetype='application/json')
+    # userid = session['id']
+    # print('userid :',userid)
+    # result_JSON = json.dumps({"error": bool(True) ,"message": "我是測試檔案"})
+    # return Response(result_JSON, mimetype='application/json')
+    if "id" in session :
+        userid = session['id']
+        print("userid111  :" ,userid)
+        conn = POOL.connection()
+        cursor = conn.cursor()
+        cursor.execute("SET SQL_SAFE_UPDATES=0;")
+        result = cursor.execute("DELETE FROM `taipeitrip`.`book` WHERE (UserID = '%s');",(userid))
+        cursor.execute("SET SQL_SAFE_UPDATES=1;")
+        conn.commit()
+        conn.close()
+        cursor.close()
+        # result_JSON = json.dumps({"ok": bool(True)})
+        # return Response(result_JSON, mimetype='application/json')
+        print('result111 :' ,result)
+        if result ==True :
+            result_JSON = json.dumps({"ok": bool(True)})
+        else :
+            result_JSON = json.dumps({"error": bool(True),"message": "刪除失敗"})
+        return Response(result_JSON, mimetype='application/json')
+    else :
+        result_JSON = json.dumps({"error": bool(True) ,"message": "刪除資料方式錯誤"})
+        return Response(result_JSON, mimetype='application/json')
 
 ###line###
 # Pages

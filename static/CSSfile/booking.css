@@ -304,6 +304,9 @@ body {
   flex-wrap: wrap;
   border-bottom: 1px #e8e8e8 solid;
 }
+.contentTitle{
+  width: 100%;
+}
 .content h4{
   width: 100%;
   margin: 60px 20px 20px 50px;
@@ -315,7 +318,7 @@ body {
 
 .content p:nth-child(1){
   /* 名稱要改粗體 */
-  font-weight: bold ;
+  font-weight: 700;
   font-size: 16px;
   color: #448899;
 }
@@ -329,12 +332,15 @@ body {
   font-weight: 400;
 }
 .contentImg{
-  width: 28%;
+  overflow: hidden;
+  width: 266px;
+  height: 200px;
   margin: 20px 20px 20px 30px;
 }
 .contentImg img{
-  width: 100%;
+  width: 300px;
   object-fit: over;
+  object-position: bottom;
 }
 .contentText{
   width: 55%;
@@ -342,6 +348,21 @@ body {
 }
 .contentDelete{
   width: 5%;
+  cursor: pointer;
+}
+.NullMessage{
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.NullMessage h4{
+  font-weight: 700;
+  font-size: 19px;
+  color: #666666;
+}
+.NullMessage p{
+  font-weight: 400;
+  font-size: 16px;
+  color: #666666;
 }
 .information{
   grid-column: 2/3;
@@ -362,14 +383,17 @@ body {
 }
 .information p:nth-child(5){
   font-weight: 700;
+  margin: 30px 0px 10px 0px;
 }
 .information input{
-  width: 200px;
+  width: 250px;
   height: 38px;
   background: #FFFFFF;
   border: 1px solid #E8E8E8;
   box-sizing: border-box;
   border-radius: 5px;
+  padding: 0px 0px 0px 15px;
+  color: #666;
 }
 
 .creditCard{
@@ -390,13 +414,21 @@ body {
   color: #666666;
 }
 .creditCard input{
-  width: 200px;
+  width: 250px;
   height: 38px;
   background: #FFFFFF;
   border: 1px solid #E8E8E8;
   box-sizing: border-box;
   border-radius: 5px;
+  padding: 0px 0px 0px 15px;
+  color: #666;
 }
+.information input[type="text"] ,.creditCard input[type="text"]{
+  font-family: 'Noto Sans TC';
+  font-weight: normal;
+  font-size: 16px;
+}
+
 .price{
   grid-column: 2/3;
   grid-row: 5/6;
