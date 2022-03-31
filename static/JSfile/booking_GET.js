@@ -8,9 +8,11 @@ async function signinCheck() {
     await fetch(UserApi)
         .then(res => res.json())
         .then(result => {
-            console.log('result :',result)
             UserId = result.data.name
-            console.log('UserId111',UserId)
+            let contentTitle = document.querySelector('.contentTitle')
+            contentTitle.innerHTML =`
+            <h4>您好，${UserId}，待預訂的行程如下：</h4>
+            `
             // console.log(result.data, result.data != null)
             if (result.data != null) { //如果api不等於空，也就是session沒有掛上
                 memberData = true ;
@@ -45,10 +47,7 @@ const bookingDataGet = async() =>{
 		<p>費用: <span>${data.price}</span></p>
 		<p>地點: <span>${data.data.address}</span></p>
         `
-        let contentTitle = document.querySelector('.contentTitle')
-        contentTitle.innerHTML =`
-        <h4>您好，${UserId}，待預訂的行程如下：</h4>
-        `
+        
         let information = document.querySelector('.information')
         information.innerHTML= `
         <h4>您的聯絡資訊</h4>
