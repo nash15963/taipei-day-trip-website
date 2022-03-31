@@ -479,6 +479,7 @@ body {
   color: #fff;
   border-radius: 5px;
   padding: 10px, 20px, 10px, 20px;
+  cursor: pointer;
 }
 @media (max-width: 600px) {
   .top-main button {

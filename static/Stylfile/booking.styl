@@ -11,11 +11,11 @@ body{
 
     @media (max-width:1024px){
 		grid-template-columns: 100%
-		grid-template-rows: 50px 6fr 2fr 2fr 1fr 100px;
+		grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
 	}
     @media (max-width:600px){
 		grid-template-columns: 100%
-		grid-template-rows: 50px 600px 300px 250px 200px 100px;
+		grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
 	}
 
 }
@@ -320,13 +320,13 @@ body{
         color: #666666 
         padding: 10px 0px 10px 10px
         @media (max-width:1024px){
-		margin: 20px 20px 20px 5px
-        padding: 0px
-        text-align: center
+            width: 80%
+		    margin: 20px 5px 20px 5px
+            padding: 10px 0px 10px 10px
+        
 	    }
         @media (max-width:600px) {
-        margin: 20px 20px 20px 5px
-        padding: 0px
+        
         } 
     }
 
@@ -337,8 +337,8 @@ body{
         color: #448899 
         @media (max-width:1024px){
             width: 100% 
-            margin: 5px auto 5px auto
-            padding: 0px
+            margin: 0px
+            padding: 10px 10px 10px 0px
 	    }
         @media (max-width:600px) {
         } 
@@ -349,11 +349,12 @@ body{
         color: #666666 
         margin: 10px 0px 10px 0px 
          @media (max-width:1024px){
-            margin: 5px auto 5px auto
+            margin: 0px
+            padding: 10px 10px 10px 0px
             
 	    }
         @media (max-width:600px) {
-            margin: 5px auto 5px auto
+
         } 
     }
     span{
@@ -361,7 +362,7 @@ body{
     }
 }
 .contentTitle{
-  width: 100% 
+  width: 90% 
 }
 .contentImg{
   overflow: hidden 
@@ -389,20 +390,26 @@ body{
     }
 }
 .contentText{
-  width: 55% 
+  width: 50% 
   padding: 0px 20px 20px 20px 
-    @media (max-width:1024px){
-		width: 100% 
-    }
-    @media (max-width:600px) {
+    // @media (max-width:1024px){
+	// 	width: 100% 
+    //     margin: 0px
+    //     padding: 30px 0px 20px 0px
+    // }
+    // @media (max-width:600px) {
         
-    }
+    // }
+    // p {
+    //     padding: 10px 0px 10px 30px
+    // }
 }
 .contentDelete{
   width: 5% 
   cursor: pointer 
         @media (max-width:1024px){
-            float: right
+            float:right
+            margin: auto 20px auto 10px
 	    }
         @media (max-width:600px) {
         
@@ -432,6 +439,7 @@ body{
   @media (max-width:1024px){
 		grid-column: 1/1 
         grid-row: 3/4 
+        padding: 30px 20px 20px 15px
 	}
     @media (max-width:600px) {
         grid-column: 1/1 
@@ -472,10 +480,10 @@ body{
     @media (max-width:1024px){
 		grid-column: 1/1 
         grid-row: 4/5 
+        padding: 30px 20px 20px 15px
 	}
     @media (max-width:600px) {
-        grid-column: 1/1 
-        grid-row: 4/5 
+        
     }
     h4{
         font-weight: 700 
@@ -513,6 +521,7 @@ body{
 		grid-column: 1/1 
         grid-row: 5/6 
         padding: 0px
+        
 	}
     @media (max-width:600px) {
         grid-column: 1/1 
@@ -524,7 +533,14 @@ body{
         font-weight: 700 
         font-size: 16px 
         color: #666666 
-        padding: 15px 0px 15px 30px  
+        padding: 15px 0px 15px 30px 
+        @media (max-width:1024px){
+		    text-align: right
+            margin: auto 10px auto 10px
+        }
+        @media (max-width:600px) {
+        
+        } 
     }
     button{
         border: 0px 
@@ -536,6 +552,13 @@ body{
         color: #fff 
         border-radius: 5px 
         padding: 10px, 20px, 10px, 20px 
+        @media (max-width:1024px){
+            float:right
+            margin: auto 10px auto 10px
+        }
+        @media (max-width:600px) {
+        
+        }
     }
 }
 .foot{

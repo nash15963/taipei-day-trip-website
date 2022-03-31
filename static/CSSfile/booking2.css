@@ -9,13 +9,13 @@ body {
 @media (max-width: 1024px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px 6fr 2fr 2fr 1fr 100px;
+    grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
   }
 }
 @media (max-width: 600px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px 600px 300px 250px 200px 100px;
+    grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
   }
 }
 #shadow {
@@ -332,15 +332,9 @@ body {
 }
 @media (max-width: 1024px) {
   .content h4 {
-    margin: 20px 20px 20px 5px;
-    padding: 0px;
-    text-align: center;
-  }
-}
-@media (max-width: 600px) {
-  .content h4 {
-    margin: 20px 20px 20px 5px;
-    padding: 0px;
+    width: 80%;
+    margin: 20px 5px 20px 5px;
+    padding: 10px 0px 10px 10px;
   }
 }
 .content p:nth-child(1) {
@@ -352,8 +346,8 @@ body {
 @media (max-width: 1024px) {
   .content p:nth-child(1) {
     width: 100%;
-    margin: 5px auto 5px auto;
-    padding: 0px;
+    margin: 0px;
+    padding: 10px 10px 10px 0px;
   }
 }
 .content p:nth-child(n+2) {
@@ -364,19 +358,15 @@ body {
 }
 @media (max-width: 1024px) {
   .content p:nth-child(n+2) {
-    margin: 5px auto 5px auto;
-  }
-}
-@media (max-width: 600px) {
-  .content p:nth-child(n+2) {
-    margin: 5px auto 5px auto;
+    margin: 0px;
+    padding: 10px 10px 10px 0px;
   }
 }
 .content span {
   font-weight: 400;
 }
 .contentTitle {
-  width: 100%;
+  width: 90%;
 }
 .contentImg {
   overflow: hidden;
@@ -403,13 +393,8 @@ body {
   }
 }
 .contentText {
-  width: 55%;
+  width: 50%;
   padding: 0px 20px 20px 20px;
-}
-@media (max-width: 1024px) {
-  .contentText {
-    width: 100%;
-  }
 }
 .contentDelete {
   width: 5%;
@@ -418,6 +403,7 @@ body {
 @media (max-width: 1024px) {
   .contentDelete {
     float: right;
+    margin: auto 20px auto 10px;
   }
 }
 .NullMessage {
@@ -444,6 +430,7 @@ body {
   .information {
     grid-column: 1/1;
     grid-row: 3/4;
+    padding: 30px 20px 20px 15px;
   }
 }
 @media (max-width: 600px) {
@@ -487,12 +474,7 @@ body {
   .creditCard {
     grid-column: 1/1;
     grid-row: 4/5;
-  }
-}
-@media (max-width: 600px) {
-  .creditCard {
-    grid-column: 1/1;
-    grid-row: 4/5;
+    padding: 30px 20px 20px 15px;
   }
 }
 .creditCard h4 {
@@ -547,6 +529,12 @@ body {
   color: #666;
   padding: 15px 0px 15px 30px;
 }
+@media (max-width: 1024px) {
+  .price p {
+    text-align: right;
+    margin: auto 10px auto 10px;
+  }
+}
 .price button {
   border: 0px;
   box-shadow: none;
@@ -557,6 +545,12 @@ body {
   color: #fff;
   border-radius: 5px;
   padding: 10px, 20px, 10px, 20px;
+}
+@media (max-width: 1024px) {
+  .price button {
+    float: right;
+    margin: auto 10px auto 10px;
+  }
 }
 .foot {
   grid-column: 1/4;

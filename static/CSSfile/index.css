@@ -6,6 +6,13 @@ body {
   font-family: Noto Sans;
   font-style: normal;
 }
+@media (max-width: 1024px) {
+  body {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 300px minmax(100px, max-content) 110px;
+  }
+}
 @media (max-width: 600px) {
   body {
     display: grid;
@@ -207,16 +214,25 @@ body {
   cursor: pointer;
 }
 .title {
-  z-index: 100;
+  z-index: 200;
   position: sticky;
   top: 0;
   align-self: start;
-  background-color: #f8f8f8;
+  background-color: #fff;
   border-bottom: 1px solid #e8e8e8;
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
+}
+@media (max-width: 1024px) {
+  .title {
+    padding: 10px;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
 }
 @media (max-width: 600px) {
   .title {
@@ -237,6 +253,11 @@ body {
   font-family: Noto Sans TC;
   font-style: normal;
 }
+@media (max-width: 1024px) {
+  .title .title_content {
+    max-width: 100%;
+  }
+}
 @media (max-width: 600px) {
   .title .title_content {
     max-width: 100%;
@@ -245,6 +266,11 @@ body {
 .title .title_content div:nth-child(1) {
   width: 50%;
   text-align: left;
+}
+@media (max-width: 1024px) {
+  .title .title_content div:nth-child(1) {
+    padding: 0px 0px 0px 5px;
+  }
 }
 @media (max-width: 600px) {
   .title .title_content div:nth-child(1) {
@@ -265,6 +291,11 @@ body {
   font-weight: bold;
   color: #489;
 }
+@media (max-width: 1024px) {
+  .title .title_content div:nth-child(1) a {
+    font-size: 27px;
+  }
+}
 @media (max-width: 600px) {
   .title .title_content div:nth-child(1) a {
     font-size: 27px;
@@ -275,6 +306,11 @@ body {
   font-size: 16px;
   margin: 10px 30px 5px 0px;
   color: #666;
+}
+@media (max-width: 1024px) {
+  .title .title_content div:nth-child(2) a {
+    margin: 10px 15px 5px 0px;
+  }
 }
 @media (max-width: 600px) {
   .title .title_content div:nth-child(2) a {
@@ -287,16 +323,14 @@ body {
   cursor: pointer;
   font-weight: normal;
 }
-.title .signout {
+.signout,
+.signin {
   display: none;
   margin: 5px 0px 5px 0px;
   color: #666;
   cursor: pointer;
 }
-.title .signin {
-  display: inline-block;
-  margin: 5px 0px 5px 0px;
-  color: #666;
+.booking {
   cursor: pointer;
 }
 .main {
@@ -305,6 +339,15 @@ body {
   grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+@media (max-width: 1024px) {
+  .main {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    position: relative /* 用來控制當下這個div */;
+  }
 }
 @media (max-width: 600px) {
   .main {
@@ -321,6 +364,11 @@ body {
   margin: 0px auto 0px auto;
   display: flex;
 }
+@media (max-width: 1024px) {
+  .main .main_content {
+    width: 100%;
+  }
+}
 @media (max-width: 600px) {
   .main .main_content {
     width: 100%;
@@ -329,6 +377,17 @@ body {
 .main .main_text {
   width: 600px;
   height: 300px;
+}
+@media (max-width: 1024px) {
+  .main .main_text {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    text-align: center;
+    flex: none;
+    z-index: 100;
+  }
 }
 @media (max-width: 600px) {
   .main .main_text {
@@ -363,6 +422,11 @@ body {
   position: relative;
   top: 60px;
 }
+@media (max-width: 1024px) {
+  .main .search {
+    padding-left: 22%;
+  }
+}
 @media (max-width: 600px) {
   .main .search {
     padding-left: 22%;
@@ -375,6 +439,11 @@ body {
   margin: 0px;
   float: left;
   border: none;
+}
+@media (max-width: 1024px) {
+  .main .search input {
+    max-width: 60%;
+  }
 }
 @media (max-width: 600px) {
   .main .search input {
@@ -401,6 +470,17 @@ body {
 .main .main_img {
   width: 600px;
   height: 300px;
+}
+@media (max-width: 1024px) {
+  .main .main_img {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    bottom: -4px;
+    right: 0px;
+    z-index: 50;
+    margin: 0px;
+  }
 }
 @media (max-width: 600px) {
   .main .main_img {
@@ -433,6 +513,15 @@ body {
   flex-direction: row;
   min-height: 500px;
 }
+@media (max-width: 1024px) {
+  .content {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    justify-content: center;
+  }
+}
 @media (max-width: 600px) {
   .content {
     grid-column-start: 1;
@@ -453,6 +542,12 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 4fr 0.5fr 0.5fr;
 }
+@media (max-width: 1024px) {
+  .content .box {
+    width: 45%;
+    height: 300px;
+  }
+}
 @media (max-width: 600px) {
   .content .box {
     width: 90%;
@@ -469,6 +564,12 @@ body {
 .content .box div:nth-child(1) img {
   width: 350px;
   object-fit: over;
+}
+@media (max-width: 1024px) {
+  .content .box div:nth-child(1) img {
+    width: 100%;
+    object-position: bottom;
+  }
 }
 @media (max-width: 600px) {
   .content .box div:nth-child(1) img {
@@ -489,6 +590,11 @@ body {
   border-right: 1px #e8e8e8 solid;
   border-left: 1px #e8e8e8 solid;
 }
+@media (max-width: 1024px) {
+  .content .box p:nth-child(2) {
+    padding: 10px 15px 10px 10px;
+  }
+}
 @media (max-width: 600px) {
   .content .box p:nth-child(2) {
     padding: 10px 15px 10px 10px;
@@ -502,6 +608,11 @@ body {
   text-align: left;
   padding: 5px;
   border-left: 1px #e8e8e8 solid;
+}
+@media (max-width: 1024px) {
+  .content .box p:nth-child(3) {
+    padding: 10px 10px 15px 10px;
+  }
 }
 @media (max-width: 600px) {
   .content .box p:nth-child(3) {
@@ -517,10 +628,19 @@ body {
   padding: 5px;
   border-right: 1px #e8e8e8 solid;
 }
+@media (max-width: 1024px) {
+  .content .box p:nth-child(4) {
+    padding: 10px 10px 15px 10px;
+  }
+}
 @media (max-width: 600px) {
   .content .box p:nth-child(4) {
     padding: 10px 10px 15px 10px;
   }
+}
+.content .box:hover {
+  box-shadow: 3px 3px 5px 6px #ccc;
+  transform: scale(1.2);
 }
 .foot {
   padding-top: 20px;
@@ -531,6 +651,14 @@ body {
   grid-column-end: 4;
   grid-row-start: 4;
   grid-row-end: 5;
+}
+@media (max-width: 1024px) {
+  .foot {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
 }
 @media (max-width: 600px) {
   .foot {

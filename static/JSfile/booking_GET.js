@@ -66,6 +66,11 @@ const bookingDataGet = async() =>{
 		<p><label for="CardDate">過期時間：<input type="text" id="CardDate"></label></p>
 		<p><label for="CardPassWord">驗證密碼：<input type="text" id="CardPassWord"></label></p>
         `
+        let price = document.querySelector('.price')
+        price.innerHTML =`
+        <p>總價：新台幣 <span class="dollar">${data.price}</span> 元</p>
+		<button>確認訂購並付款</button>
+        `
         }
         else{
             let body = document.querySelector('body')

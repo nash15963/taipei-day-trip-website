@@ -1,5 +1,5 @@
 //cd C:\WeHelp_Taipei_Trip\develop\static\Stylfile
-//stylus -w index.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\index2.css
+//stylus -w index.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\index.css
 body{
     margin: 0px
     display: grid
@@ -8,7 +8,11 @@ body{
     font-family: Noto Sans
     font-style: normal
 // overflow-y:hidden 隱藏拉軸
-
+    @media (max-width:1024px) {
+        display: grid
+        grid-template-columns: 100%
+        grid-template-rows: 50px 300px minmax(100px, max-content) 110px
+    }
     @media (max-width:600px) {
         display: grid
         grid-template-columns: 100%
@@ -210,7 +214,7 @@ body{
 }
 
 .title{ 
-	z-index: 100
+	z-index: 200
 	position: sticky
 	top: 0
 	align-self: start
@@ -220,6 +224,13 @@ body{
 	grid-column-end: 4
 	grid-row-start: 1
 	grid-row-end: 2
+    @media (max-width:1024px) {
+        padding: 10px
+        grid-column-start: 1
+		grid-column-end: 1
+		grid-row-start: 1
+		grid-row-end: 2
+    }
     @media (max-width:600px) {
         padding: 10px
         grid-column-start: 1
@@ -237,6 +248,9 @@ body{
         align-items: center
         font-family: Noto Sans TC
         font-style: normal
+        @media (max-width:1024px){
+             max-width: 100%
+        }
         @media (max-width:600px){
              max-width: 100%
         }
@@ -244,6 +258,9 @@ body{
         div:nth-child(1){ 
             width: 50%
             text-align: left
+        @media (max-width:1024px){
+            padding: 0px 0px 0px 5px
+        }
         @media (max-width:600px){
             padding: 0px 0px 0px 5px
         }
@@ -261,6 +278,9 @@ body{
         div:nth-child(1) a {
         font-weight: bold
         color: rgba(68, 136, 153, 1)
+            @media (max-width:1024px){
+            font-size: 27px
+            }
             @media (max-width:600px){
             font-size: 27px
             }
@@ -270,6 +290,9 @@ body{
         font-size: 16px
         margin: 10px 30px 5px 0px
         color: rgba(102, 102, 102, 1)
+            @media (max-width:1024px){
+            margin: 10px 15px 5px 0px
+            }
             @media (max-width:600px){
             margin: 10px 15px 5px 0px
             }
@@ -298,6 +321,13 @@ body{
     grid-column-end: 4
     grid-row-start: 2
     grid-row-end: 3
+    @media (max-width:1024px) {
+        grid-column-start: 1
+		grid-column-end: 1
+		grid-row-start: 2
+		grid-row-end: 3
+        position: relative /* 用來控制當下這個div */
+    }
     @media (max-width:600px) {
         grid-column-start: 1
 		grid-column-end: 1
@@ -311,6 +341,9 @@ body{
             height: 300px
             margin: 0px auto 0px auto
             display: flex
+            @media (max-width:1024px){
+               width: 100% 
+            }
             @media (max-width:600px){
                width: 100% 
             }
@@ -318,6 +351,15 @@ body{
         .main_text{ 
             width: 600px
             height: 300px
+            @media (max-width:1024px){
+                position: absolute
+                top: 0px
+                right: 0px
+                width: 100%
+                text-align: center
+                flex: none
+                z-index: 100
+            }
             @media (max-width:600px){
                 position: absolute
                 top: 0px
@@ -350,6 +392,9 @@ body{
     .search{
         position: relative
         top: 60px
+        @media (max-width:1024px){
+            padding-left: 22%
+        }
         @media (max-width:600px){
             padding-left: 22%
         }
@@ -361,6 +406,9 @@ body{
             margin: 0px
             float: left
             border: none
+            @media (max-width:1024px){
+                max-width: 60% //到這裡
+            }
             @media (max-width:600px){
                 max-width: 60% //到這裡
             }
@@ -387,6 +435,15 @@ body{
         .main_img{
             width: 600px
             height: 300px
+            @media (max-width:1024px) {
+                width: 50%
+                height: auto
+                position: absolute
+                bottom: -4px
+                right: 0px
+                z-index: 50
+                margin: 0px   
+            }
             @media (max-width:600px) {
                 width: 50%
                 height: auto
@@ -418,6 +475,13 @@ body{
 	display: -webkit-flex
 	flex-direction: row
 	min-height: 500px
+    @media (max-width:1024px){
+        grid-column-start: 1
+		grid-column-end: 1
+		grid-row-start: 3
+		grid-row-end: 4
+        justify-content: center
+    }
     @media (max-width:600px){
         grid-column-start: 1
 		grid-column-end: 1
@@ -436,6 +500,10 @@ body{
         display: grid
         grid-template-columns: 1fr 1fr
         grid-template-rows: 4fr 0.5fr 0.5fr
+        @media (max-width:1024px){
+        width: 45%
+		height: 300px
+        }
         @media (max-width:600px){
         width: 90%
 		height: 300px
@@ -451,6 +519,10 @@ body{
         div:nth-child(1) img {
             width: 350px
             object-fit: over
+            @media (max-width:1024px){
+               width: 100% 
+               object-position: bottom
+            }
             @media (max-width:600px){
                width: 100% 
                object-position: bottom
@@ -468,6 +540,9 @@ body{
             font-weight: bold
             border-right: 1px #E8E8E8 solid
             border-left: 1px #E8E8E8 solid
+            @media (max-width:1024px){
+               padding: 10px 15px 10px 10px 
+            }
             @media (max-width:600px){
                padding: 10px 15px 10px 10px 
             }
@@ -480,6 +555,9 @@ body{
             text-align: left
             padding: 5px
             border-left: 1px #E8E8E8 solid
+            @media (max-width:1024px){
+                padding: 10px 10px 15px 10px
+            }
             @media (max-width:600px){
                 padding: 10px 10px 15px 10px
             }
@@ -492,9 +570,16 @@ body{
             text-align: right
             padding: 5px
             border-right: 1px #E8E8E8 solid
+            @media (max-width:1024px){
+                padding: 10px 10px 15px 10px
+            }
             @media (max-width:600px){
                 padding: 10px 10px 15px 10px
             }
+        }
+        &:hover{
+        box-shadow:3px 3px 5px 6px #cccccc;
+        transform: scale(1.2)
         }
     }
 }
@@ -507,6 +592,12 @@ body{
 	grid-column-end: 4
 	grid-row-start: 4
 	grid-row-end: 5
+    @media (max-width:1024px){
+        grid-column-start: 1
+		grid-column-end: 1
+		grid-row-start: 4
+		grid-row-end: 5
+    }
     @media (max-width:600px){
         grid-column-start: 1
 		grid-column-end: 1
