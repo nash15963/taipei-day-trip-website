@@ -33,8 +33,6 @@ const bookingDataGet = async() =>{
     .then(data=>{
         console.log(data) //從這裡開始差網頁，設定篩選條件如果有資料先插入
         if(data.data!==null){
-        //let userName = document.querySelector('.userName')
-        //userName.innerText = UserId ;
         let contentImg = document.querySelector('.contentImg')
         let TitleImg = document.createElement('img')
         TitleImg.src = data.data.image

@@ -6,44 +6,6 @@ const bookingApi = '/api/booking' ;
 let attractionId = 0 ;
 // let locationData = '' ;
 let locationId = window.location.pathname.split('/')[2]
-//let memberData = null ;
-// console.log(locationId)
-//取得當頁資料
-// const BookingData = async (locationId) => {
-// 	let API_URL = `/api/attraction/${locationId}`
-// 	await fetch(API_URL)
-//         .then(res => res.json())
-//         .then(result => {
-//             //console.log(result.data)
-//             if (result.data != null) {
-//                 locationData = {
-//                     Id : result.data['id'],
-//                     Name : result.data['name'],
-//                     Address : result.data['address'],
-//                     Img : result.data['img'][0]
-//                 }
-//             } else {
-//                console.log('error')
-//             }
-//         })
-// }
-// BookingData()
-//會員是否登入
-// function BookSigninCheck() {
-//     const UserApi = '/api/user'
-//     fetch(UserApi)
-//         .then(res => res.json())
-//         .then(result => {
-//             console.log(result.data, result.data != null)
-//             if (result.data != null) { //如果api不等於空，也就是session沒有掛上
-//                 memberData = true ;
-//             } else {
-//                 memberData = null ;
-//             }
-//         })
-// }
-// BookSigninCheck()
-
 
 //開始預訂行程//傳一組訂單資料到後端伺服器
 let startBooking = async(e) => {
@@ -73,17 +35,6 @@ let startBooking = async(e) => {
             })
             .then(result => result.json())
             window.location.href='/booking';
-            // .then(data => {
-            //     if (data.ok) {
-            //         message.innerText = '註冊成功';
-            //         alert('謝謝您註冊本網站')
-            //         e.reload();
-            //     } 
-            //     else {
-            //         message.innerText = data.message;
-            //         e.reload();
-            //     }
-            // })
         }
     }
     else{
