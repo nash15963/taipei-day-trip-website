@@ -1,6 +1,4 @@
-import email
 from flask import *
-from pymysql import NULL
 app=Flask(__name__)
 
 app.config["JSON_AS_ASCII"]=False
@@ -39,8 +37,6 @@ POOL = PooledDB(
 
 @app.route("/api/attraction/<attractionId>")
 def attractionId(attractionId):
-    # print('id : ',attractionId)
-    print('POOL :',POOL)
     conn = POOL.connection()
     cursor = conn.cursor()
     sql = "SELECT id,name,category,description,address,transport,mrt,latitude,longitude,img FROM location where id = %s; "
@@ -59,7 +55,6 @@ def attractionId(attractionId):
 def api_attraction():
     args = request.args
     page = args.get('page')
-    print(page)
     keyword = args.get("keyword", default="", type=str)
     now_page = int(page)*12
     now_keyword = '%'+keyword+'%'
@@ -92,7 +87,6 @@ def api_attraction():
 #取得當前使用者的資料
 @app.route('/api/user', methods=['GET']) 
 def user_get():
-    print('session from user_get',session)
     if "id" in session :
         id = session['id']
         email = session['email'] 
@@ -108,13 +102,10 @@ def user_get():
 @app.route('/api/user', methods=['POST']) 
 def user_signup():
     req_data = request.get_json()
-    print(req_data)
     name =req_data['Name']
     email = req_data['Email']
     password = req_data['Password']
-    print("name :",name,"email :",email,"password :",password)
     if name == '' or email == '' or password == '' : #篩選填入資料不得為空
-        print("Null data")
         result_JSON = json.dumps({"error": bool(True) ,"message": "填入資料不得為空"})
     else:
         conn = POOL.connection()
@@ -122,10 +113,8 @@ def user_signup():
         sql = "SELECT COUNT(*) FROM member WHERE email = %s"
         cursor.execute(sql, (email))
         result = cursor.fetchone() #不得重複ID_name，如果result大於1則表示，此帳號已被註冊
-        print("RESULT",result)
         #判斷是否被註冊
         if result['COUNT(*)'] > 0:
-            print('error')
             result_JSON = json.dumps({"error": bool(True) ,"message": "此帳號已被註冊"})
         else :
             sql = "INSERT INTO member (name, email, password) VALUES (%s,%s,%s)"
@@ -141,30 +130,25 @@ def user_signup():
 @app.route('/api/user', methods=['PATCH']) 
 def user_signin():
     req_data = request.get_json()
-    print(req_data)
     # return json.dumps({"data": req_data})
     email =req_data['Email']
     password = req_data['Password']
-    print("email:"+email,"memeber_code:"+password)
     conn = POOL.connection()
     cursor = conn.cursor()
     sql = "SELECT id ,email,name,password FROM member WHERE email = %s and password = %s;"
     cursor.execute(sql, (email,password))
     result = cursor.fetchone()
-    print(result)
     conn.close()
     cursor.close()
     if result != None :
         session['id']= result['id']
         session['email'] = result['email']
         session['name'] = result['name']
-        print('from session :',session)
         result_JSON = json.dumps({"ok": bool(True)})
     else :
         result_JSON = json.dumps({"error": bool(True) ,"message": "帳號或密碼錯誤"})
     return Response(result_JSON, mimetype='application/json')
         
-    
 
 #登出帳戶
 @app.route('/api/user', methods=['DELETE']) 
@@ -173,10 +157,102 @@ def user_logout():
     result_JSON = json.dumps({"ok": bool(True)})
     return Response(result_JSON, mimetype='application/json')
 
+###boking api###
+@app.route('/api/booking', methods=['GET'])
+def  booking_get():
+    if "id" in session :
+        userid = session['id']
+        conn = POOL.connection()
+        cursor = conn.cursor()
+        sql = "select BookingID,UserID,AttractionId FROM taipeitrip.book where (UserID = '%s') ;"
+        sql_run =  cursor.execute(sql, (userid))
+        result_from_order = cursor.fetchone()
+        if sql_run == True: #有訂購資料
+            sql = "select A.BookingID,A.UserID,A.AttractionId,A.Date,A.Time,A.Price,\
+            B.id,B.name,B.address,B.img\
+            FROM taipeitrip.book as A inner join taipeitrip.location as B\
+            on A.AttractionId = B.id\
+            where (UserID = '%s') ;"  
+            cursor.execute(sql, (userid))
+            result = cursor.fetchone()
+            conn.close()
+            cursor.close()
+            attraction ={
+                'id':result['id'],
+                'name':result['name'],
+                'address':result['address'],
+                'image':result['img'].split(',')[0]
+                }
+            result_JSON = json.dumps({'data':attraction,
+                                      'date':result['Date'],
+                                      'time':result['Time'],
+                                      'price':result['Price']},ensure_ascii=False)
+        elif sql_run == False: #沒有訂購資料
+            result_JSON = json.dumps({"data": None,"message": "沒有訂購資料"})
+    else:
+        result_JSON = json.dumps({"error": True,"message": "沒有登入帳戶"})
+    return Response(result_JSON, mimetype='application/json')
 
 
+#booking POST api 編寫邏輯
+#如果訂單有重複使用者ID則delete掉，一個使用者最多一筆訂單(本網頁邏輯，因為沒有設計訂購清單)
+#步驟如下:
+#1.先搜尋此使用者訂單有幾筆(正常來說應該最多一筆或沒有訂單)
+#當個人訂單數量清空後才能掛上新單
+@app.route('/api/booking', methods=['POST'])
+def  booking_post():
+    req_data = request.get_json()
+    id = session['id']
+    AttractionId = req_data['attractionId']
+    Date =req_data['Date']
+    Price = req_data['Price']
+    Time = req_data['Time']
+    if Date == '' or Price == '' or Time == '' : #篩選填入資料不得為空
+        result_JSON = json.dumps({"error": bool(True) ,"message": "填入資料不得為空"})
+    elif id == '':
+        result_JSON = json.dumps({"error": bool(True) ,"message": "需要登入會員"})
+    else:
+        conn = POOL.connection()
+        cursor = conn.cursor()
+        sql = "select UserID FROM taipeitrip.book where (UserID = '%s') ;"
+        sql_run =  cursor.execute(sql, (id))
+        if sql_run !=0:
+            cursor.execute("SET SQL_SAFE_UPDATES=0;")
+            cursor.execute("DELETE FROM `taipeitrip`.`book` WHERE (UserID = '%s');",(id))
+            cursor.execute("SET SQL_SAFE_UPDATES=1;")
+        sql = "INSERT INTO book (UserID,AttractionID,Date, Price, Time) VALUES (%s,%s,%s,%s,%s)"
+        sql_run =  cursor.execute(sql, (id,AttractionId, Date, Price, Time))
+        # print('sql_run :',sql_run)   #成功執行結果等於1
+        conn.commit()
+        conn.close()
+        cursor.close()
+        if sql_run == True :
+            result_JSON = json.dumps({"ok": bool(True)})
+        else :
+            result_JSON = json.dumps({"error": bool(True) ,"message": "資料上傳錯誤"})
+    return Response(result_JSON, mimetype='application/json')
 
 
+@app.route('/api/booking', methods=['DELETE'])
+def  booking_DELETE():
+    if "id" in session :
+        userid = session['id']
+        conn = POOL.connection()
+        cursor = conn.cursor()
+        cursor.execute("SET SQL_SAFE_UPDATES=0;")
+        result = cursor.execute("DELETE FROM `taipeitrip`.`book` WHERE (UserID = '%s');",(userid))
+        cursor.execute("SET SQL_SAFE_UPDATES=1;")
+        conn.commit()
+        conn.close()
+        cursor.close()
+        if result ==True :
+            result_JSON = json.dumps({"ok": bool(True)})
+        else :
+            result_JSON = json.dumps({"error": bool(True),"message": "刪除失敗"})
+        return Response(result_JSON, mimetype='application/json')
+    else :
+        result_JSON = json.dumps({"error": bool(True) ,"message": "刪除資料方式錯誤"})
+        return Response(result_JSON, mimetype='application/json')
 ###line###
 # Pages
 @app.route("/")

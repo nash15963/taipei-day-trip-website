@@ -4,9 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="/static/CSSfile/booking.css" rel="stylesheet" type="text/css">
+    <title>booking</title>
 </head>
 <body>
-    hi
+    <div id="shadow"></div>
+	<div id="login">
+		<form action="/api/user" id="login_form" method="post" name="login_form">
+			<p>登入會員帳號 <span class="close">X</span></p><input name="email" placeholder="輸入電子信箱" type="email"> <input name='password' placeholder="輸入密碼" type="password"><br>
+			<button id="login_formBtn" type="submit">登入帳戶</button> <!-- <input class="formBtn" type="submit" value="登入帳戶"> -->
+			<p class="signupPage">還沒有帳戶?點此註冊</p>
+			<p class="message"></p>
+		</form>
+	</div>
+	<div id="signup">
+		<form action="/api/user" id="signup_form" method="post" name="signup_form">
+			<p>註冊會員帳號 <span class="close">X</span></p><input name="name" placeholder="輸入姓名" type="text"> <input name="email" placeholder="輸入電子信箱" type="email"> <input name='password' placeholder="輸入密碼" type="password"><br>
+			<button id="signup_formBtn" type="submit">註冊新帳戶</button> <!-- <input class="formBtn" type="submit" value="註冊新帳戶"> -->
+			<p class="logInPage">已經有帳戶了？點此登入</p>
+			<p class="message"></p>
+		</form>
+	</div>
+	<!-- <div id="deleteBooking">
+		<form id="delete_form">
+
+		</form>
+	</div> -->
+	<div class="title">
+		<div class="title_content">
+			<div>
+				<a href="/">台北一日遊</a>
+			</div>
+			<div class="title_box">
+				<a class="booking">排定行程</a>
+				<p class="signin">登入/註冊</p>
+				<p class="signout">登出</p> 
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="contentTitle"></div>
+		<div class="contentImg"></div>
+		<div class="contentText"></div> 
+		<div class="contentDelete">
+			<img src="/static/imgfile/icon_delete.png" alt="垃圾桶範例">
+		</div>
+	</div>
+	<div class="information"></div>
+	<div class="creditCard"></div>
+	<div class="price"></div>
+	<div class="foot">
+		COPYRIGHT © 2021 台北一日遊
+	</div>
+<script src="/static/JSfile/booking_GET.js"></script>
 </body>
 </html>

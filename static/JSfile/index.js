@@ -43,7 +43,7 @@ const showDatas = (dataList) => {
 let nextPage = 0; //在hasMoreDatas的函式中代入第一筆資料(因為api的下一頁第一個編碼=1)
 //判斷api的下一頁
 const hasMoreDatas = (e) => {
-    console.log(e !== null)
+    //console.log(e !== null)
     return e !== null;
 };
 const loadDatas = async(page) => {

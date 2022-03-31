@@ -1,0 +1,587 @@
+//cd C:\WeHelp_Taipei_Trip\develop\static\Stylfile
+//stylus -w booking.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\booking.css
+body{
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1200px 1fr;
+    grid-template-rows: 50px 400px 300px 250px 200px 100px;
+    font-family: Noto Sans;
+    font-style: normal;
+// overflow-y:hidden 隱藏拉軸
+
+    @media (max-width:1024px){
+		grid-template-columns: 100%
+		grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
+	}
+    @media (max-width:600px){
+		grid-template-columns: 100%
+		grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
+	}
+
+}
+//鎖上灰幕控制頁面滑動
+#shadow{
+    display: none /* 載入不顯示 */
+    position: fixed
+    z-index: 500 
+    top: 0px
+    left: 0px
+    width: 100%
+    height: 100%
+    grid-column-start: 1
+    grid-column-end: 4
+    grid-row-start: 1
+    grid-row-end: 5
+    background-color: rgba(0, 0, 0, 1)
+    opacity: 25%
+}
+
+#login{
+    /*登入頁面*/
+    /* 載入不顯示 */
+    display: none
+    position: fixed
+    z-index: 999 
+    top: 80px
+    left: 35%
+    width: 340px
+    height: 280px
+    background-color: white
+    text-align: center
+    padding: 15px
+    border-radius: 6px
+    box-shadow: 0px 4px 60px #AAAAAA
+    @media (max-width:600px) {
+        left: 2%
+        width: 88%
+    }
+
+        form p:nth-child(1){
+            font-weight: 700
+            font-size: 24px
+            color: #666666
+            margin: 0px
+        }
+        .close{
+            float: right
+            font-size: 16px
+            font-weight: 50
+            line-height: 15px
+            color: black
+            cursor: pointer
+        }
+        input{
+            height: 47px
+            width: 95%
+            border-radius: 5px
+            padding: 15px
+            background: #FFFFFF
+            border: 1px solid #CCCCCC
+            box-sizing: border-box
+            margin: 8px 0px 8px 0px
+        }
+        input::placeholder{
+            margin: 8px 0px 8px 0px
+            font-family: 'Noto Sans TC'
+            font-weight: normal 
+            font-size: 16px
+            color: #666666
+        }
+        input[type=submit]{
+            width: 97%
+            height: 47px
+            border-radius: 5px
+            background: #448899
+            color: #FFFFFF
+            border: 1px solid #CCCCCC 
+            margin: 8px 0px 8px 0px
+            font-weight: 400
+            font-size: 19px
+            cursor: pointer
+            line-height: 8px
+        }
+        button{
+            width: 97%
+            height: 47px
+            border-radius: 5px
+            background: #448899
+            color: #FFFFFF
+            border: 1px solid #CCCCCC 
+            margin: 8px 0px 8px 0px
+            font-weight: 400
+            font-size: 19px
+            cursor: pointer
+            line-height: 8px
+        }
+        form p:nth-child(6){
+            font-style: normal
+            font-weight: 400
+            font-size: 16px
+            margin: 8px 0px 4px 0px
+            color: #666666
+            cursor: pointer
+        }
+}
+.message{
+	margin: 0px auto 10px auto
+	color: #666666
+}
+#signup{
+	/*登入頁面*/
+	/* 載入不顯示 */
+	display: none
+	position: fixed
+	z-index: 999 
+	top: 80px
+	left: 35%
+	width: 340px
+	height: 360px
+	background-color: white
+	text-align: center
+    padding: 15px
+	border-radius: 6px
+	box-shadow: 0px 4px 60px #AAAAAA
+    @media (max-width:600px) {
+        left: 2%
+		width: 88% 
+    }
+
+        form p:nth-child(1){
+            font-weight: 700
+            font-size: 24px
+            color: #666666
+            margin: 0px
+        }
+        .close{
+            float: right
+            font-size: 16px
+            font-weight: 50
+            line-height: 15px
+            color: black
+            cursor: pointer
+        }
+        input{
+            height: 47px
+            width: 95%
+            border-radius: 5px
+            padding: 15px
+            background: #FFFFFF
+            border: 1px solid #CCCCCC
+            box-sizing: border-box
+            margin: 8px 0px 8px 0px
+        }
+        input::placeholder{
+            margin: 8px 0px 8px 0px
+            font-family: 'Noto Sans TC'
+            font-weight: normal 
+            font-size: 16px
+            color: #666666
+        }
+        input[type=submit]{
+            width: 97%
+            height: 47px
+            border-radius: 5px
+            background: #448899
+            color: #FFFFFF
+            border: 1px solid #CCCCCC 
+            margin: 8px 0px 8px 0px
+            font-weight: 400
+            font-size: 19px
+            cursor: pointer
+            line-height: 8px
+        }
+        button{
+            width: 97%
+            height: 47px
+            border-radius: 5px
+            background: #448899
+            color: #FFFFFF
+            border: 1px solid #CCCCCC 
+            margin: 8px 0px 8px 0px
+            font-weight: 400
+            font-size: 19px
+            cursor: pointer
+            line-height: 8px
+        }
+        form p:nth-child(6){
+            font-style: normal
+            font-weight: 400
+            font-size: 16px
+            margin: 8px 0px 4px 0px
+            color: #666666
+            cursor: pointer
+        }
+}
+
+.title{ 
+	z-index: 100
+	position: sticky
+	top: 0
+	align-self: start
+	background-color: #FFFFFF
+	border-bottom: 1px solid #E8E8E8
+	grid-column-start: 1
+	grid-column-end: 4
+	grid-row-start: 1
+	grid-row-end: 2
+    @media (max-width:600px) {
+        padding: 10px
+        grid-column-start: 1
+		grid-column-end: 1
+		grid-row-start: 1
+		grid-row-end: 2
+    }
+
+    .title_content{ //從這裡
+        margin: 0px auto 0px auto
+        max-width: 1200px
+        height: 50px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        font-family: Noto Sans TC
+        font-style: normal
+        @media (max-width:600px){
+             max-width: 100%
+        }
+        
+        div:nth-child(1){ 
+            width: 50%
+            text-align: left
+        @media (max-width:600px){
+            padding: 0px 0px 0px 5px
+        }
+        }    
+        div:nth-child(2){
+            width: 50%
+            text-align: right
+        }
+        div a {
+            display: inline-block
+            margin: 5px 0px 5px 0px
+            font-size: 30px
+            cursor: pointer
+        }
+        div:nth-child(1) a {
+        font-weight: bold
+        color: rgba(68, 136, 153, 1)
+            @media (max-width:600px){
+            font-size: 27px
+            }
+        }
+        div:nth-child(2) a {
+        font-weight: 400
+        font-size: 16px
+        margin: 10px 30px 5px 0px
+        color: rgba(102, 102, 102, 1)
+            @media (max-width:600px){
+            margin: 10px 15px 5px 0px
+            }
+        }
+        div p{
+            margin: 5px 0px 5px 0px
+            font-size: 16px
+            cursor: pointer
+            font-weight: normal
+        }
+        
+    }
+    
+}
+.signout, .signin {
+	display: none
+	margin: 5px 0px 5px 0px
+	color: rgba(102, 102, 102, 1)
+	cursor: pointer
+}
+.booking{
+        cursor : pointer
+}
+.content{
+    grid-column: 2/3 
+    grid-row: 2/3 
+    display: flex 
+    flex-wrap: wrap 
+    border-bottom: 1px #e8e8e8 solid 
+    @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 2/3 
+        display: block
+	}
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 2/3 
+    }
+    h4{
+        width: 100% 
+        margin: 60px 20px 20px 50px 
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+        padding: 10px 0px 10px 10px
+        @media (max-width:1024px){
+            width: 80%
+		    margin: 20px 5px 20px 5px
+            padding: 10px 0px 10px 10px
+        
+	    }
+        @media (max-width:600px) {
+        
+        } 
+    }
+
+    p:nth-child(1){
+    /* 名稱要改粗體 */
+        font-weight: 700 
+        font-size: 16px 
+        color: #448899 
+        @media (max-width:1024px){
+            width: 100% 
+            margin: 0px
+            padding: 10px 10px 10px 0px
+	    }
+        @media (max-width:600px) {
+        } 
+    }
+    p:nth-child(n+2){
+        font-weight: 700 
+        font-size: 16px 
+        color: #666666 
+        margin: 10px 0px 10px 0px 
+         @media (max-width:1024px){
+            margin: 0px
+            padding: 10px 10px 10px 0px
+            
+	    }
+        @media (max-width:600px) {
+
+        } 
+    }
+    span{
+        font-weight: 400 
+    }
+}
+.contentTitle{
+  width: 90% 
+}
+.contentImg{
+  overflow: hidden 
+  width: 266px 
+  height: 200px 
+  margin: 20px 20px 20px 30px 
+    @media (max-width:1024px){
+        width: 95% 
+        height: auto 
+        margin: 10px auto 10px auto 
+    }
+    @media (max-width:600px) {
+    } 
+    img{
+        width: 90% 
+        object-fit: over 
+        object-position: bottom
+        @media (max-width:1024px){
+            width: 100%
+            height: 100%
+        }
+        @media (max-width:600px) {
+    
+        }  
+    }
+}
+.contentText{
+  width: 50% 
+  padding: 0px 20px 20px 20px 
+    @media (max-width:1024px){
+		width: 70%
+    }
+    // @media (max-width:600px) {
+        
+    // }
+    // p {
+    //     padding: 10px 0px 10px 30px
+    // }
+}
+.contentDelete{
+  width: 5% 
+  cursor: pointer 
+        @media (max-width:1024px){
+            float:right
+            margin: auto 20px 20px 10px
+	    }
+        @media (max-width:600px) {
+        
+        }
+}
+.NullMessage{
+  grid-column: 2/3 
+  grid-row: 2/3 
+
+    h4{
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+    }
+
+    p{
+        font-weight: 400 
+        font-size: 16px 
+        color: #666666 
+    }
+}
+.information{
+  grid-column: 2/3 
+  grid-row: 3/4 
+  border-bottom: 1px #e8e8e8 solid 
+  padding: 30px 20px 20px 30px
+  @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 3/4 
+        padding: 30px 20px 20px 15px
+	}
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 3/4 
+    } 
+
+    h4{
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+        margin: 0px 0px 20px 0px 
+    }
+    p{
+        font-weight: 400 
+        font-size: 16px 
+        color: #666666 
+    }
+    p:nth-child(5){
+        font-weight: 700 
+        margin: 30px 0px 10px 0px 
+    }
+    input{
+        width: 250px 
+        height: 38px 
+        background: #FFFFFF 
+        border: 1px solid #E8E8E8 
+        box-sizing: border-box 
+        border-radius: 5px 
+        padding: 0px 0px 0px 15px 
+        color: #666 
+    }
+}
+.creditCard{
+  grid-column: 2/3  
+  grid-row: 4/5 
+  border-bottom: 1px #e8e8e8 solid 
+  padding: 30px 20px 20px 30px 
+    @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 4/5 
+        padding: 30px 20px 20px 15px
+	}
+    @media (max-width:600px) {
+        
+    }
+    h4{
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+        margin: 0px 0px 20px 0px 
+    }
+    p{
+        font-weight: 400 
+        font-size: 16px 
+        color: #666666 
+    }
+    input{
+        width: 250px 
+        height: 38px 
+        background: #FFFFFF 
+        border: 1px solid #E8E8E8 
+        box-sizing: border-box 
+        border-radius: 5px 
+        padding: 0px 0px 0px 15px 
+        color: #666 
+    }
+}
+.information input[type="text"] ,.creditCard input[type="text"]{
+  font-family: 'Noto Sans TC' 
+  font-weight: normal 
+  font-size: 16px 
+}
+
+.price{
+  grid-column: 2/3 
+  grid-row: 5/6 
+  padding: 10px 10px 10px 80% 
+  @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 5/6 
+        padding: 0px
+        
+	}
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 5/6 
+        padding: 0px
+    } 
+
+    p{
+        font-weight: 700 
+        font-size: 16px 
+        color: #666666 
+        padding: 15px 0px 15px 30px 
+        @media (max-width:1024px){
+		    text-align: right
+            margin: auto 10px auto 10px
+        }
+        @media (max-width:600px) {
+        
+        } 
+    }
+    button{
+        border: 0px 
+        box-shadow: none 
+        width: 173px 
+        height: 36px 
+        font-size: 20px 
+        background-color: #489 
+        color: #fff 
+        border-radius: 5px 
+        padding: 10px, 20px, 10px, 20px 
+        @media (max-width:1024px){
+            float:right
+            margin: auto 10px auto 10px
+        }
+        @media (max-width:600px) {
+        
+        }
+    }
+}
+.foot{
+  grid-column: 1/4 
+  grid-row: 6/7 
+  padding-top: 20px 
+  background-color: #757575 
+  color: #fff 
+  text-align: center
+    @media (max-width:1024px){
+            grid-column: 1/1 
+            grid-row: 6/7 
+        }
+    @media (max-width:600px) {
+        grid-column: 1/1 
+        grid-row: 6/7 
+    }
+}
+
+
+
+
+    // @media (max-width:1024px){
+		
+    // }
+    // @media (max-width:600px) {
+        
+    // }

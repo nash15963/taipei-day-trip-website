@@ -1,910 +1,549 @@
 /* This is Body */
 body {
-	margin: 0px;
-	display: grid;
-	grid-template-columns: 1fr 1200px 1fr;
-	grid-template-rows: 50px 600px auto 110px;
-	font-family: Noto Sans TC;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1200px 1fr;
+  grid-template-rows: 50px 600px auto 110px;
+  font-family: Noto Sans TC;
 }
-/* login-part start */
-#shadow{
-	/* 載入不顯示 */
-	display: none;
-	position: fixed;
-	z-index: 500 ;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	grid-column-start: 1;
-	grid-column-end: 4;
-	grid-row-start: 1;
-	grid-row-end: 5;
-	background-color: rgba(0, 0, 0, 1);
-	opacity: 25%;
+@media (max-width: 1024px) {
+  body {
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 1200px auto 110px;
+  }
 }
-#login{
-	/*登入頁面*/
-	/* 載入不顯示 */
-	display: none;
-	position: fixed;
-	z-index: 999 ;
-	top: 80px;
-	left: 35%;
-	width: 340px;
-	height: 280px;
-	background-color: white;
-	text-align: center;
-	padding: 15px;
-	border-radius: 6px;
-	box-shadow: 0px 4px 60px #AAAAAA;
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 1000px auto 110px;
+  }
 }
-#login form p:nth-child(1){
-	font-weight: 700;
-	font-size: 24px;
-	color: #666666;
-	margin: 0px;
+#shadow {
+/* 載入不顯示 */
+  display: none;
+  position: fixed;
+  z-index: 500;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 5;
+  background-color: #000;
+  opacity: 25%;
 }
-#login .close{
-	float: right;
-	font-size: 16px;
-	font-weight: 50;
-	line-height: 15px;
-	color: black;
-	cursor: pointer;
+@media (max-width: 1024px) {
+  #shadow {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 5;
+  }
 }
-#login input{
-	height: 47px;
-	width: 95%;
-	border-radius: 5px;
-	padding: 15px;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
-	box-sizing: border-box;
-	margin: 8px 0px 8px 0px;
+#login {
+/*登入頁面*/
+/* 載入不顯示 */
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 80px;
+  left: 35%;
+  width: 340px;
+  height: 280px;
+  background-color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 60px #aaa;
 }
-#login input::placeholder{
-	margin: 8px 0px 8px 0px;
-	font-family: 'Noto Sans TC';
-	font-weight: normal ;
-	font-size: 16px;
-	color: #666666;
+@media (max-width: 1024px) {
+  #login {
+    left: 4%;
+    width: 88%;
+  }
 }
-#login input[type=submit]{
-	width: 97%;
-	height: 47px;
-	border-radius: 5px;
-	background: #448899;
-	color: #FFFFFF;
-	border: 1px solid #CCCCCC ;
-	margin: 8px 0px 8px 0px;
-	font-weight: 400;
-	font-size: 19px;
-	cursor: pointer;
-	line-height: 8px;
+@media (max-width: 600px) {
+  #login {
+    left: 2%;
+  }
 }
-#login button{
-	width: 97%;
-	height: 47px;
-	border-radius: 5px;
-	background: #448899;
-	color: #FFFFFF;
-	border: 1px solid #CCCCCC ;
-	margin: 8px 0px 8px 0px;
-	font-weight: 400;
-	font-size: 19px;
-	cursor: pointer;
-	line-height: 8px;
+#login form p:nth-child(1) {
+  font-weight: 700;
+  font-size: 24px;
+  color: #666;
+  margin: 0px;
 }
-#login form p:nth-child(6){
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	margin: 8px 0px 4px 0px;
-	color: #666666;
-	cursor: pointer;
+#login .close {
+  float: right;
+  font-size: 16px;
+  font-weight: 50;
+  line-height: 15px;
+  color: #000;
+  cursor: pointer;
 }
-.message{
-	margin: 0px auto 10px auto;
-	color: #666666;
+#login input {
+  height: 47px;
+  width: 95%;
+  border-radius: 5px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin: 8px 0px 8px 0px;
 }
-/* login-part end */
-/* this is sign-up page */
-#signup{
-	/*登入頁面*/
-	/* 載入不顯示 */
-	display: none;
-	position: fixed;
-	z-index: 999 ;
-	top: 80px;
-	left: 35%;
-	width: 340px;
-	height: 360px;
-	background-color: white;
-	text-align: center;
-	padding: 15px;
-	border-radius: 6px;
-	box-shadow: 0px 4px 60px #AAAAAA;
+#login input::placeholder {
+  margin: 8px 0px 8px 0px;
+  font-family: 'Noto Sans TC';
+  font-weight: normal;
+  font-size: 16px;
+  color: #666;
 }
-#signup form p:nth-child(1){
-	font-weight: 700;
-	font-size: 24px;
-	color: #666666;
-	margin: 0px;
+#login input[type=submit] {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
 }
-#signup .close{
-	float: right;
-	font-size: 16px;
-	font-weight: 50;
-	line-height: 15px;
-	color: black;
-	cursor: pointer;
+#login button {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
 }
-#signup input{
-	height: 47px;
-	width: 95%;
-	border-radius: 5px;
-	padding: 15px;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
-	box-sizing: border-box;
-	margin: 8px 0px 8px 0px;
+#login form p:nth-child(6) {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 8px 0px 4px 0px;
+  color: #666;
+  cursor: pointer;
 }
-#signup input::placeholder{
-	margin: 8px 0px 8px 0px;
-	font-family: 'Noto Sans TC';
-	font-weight: normal ;
-	font-size: 16px;
-	color: #666666;
+.message {
+  margin: 0px auto 10px auto;
+  color: #666;
 }
-#signup input[type=submit]{
-	width: 97%;
-	height: 47px;
-	border-radius: 5px;
-	background: #448899;
-	color: #FFFFFF;
-	border: 1px solid #CCCCCC ;
-	margin: 8px 0px 8px 0px;
-	font-weight: 400;
-	font-size: 19px;
-	cursor: pointer;
-	line-height: 8px;
+#signup {
+/*登入頁面*/
+/* 載入不顯示 */
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 80px;
+  left: 35%;
+  width: 340px;
+  height: 360px;
+  background-color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 60px #aaa;
 }
-#signup button{
-	width: 97%;
-	height: 47px;
-	border-radius: 5px;
-	background: #448899;
-	color: #FFFFFF;
-	border: 1px solid #CCCCCC ;
-	margin: 8px 0px 8px 0px;
-	font-weight: 400;
-	font-size: 19px;
-	cursor: pointer;
-	line-height: 8px;
+@media (max-width: 1024px) {
+  #signup {
+    left: 4%;
+    width: 88%;
+  }
 }
-#signup form p:nth-child(6){
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	margin: 8px 0px 4px 0px;
-	color: #666666;
-	cursor: pointer;
+@media (max-width: 600px) {
+  #signup {
+    left: 2%;
+  }
 }
-.signout{
-	display: none;
-	margin: 5px 0px 5px 0px;
-	color: rgba(102, 102, 102, 1);
-	cursor: pointer;
+#signup form p:nth-child(1) {
+  font-weight: 700;
+  font-size: 24px;
+  color: #666;
+  margin: 0px;
 }
-.signin{
-	display: inline-block;
-	margin: 5px 0px 5px 0px;
-	color: rgba(102, 102, 102, 1);
-	cursor: pointer;
+#signup .close {
+  float: right;
+  font-size: 16px;
+  font-weight: 50;
+  line-height: 15px;
+  color: #000;
+  cursor: pointer;
 }
-/* sign up page end */
-/* This is Title part */
-.title{
-	z-index: 999;
-	/* 可以蓋過頁面其他部分，為最大值 */
-	position: sticky;
-	top: 0;
-	align-self: start;
-	background-color: #FFFFFF;
-	border-bottom: 1px solid #E8E8E8;
-	grid-column: 1/4;
-	grid-row : 1/2;
+#signup input {
+  height: 47px;
+  width: 95%;
+  border-radius: 5px;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin: 8px 0px 8px 0px;
 }
-.title_content {
-	margin: 0px auto 0px auto;
-	max-width: 1200px;
-	height: 50px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	font-style: normal;
+#signup input::placeholder {
+  margin: 8px 0px 8px 0px;
+  font-family: 'Noto Sans TC';
+  font-weight: normal;
+  font-size: 16px;
+  color: #666;
 }
-.title_content div:nth-child(1) {
-	width: 50%;
-	text-align: left;
+#signup input[type=submit] {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
 }
-.title_content div:nth-child(2) {
-	width: 50%;
-	text-align: right;
+#signup button {
+  width: 97%;
+  height: 47px;
+  border-radius: 5px;
+  background: #489;
+  color: #fff;
+  border: 1px solid #ccc;
+  margin: 8px 0px 8px 0px;
+  font-weight: 400;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 8px;
 }
-.title_content div a {
-	display: inline-block;
-	margin: 5px 0px 5px 0px;
-	font-size: 30px;
+#signup form p:nth-child(6) {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 8px 0px 4px 0px;
+  color: #666;
+  cursor: pointer;
 }
-.title_content div a:nth-child(2) {
-	margin: 15px 0px 5px 20px;
+.signout,
+.signin {
+  display: none;
+  margin: 5px 0px 5px 0px;
+  color: #666;
+  cursor: pointer;
 }
-.title_content div:nth-child(1) a {
-	font-weight: bold;
-	color: rgba(68, 136, 153, 1);
+.booking {
+  cursor: pointer;
 }
-.title_content div:nth-child(2) a {
-	font-weight: 400;
-	font-size: 16px;
-	margin: 10px 30px 5px 0px;
-	;
-	color: rgba(102, 102, 102, 1);
+.title {
+  z-index: 400;
+/* 可以蓋過頁面其他部分，為最大值 */
+  position: sticky;
+  top: 0;
+  align-self: start;
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  grid-column: 1/4;
+  grid-row: 1/2;
 }
-/* end */
-/* This is top-content part */
-.top-content{
-	grid-column: 2/3;
-	grid-row : 2/3;
-	/* 裡面再切版成三塊 */
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 5fr;
-	border-bottom: 1px #E8E8E8 solid;
+@media (max-width: 1024px) {
+  .title {
+    grid-column: 1/1;
+    grid-row: 1/2;
+  }
 }
-.top-img{
-	overflow: hidden;
-	grid-column: 1/2;
-	grid-row: 1/3;
-	padding: 40px 30px 100px 30px;
-	position: relative;
+.title .title_content {
+  margin: 0px auto 0px auto;
+  max-width: 1200px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-style: normal;
 }
-.top-img img{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	/* background-image: url(./load.jpg) no-repeat;
-	background-size: cover;
-	*/
+.title .title_content div:nth-child(1) {
+  width: 50%;
+  text-align: left;
 }
-.cirbox{
-	position: absolute;
-	top: 78%;
-	width: 540px;
-	height: 26px;
-	display: flex;
-	justify-content:center ;
+@media (max-width: 1024px) {
+  .title .title_content div:nth-child(1) {
+    padding: 0px 0px 0px 10px;
+  }
 }
-.cir{
-	z-index: 100;
-	width: auto;
-	/* 用來定位整個主塊 */
-	/* background-color: brown;
-	*/
-	margin: 0px auto 0px auto;
+.title .title_content div:nth-child(2) {
+  width: 50%;
+  text-align: right;
 }
-.cir li{
-	z-index: 110;
-	border: solid 3px white;
-	background-color: white;
-	border-radius:60%;
-	width:12px;
-	height:12px;
-	margin:3px 3px 0px 3px;
-	display: inline-block;
-	list-style: none;
-	/* 關鍵語法，轉換成一排 */
+@media (max-width: 1024px) {
+  .title .title_content div:nth-child(2) {
+    padding: 0px 10px 0px 0px;
+  }
 }
-.cir_focus{
-	background-color: black !important;
+.title .title_content div a {
+  display: inline-block;
+  margin: 5px 0px 5px 0px;
+  font-size: 30px;
 }
-#leftArrow{
-	cursor: pointer;
-	position: absolute;
-	z-index: 100;
-	width: 30px;
-	height: 30px;
-	top: 45%;
-	left: 8%;
+.title .title_content div a:nth-child(2) {
+  margin: 15px 0px 5px 20px;
 }
-#rightArrow{
-	cursor: pointer;
-	position: absolute;
-	z-index: 100;
-	width: 30px;
-	height: 30px;
-	left: 87%;
-	top: 45%;
+.title .title_content div:nth-child(1) a {
+  font-weight: bold;
+  color: #489;
 }
-.top-introduction{
-	grid-column: 2/3;
-	grid-row: 1/2;
+.title .title_content div:nth-child(2) a {
+  font-weight: 400;
+  font-size: 16px;
+  margin: 10px 30px 5px 0px;
+  color: #666;
 }
-.top-introduction h3{
-	margin: 0px ;
-	padding: 40px 40px 0px 20px;
-	color: rgba(102, 102, 102, 1);
+@media (max-width: 1024px) {
+  .title .title_content div:nth-child(2) a {
+    font-size: 14px;
+  }
 }
-.top-introduction p{
-	display: inline-block;
-	margin-bottom: 40px;
-	color: rgba(102, 102, 102, 1);
-	font-size: 16px;
+.top-content {
+  grid-column: 2/3;
+  grid-row: 2/3;
+/* 裡面再切版成三塊 */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 5fr;
+  border-bottom: 1px #e8e8e8 solid;
 }
-.top-introduction p:nth-child(2){
-	padding: 0px 0px 0px 20px;
+@media (max-width: 1024px) {
+  .top-content {
+    grid-column: 1/1;
+    grid-row: 2/3;
+    grid-template-columns: 100%;
+    grid-template-rows: 6fr 2fr 4fr;
+  }
 }
-.top-main{
-	grid-column: 2/3;
-	grid-row: 2/3;
-	margin: 0px 0px 100px 20px;
-	padding: 0px 0px 0px 20px;
-	background-color: rgba(232, 232, 232, 1);
+@media (max-width: 600px) {
+  .top-content {
+    grid-template-rows: 7fr 2fr 3fr;
+    padding: 0px;
+  }
 }
-/* .fullday_moring ,.fullday_evening {
-	width: 18px;
-	height: 18px;
-	margin: 6px 3px 0px 5px;
-	cursor: pointer;
-	color: rgba(68, 136, 153, 1);
+.top-img {
+  overflow: hidden;
+  grid-column: 1/2;
+  grid-row: 1/3;
+  padding: 40px 30px 100px 30px;
+  position: relative;
 }
-input:checked + .fullday_moring ,.fullday_evening ::before{
-	/* 當check時 按鈕顏色改變background-color: rgba(68, 136, 153, 1);
-	;
+@media (max-width: 1024px) {
+  .top-img {
+    grid-column: 1/1;
+    grid-row: 1/2;
+    padding: 0px;
+  }
 }
-*/
-/* */
+@media (max-width: 600px) {
+  .top-img {
+    margin: 0px 0px 0px 0px;
+    position: relative;
+  }
+}
+.top-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cirbox {
+  position: absolute;
+  top: 78%;
+  width: 540px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 1024px) {
+  .cirbox {
+    top: 90%;
+    width: 100%;
+  }
+}
+.cir {
+  z-index: 100;
+  width: auto;
+  margin: 0px auto 0px auto;
+}
+.cir li {
+  z-index: 110;
+  border: solid 3px #fff;
+  background-color: #fff;
+  border-radius: 60%;
+  width: 12px;
+  height: 12px;
+  margin: 3px 3px 0px 3px;
+  display: inline-block;
+  list-style: none;
+}
+.cir_focus {
+  background-color: #000 !important;
+}
+#leftArrow {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  width: 30px;
+  height: 30px;
+  top: 45%;
+  left: 8%;
+}
+@media (max-width: 1024px) {
+  #leftArrow {
+    top: 50%;
+    left: 3%;
+  }
+}
+#rightArrow {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  width: 30px;
+  height: 30px;
+  left: 87%;
+  top: 45%;
+}
+@media (max-width: 1024px) {
+  #rightArrow {
+    left: 92%;
+    top: 50%;
+  }
+}
+@media (max-width: 600px) {
+  #rightArrow {
+    left: 90%;
+  }
+}
+.top-introduction {
+  grid-row: 1/2;
+  grid-column: 2/3;
+}
+@media (max-width: 1024px) {
+  .top-introduction {
+    grid-column: 1/1;
+    grid-row: 2/3;
+  }
+}
+.top-introduction h3 {
+  margin: 0px;
+  padding: 40px 40px 0px 20px;
+  color: #666;
+}
+.top-introduction p {
+  display: inline-block;
+  margin-bottom: 40px;
+  color: #666;
+  font-size: 16px;
+}
+.top-introduction p:nth-child(2) {
+  padding: 0px 0px 0px 20px;
+}
+.top-main {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  margin: 0px 0px 100px 20px;
+  padding: 0px 0px 0px 20px;
+  background-color: #e8e8e8;
+}
+@media (max-width: 1024px) {
+  .top-main {
+    grid-column: 1/1;
+    grid-row: 3/4;
+    margin: 0px 10px 90px 10px;
+    padding: 0px 20px 20px 20px;
+  }
+}
+@media (max-width: 600px) {
+  .top-main {
+    font-size: 18px;
+    margin: 0px 10px 90px 10px;
+    padding: 0px 20px 20px 20px;
+  }
+}
+.top-main button {
+  border: 0px;
+  box-shadow: none;
+  width: 154px;
+  height: 36px;
+  font-size: 20px;
+  background-color: #489;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px, 20px, 10px, 20px;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .top-main button {
+    font-size: 18px;
+  }
+}
+.bookingMessage {
+  color: #d61515;
+}
 input[type="radio"] {
-	/* remove standard background appearance */
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	/* create custom radiobutton appearance */
-	display: inline-block;
-	width: 18px;
-	height: 18px;
-	padding: 0px;
-	/* background-color only for content */
-	background-clip: content-box;
-	border: 1px solid white;
-	background-color: white;
-	border-radius: 50%;
-	position: relative;
-	top: 2px;
+/* remove standard background appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+/* create custom radiobutton appearance */
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  padding: 0px;
+/* background-color only for content */
+  background-clip: content-box;
+  border: 1px solid #fff;
+  background-color: #fff;
+  border-radius: 50%;
+  position: relative;
+  top: 2px;
 }
 /* appearance for checked radiobutton */
 input[type="radio"]:checked {
-	background-color: rgba(68, 136, 153, 1);
+  background-color: #489;
 }
-/* */
-.top-main button{
-	border: 0px;
-	box-shadow: none;
-	width: 154px;
-	height: 36px;
-	font-size: 20px;
-	background-color: #448899;
-	;
-	color: rgba(255, 255, 255, 1);
-	border-radius: 5px;
-	padding:10px, 20px, 10px, 20px;
+.bottom-content {
+  margin: 90px 0px 20px 0px;
+  grid-column: 2/3;
+  grid-row: 3/4;
+  font-style: normal;
 }
-/* .top-main p:nth-child(3){
-	display: inline-block;
+@media (max-width: 1024px) {
+  .bottom-content {
+    grid-column: 1/1;
+    grid-row: 3/4;
+  }
 }
-*/
-/* .top-main p:nth-child(5){
-	display: inline-block;
+.bottom-content p {
+  margin: 0px 0px 50px 0px;
 }
-*/
-/* end */
-.bottom-content{
-	margin: 90px 0px 20px 0px;
-	grid-column: 2/3;
-	grid-row : 3/4;
-	font-style: normal;
+@media (max-width: 1024px) {
+  .bottom-content p {
+    margin: 0px 15px 50px 15px;
+  }
 }
-.bottom-content p{
-	margin: 0px 0px 50px 0px;
+.bottom-content h4 {
+  margin: 0px 0px 10px 0px;
 }
-.bottom-content h4{
-	margin: 0px 0px 10px 0px;
+@media (max-width: 1024px) {
+  .bottom-content h4 {
+    margin: 0px 15px 10px 15px;
+  }
 }
-.foot{
-	padding-top: 20px;
-	background-color: #757575;
-	color: white;
-	text-align: center;
-	grid-column: 1/4;
-	grid-row : 4/5;
-}
-/* 平板 */
-@media (max-width:1024px){
-	body {
-		margin: 0px;
-		display: grid;
-		grid-template-columns: 100%;
-		grid-template-rows: 50px 1200px auto 110px;
-		font-family: Noto Sans TC;
-	}
-	/* login-part start */
-	#shadow{
-		z-index: 500 ;
-		top: 0px;
-		left: 0px;
-		width: 100%;
-		height: 100%;
-		grid-column-start: 1;
-		grid-column-end: 1;
-		grid-row-start: 1;
-		grid-row-end: 5;
-		background-color: rgba(0, 0, 0, 1);
-		opacity: 25%;
-	}
-	#login{
-		z-index: 999 ;
-		top: 80px;
-		left: 2%;
-		width: 88%;
-		background-color: white;
-		text-align: center;
-		padding: 15px;
-		border-radius: 6px;
-		box-shadow: 0px 4px 60px #AAAAAA;
-	}
-	#login form p:nth-child(1){
-		font-weight: 700;
-		font-size: 24px;
-		color: #666666;
-		margin: 0px;
-	}
-	#login .close{
-		float: right;
-		font-size: 16px;
-		font-weight: 50;
-		line-height: 15px;
-		color: black;
-	}
-	#login input{
-		height: 47px;
-		width: 95%;
-		border-radius: 5px;
-		padding: 15px;
-		background: #FFFFFF;
-		border: 1px solid #CCCCCC;
-		box-sizing: border-box;
-		margin: 8px 0px 8px 0px;
-	}
-	#login input::placeholder{
-		margin: 8px 0px 8px 0px;
-		font-family: 'Noto Sans TC';
-		font-weight: normal ;
-		font-size: 16px;
-		color: #666666;
-	}
-	/* login-part end */
-	/* this is sign-up page */
-	#signup{
-		/*登入頁面*/
-		/* 載入不顯示 */
-		display: none;
-		z-index: 999 ;
-		top: 80px;
-		left: 2%;
-		width: 88%;
-		background-color: white;
-		text-align: center;
-		padding: 15px;
-		border-radius: 6px;
-		box-shadow: 0px 4px 60px #AAAAAA;
-	}
-	#signup form p:nth-child(1){
-		font-weight: 700;
-		font-size: 24px;
-		color: #666666;
-		margin: 0px;
-	}
-	#signup .close{
-		float: right;
-		font-size: 16px;
-		font-weight: 50;
-		line-height: 15px;
-		color: black;
-		cursor: pointer;
-	}
-	#signup input{
-		height: 47px;
-		width: 95%;
-		border-radius: 5px;
-		padding: 15px;
-		background: #FFFFFF;
-		border: 1px solid #CCCCCC;
-		box-sizing: border-box;
-		margin: 8px 0px 8px 0px;
-	}
-	#signup input::placeholder{
-		margin: 8px 0px 8px 0px;
-		font-family: 'Noto Sans TC';
-		font-weight: normal ;
-		font-size: 16px;
-		color: #666666;
-	}
-	#signup #signup_form .logInPage{
-		cursor: pointer;
-	}
-	/* sign up page end */
-	/* This is Title part */
-	.title{
-		z-index: 999;
-		/* 可以蓋過頁面其他部分，為最大值 */
-		position: sticky;
-		top: 0;
-		align-self: start;
-		grid-column: 1/1;
-		grid-row : 1/2;
-	}
-	.title_content {
-		margin: 0px auto 0px auto;
-		max-width: 1200px;
-		height: 50px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-style: normal;
-	}
-	.title_content div:nth-child(1) {
-		width: 50%;
-		text-align: left;
-		padding: 0px 0px 0px 10px;
-	}
-	.title_content div:nth-child(2) {
-		width: 50%;
-		text-align: right;
-		padding: 0px 10px 0px 0px;
-	}
-	.title_content div a {
-		display: inline-block;
-		margin: 5px 0px 5px 0px;
-		font-size: 30px;
-	}
-	.title_content div a:nth-child(2) {
-		margin: 15px 0px 5px 20px;
-	}
-	.title_content div:nth-child(1) a {
-		font-weight: bold;
-		color: rgba(68, 136, 153, 1);
-	}
-	.title_content div:nth-child(2) a {
-		font-weight: 400;
-		font-size: 14px;
-		margin: 10px 30px 5px 0px;
-		;
-		color: rgba(102, 102, 102, 1);
-	}
-	/* end */
-	/* This is top-content part */
-	.top-content{
-		grid-column: 1/1;
-		grid-row : 2/3;
-		/* 裡面再切版成三塊 */
-		display: grid;
-		grid-template-columns: 100%;
-		grid-template-rows: 6fr 2fr 4fr;
-	}
-	.top-img{
-		grid-column: 1/1;
-		grid-row: 1/2;
-		padding: 0px;
-		position: relative;
-	}
-	.top-img img{
-		object-fit: cover;
-	}
-	.cirbox{
-		position: absolute;
-		top: 90%;
-		width: 100%;
-		height: 26px;
-		display: flex;
-		justify-content:center ;
-	}
-	.cir{
-		position:absolute;
-		z-index: 100;
-		/* 用來定位整個主塊 */
-	}
-	.cir li{
-		z-index: 110;
-		border: solid 3px white;
-		border-radius:60%;
-		width:12px;
-		height:12px;
-		margin:3px 3px 0px 3px;
-		display: inline-block;
-		list-style: none;
-		/* 關鍵語法，轉換成一排 */
-	}
-	.cir_focus{
-		background-color: black;
-	}
-	#leftArrow{
-		position: absolute;
-		z-index: 100;
-		width: 30px;
-		height: 30px;
-		top: 50%;
-		left: 3%;
-	}
-	#rightArrow{
-		position: absolute;
-		z-index: 100;
-		width: 30px;
-		height: 30px;
-		left: 92%;
-		top: 50%;
-	}
-	.top-introduction{
-		grid-column: 1/1;
-		grid-row: 2/3;
-	}
-	.top-introduction h3{
-		margin: 0px ;
-		padding: 40px 40px 0px 20px;
-		color: rgba(102, 102, 102, 1);
-	}
-	.top-introduction p{
-		display: inline-block;
-		margin-bottom: 40px;
-		color: rgba(102, 102, 102, 1);
-		font-size: 16px;
-	}
-	.top-introduction p:nth-child(2){
-		padding: 0px 0px 0px 20px;
-	}
-	.top-main{
-		grid-column: 1/1;
-		grid-row: 3/4;
-		margin: 0px 20px 100px 20px;
-		padding: 0px 0px 20px 20px;
-		background-color: rgba(232, 232, 232, 1);
-	}
-	.top-main button{
-		font-size: 20px;
-		background-color: #448899;
-		;
-		color: rgba(255, 255, 255, 1);
-		border-radius: 5px;
-		padding:10px, 20px, 10px, 20px;
-	}
-	/* .top-main p:nth-child(3){
-		display: inline-block;
-	}
-	*/
-	/* .top-main p:nth-child(5){
-		display: inline-block;
-	}
-	*/
-	/* end */
-	.bottom-content{
-		margin: 90px 0px 20px 0px;
-		grid-column: 1/1;
-		grid-row : 3/4;
-		font-style: normal;
-	}
-	.bottom-content p{
-		margin: 0px 15px 50px 15px;
-	}
-	.bottom-content h4{
-		margin: 0px 15px 10px 15px;
-	}
-	.foot{
-		padding-top: 20px;
-		text-align: center;
-		grid-column: 1/4;
-		grid-row : 4/5;
-	}
-}
-/* 手機大小 */
-@media (max-width:600px){
-	body {
-		margin: 0px;
-		display: grid;
-		grid-template-columns: 100%;
-		grid-template-rows: 50px 1000px auto 110px;
-		font-family: Noto Sans TC;
-	}
-	.signout{
-		margin: 5px 5px 5px 5px;
-		color: rgba(102, 102, 102, 1);
-		cursor: pointer;
-	}
-	.signin{
-		margin: 5px 5px 5px 5px;
-		color: rgba(102, 102, 102, 1);
-		cursor: pointer;
-	}
-	/* This is Title part */
-	.title{
-		z-index: 999;
-		/* 可以蓋過頁面其他部分，為最大值 */
-		position: sticky;
-		top: 0;
-		align-self: start;
-		grid-column: 1/1;
-		grid-row : 1/2;
-	}
-	.title_content {
-		margin: 0px auto 0px auto;
-		max-width: 1200px;
-		height: 50px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-style: normal;
-	}
-	.title_content div:nth-child(1) {
-		width: 50%;
-		text-align: left;
-		padding: 0px 0px 0px 10px;
-	}
-	.title_content div:nth-child(2) {
-		width: 50%;
-		text-align: right;
-		padding: 0px 10px 0px 0px;
-	}
-	.title_content div a {
-		display: inline-block;
-		margin: 5px 0px 5px 0px;
-		font-size: 30px;
-	}
-	.title_content div a:nth-child(2) {
-		margin: 15px 0px 5px 20px;
-	}
-	.title_content div:nth-child(1) a {
-		font-weight: bold;
-		color: rgba(68, 136, 153, 1);
-	}
-	.title_content div:nth-child(2) p {
-		font-weight: 400;
-		font-size: 14px;
-		margin: 5px 5px 5px 5px;
-		;
-		color: rgba(102, 102, 102, 1);
-	}
-	/* end */
-	/* This is top-content part */
-	.top-content{
-		grid-column: 1/1;
-		grid-row : 2/3;
-		/* 裡面再切版成三塊 */
-		display: grid;
-		grid-template-columns: 100%;
-		grid-template-rows: 7fr 2fr 3fr;
-		padding: 0px;
-	}
-	.top-img{
-		overflow: hidden;
-		grid-column: 1/1;
-		grid-row: 1/2;
-		margin: 0px 0px 0px 0px;
-		padding: 0px;
-		position: relative;
-	}
-	.top-img img{
-		object-fit: cover;
-	}
-	.cirbox{
-		position: absolute;
-		top: 90%;
-		width: 100%;
-		height: 26px;
-		display: flex;
-		justify-content:center ;
-	}
-	.cir{
-		z-index: 100;
-		/* 用來定位整個主塊 */
-	}
-	.cir li{
-		z-index: 110;
-		border: solid 3px white;
-		border-radius:60%;
-		width:12px;
-		height:12px;
-		margin:3px 3px 0px 3px;
-		display: inline-block;
-		list-style: none;
-		/* 關鍵語法，轉換成一排 */
-	}
-	.cir_focus{
-		background-color: black;
-	}
-	#leftArrow{
-		position: absolute;
-		z-index: 100;
-		width: 30px;
-		height: 30px;
-		top: 50%;
-		left: 3%;
-	}
-	#rightArrow{
-		position: absolute;
-		z-index: 100;
-		width: 30px;
-		height: 30px;
-		top: 50%;
-		left: 90%;
-	}
-	.top-introduction{
-		grid-column: 1/1;
-		grid-row: 2/3;
-	}
-	.top-introduction h3{
-		margin: 0px ;
-		padding: 40px 40px 0px 20px;
-		color: rgba(102, 102, 102, 1);
-	}
-	.top-introduction p{
-		display: inline-block;
-		margin-bottom: 40px;
-		color: rgba(102, 102, 102, 1);
-		font-size: 16px;
-	}
-	.top-introduction p:nth-child(2){
-		padding: 0px 0px 0px 20px;
-	}
-	.top-main{
-		font-size: 18px;
-		grid-column: 1/1;
-		grid-row: 3/4;
-		margin: 0px 10px 90px 10px;
-		padding: 0px 20px 20px 20px;
-		background-color: rgba(232, 232, 232, 1);
-	}
-	.top-main button{
-		font-size: 18px;
-		background-color: #448899;
-		;
-		color: rgba(255, 255, 255, 1);
-		border-radius: 5px;
-		padding:10px, 20px, 10px, 20px;
-	}
-	/* .top-main p:nth-child(3){
-		display: inline-block;
-	}
-	*/
-	/* .top-main p:nth-child(5){
-		display: inline-block;
-	}
-	*/
-	/* end */
-	.bottom-content{
-		margin: 90px 0px 20px 0px;
-		grid-column: 1/1;
-		grid-row : 3/4;
-		font-style: normal;
-	}
-	.bottom-content p{
-		margin: 0px 15px 50px 15px;
-	}
-	.bottom-content h4{
-		margin: 0px 15px 10px 15px;
-	}
-	.foot{
-		padding-top: 20px;
-		text-align: center;
-		grid-column: 1/4;
-		grid-row : 4/5;
-	}
+.foot {
+  padding-top: 20px;
+  background-color: #757575;
+  color: #fff;
+  text-align: center;
+  grid-column: 1/4;
+  grid-row: 4/5;
 }
