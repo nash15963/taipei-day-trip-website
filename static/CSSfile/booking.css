@@ -2,20 +2,20 @@ body {
   margin: 0px;
   display: grid;
   grid-template-columns: 1fr 1200px 1fr;
-  grid-template-rows: 50px 400px 300px 250px 200px 100px;
+  grid-template-rows: 50px 400px 1100px 100px;
   font-family: Noto Sans;
   font-style: normal;
 }
 @media (max-width: 1024px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
+    grid-template-rows: 50px auto 900px 100px;
   }
 }
 @media (max-width: 600px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px auto 2fr 2fr 1fr 100px;
+    grid-template-rows: 50px auto 900px 100px;
   }
 }
 #shadow {
@@ -488,12 +488,15 @@ body {
   color: #666;
   margin: 0px 0px 20px 0px;
 }
-.creditCard p {
+.cardnote {
   font-weight: 400;
   font-size: 16px;
   color: #666;
 }
-.creditCard input {
+.cardnote p {
+  display: inline-block;
+}
+.tpfield {
   width: 250px;
   height: 38px;
   background: #fff;
@@ -502,6 +505,7 @@ body {
   border-radius: 5px;
   padding: 0px 0px 0px 15px;
   color: #666;
+  margin: 10px;
 }
 .information input[type="text"],
 .creditCard input[type="text"] {
@@ -559,7 +563,7 @@ body {
 }
 .foot {
   grid-column: 1/4;
-  grid-row: 6/7;
+  grid-row: 4/5;
   padding-top: 20px;
   background-color: #757575;
   color: #fff;

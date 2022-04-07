@@ -51,23 +51,33 @@ const bookingDataGet = async() =>{
         let information = document.querySelector('.information')
         information.innerHTML= `
         <h4>您的聯絡資訊</h4>
-		<p><label for="bookName">聯絡姓名：<input type="text" id="bookName"></label></p>
-		<p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail"></label></p>
-		<p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile"></label></p>
+        <form>
+		<p><label for="bookName">聯絡姓名：<input type="text" id="bookName" name="Name"></label></p>
+		<p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail" name="Email"></label></p>
+		<p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile" name="Mobile"></label></p>
 		<p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
-        `
-        let creditCard = document.querySelector('.creditCard')
-        creditCard.innerHTML=`
+        <hr/>
         <h4>信用卡付款資訊</h4>
-		<p><label for="CardCode">卡片號碼：<input type="text" id="CardCode"></label></p>
-		<p><label for="CardDate">過期時間：<input type="text" id="CardDate"></label></p>
-		<p><label for="CardPassWord">驗證密碼：<input type="text" id="CardPassWord"></label></p>
-        `
-        let price = document.querySelector('.price')
-        price.innerHTML =`
+        <div class="tpfield" id="card-number"></div>
+        <div class="tpfield" id="card-expiration-date"></div>
+        <div class="tpfield" id="card-ccv"></div></div>
+        <hr/>
+        <button type="submit" id="submit-button">確認訂購並付款</button>
         <p>總價：新台幣 <span class="dollar">${data.price}</span> 元</p>
-		<button>確認訂購並付款</button>
+        </form>
         `
+        // let creditCard = document.querySelector('.creditCard')
+        // creditCard.innerHTML=`
+        // <h4>信用卡付款資訊</h4>
+        // <div class="tpfield" id="card-number"></div>
+        // <div class="tpfield" id="card-expiration-date"></div>
+        // <div class="tpfield" id="card-ccv"></div></div>
+        // `
+        // let price = document.querySelector('.price')
+        // price.innerHTML =`
+        // <p>總價：新台幣 <span class="dollar">${data.price}</span> 元</p>
+		// <button id="submit-button" >確認訂購並付款</button>
+        // `
         }
         else{
             let body = document.querySelector('body')
@@ -118,8 +128,7 @@ const contentDelete = document.querySelector('.contentDelete')
 async function DeleteBooking(e) {
     await fetch(bookingApi,{
         method: 'DELETE',
-        headers: new Headers({'Content-Type': 'application/json'
-        })
+        headers: new Headers({'Content-Type': 'application/json'})
     })
     window.location.href='/';
 }
