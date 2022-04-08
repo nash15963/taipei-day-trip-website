@@ -1,4 +1,3 @@
-from ast import dump
 from flask import *
 app=Flask(__name__)
 
@@ -11,6 +10,9 @@ import os
 from dotenv import load_dotenv #python-dotenv
 import json
 from dbutils.pooled_db import PooledDB
+from datetime import datetime
+import urllib.parse
+import urllib.request
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('secret_key')
 
@@ -257,8 +259,6 @@ def  booking_DELETE():
 ##設計邏輯 :
 #taipeitriporder table只存放達成出帳條件資料(資料正確且付款)
 #此資料庫不考慮庫存之部分
-import urllib.parse
-import urllib.request
 @app.route('/api/orders', methods=['POST'])
 def orders_POSt():
     Userid = session['id']
