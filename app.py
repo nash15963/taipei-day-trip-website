@@ -360,7 +360,7 @@ def orders_GET(orderNumber):
     cursor = conn.cursor()
     sql = "SELECT UserID,AttractionId,AttractionName,AttractionAddress,\
             AttractionImg,Date,Time,Price,BuyName,BuyEmail,BuyPhone,setupOrder,paidTime,Paid\
-            from taipeitrip.taipeitriporder where Paid = 1 and setupOrder = %s ;"
+            from taipeitrip.taipeitriporder where Paid = 1 and paidTime = %s ;"
     cursor.execute(sql,(orderNumber))
     result = cursor.fetchone()
     conn.close()
@@ -368,7 +368,7 @@ def orders_GET(orderNumber):
     print(result)
     if result != None :      
         data= {
-            "number": result['setupOrder'],
+            "number": result['paidTime'],
             "price": result['Price'],
             "trip": {
                 "attraction": {
