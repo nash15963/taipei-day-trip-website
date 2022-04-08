@@ -343,8 +343,8 @@ def orders_POSt():
                 result_JSON = json.dumps({'data':{
                     "number": paidTime,
                     'payment':{
-                    "status": 0,
-                    "message": "付款成功"
+                        "status": 0,
+                        "message": "付款成功"
                     }
                 }})
                 return Response(result_JSON, mimetype='application/json')
@@ -356,6 +356,45 @@ def orders_POSt():
             result_JSON = json.dumps({"error": bool(True),"message": "付款失敗"}) 
             return Response(result_JSON, mimetype='application/json')
 
+@app.route('/api/order/<orderNumber>', methods=['GET'])
+def orders_GET(orderNumber):
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    sql = "SELECT UserID,AttractionId,AttractionName,AttractionAddress,\
+            AttractionImg,Date,Time,Price,BuyName,BuyEmail,BuyPhone,setupOrder,paidTime,Paid\
+            from taipeitrip.taipeitriporder where Paid = 1 and paidTime = %s ;"
+    cursor.execute(sql,(orderNumber))
+    result = cursor.fetchone()
+    conn.close()
+    cursor.close()
+    print(result)
+    if result != None :      
+        data= {
+            "number": result['paidTime'],
+            "price": result['Price'],
+            "trip": {
+                "attraction": {
+                    "id": result['AttractionId'],
+                    "name": result['AttractionName'],
+                    "address": result['AttractionAddress'],
+                    "image": result['AttractionImg']
+                },
+            "date": result['Date'],
+            "time": result['Time']
+            },
+            "contact": {
+                "name": result['BuyName'],
+                "email": result['BuyEmail'],
+                "phone": result['BuyPhone']
+            },
+            "status": 1
+            }
+        result_JSON = json.dumps({'data':data})
+        return Response(result_JSON, mimetype='application/json')
+    else :
+        result_JSON = json.dumps({"error": bool(True),"message": "no data or without signin"}) 
+        return Response(result_JSON, mimetype='application/json')
+    
 
 ###line###
 # Pages

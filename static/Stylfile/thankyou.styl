@@ -1,21 +1,22 @@
 //cd C:\WeHelp_Taipei_Trip\develop\static\Stylfile
-//stylus -w booking.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\booking.css
+//stylus -w thankyou.styl -o C:\WeHelp_Taipei_Trip\develop\static\CSSfile\thankyou.css
 body{
     margin: 0px;
     display: grid;
     grid-template-columns: 1fr 1200px 1fr;
-    grid-template-rows: 50px 400px auto 100px;
+    // grid-template-rows: 50px 1000px 100px;
+    grid-template-rows: 50px 200px 700px;
     font-family: Noto Sans;
     font-style: normal;
 // overflow-y:hidden 隱藏拉軸
 
     @media (max-width:1024px){
 		grid-template-columns: 100%
-		grid-template-rows: 50px auto auto 100px;
+		grid-template-rows: 50px  900px 100px;
 	}
     @media (max-width:600px){
 		grid-template-columns: 100%
-		grid-template-rows: 50px auto auto 100px;
+		grid-template-rows: 50px  900px 100px;
 	}
 
 }
@@ -294,15 +295,11 @@ body{
 	color: rgba(102, 102, 102, 1)
 	cursor: pointer
 }
-.booking{
-        cursor : pointer
-}
+
 .content{
     grid-column: 2/3 
     grid-row: 2/3 
-    display: flex 
-    flex-wrap: wrap 
-    border-bottom: 1px #e8e8e8 solid 
+
     @media (max-width:1024px){
 		grid-column: 1/1 
         grid-row: 2/3 
@@ -312,17 +309,13 @@ body{
         grid-column: 1/1 
         grid-row: 2/3 
     }
-    h4{
-        width: 100% 
-        margin: 60px 20px 20px 50px 
+    h4{ 
         font-weight: 700 
         font-size: 19px 
         color: #666666 
         padding: 10px 0px 10px 10px
         @media (max-width:1024px){
-            width: 80%
-		    margin: 20px 5px 20px 5px
-            padding: 10px 0px 10px 10px
+
         
 	    }
         @media (max-width:600px) {
@@ -342,229 +335,30 @@ body{
 	    }
         @media (max-width:600px) {
         } 
-    }
-    p:nth-child(n+2){
-        font-weight: 700 
-        font-size: 16px 
-        color: #666666 
-        margin: 10px 0px 10px 0px 
-         @media (max-width:1024px){
-            margin: 0px
-            padding: 10px 10px 10px 0px
-            
-	    }
+    
         @media (max-width:600px) {
 
         } 
     }
-    span{
-        font-weight: 400 
-    }
-}
-.contentTitle{
-  width: 90% 
-}
-.contentImg{
-  overflow: hidden 
-  width: 266px 
-  height: 200px 
-  margin: 20px 20px 20px 30px 
-    @media (max-width:1024px){
-        width: 95% 
-        height: auto 
-        margin: 10px auto 10px auto 
-    }
-    @media (max-width:600px) {
-    } 
-    img{
-        width: 90% 
-        object-fit: over 
-        object-position: bottom
-        @media (max-width:1024px){
-            width: 100%
-            height: 100%
-        }
-        @media (max-width:600px) {
-    
-        }  
-    }
-}
-.contentText{
-  width: 50% 
-  padding: 0px 20px 20px 20px 
-    @media (max-width:1024px){
-		width: 70%
-    }
-    // @media (max-width:600px) {
-        
-    // }
-    // p {
-    //     padding: 10px 0px 10px 30px
-    // }
-}
-.contentDelete{
-  width: 5% 
-  cursor: pointer 
-        @media (max-width:1024px){
-            float:right
-            margin: auto 20px 20px 10px
-	    }
-        @media (max-width:600px) {
-        
-        }
-}
-.NullMessage{
-  grid-column: 2/3 
-  grid-row: 2/3 
-  padding: 5px 0px 0px 20px 
-    @media (max-width:1024px){
-        grid-column: 1/1 
-        grid-row: 2/3
-        padding: 5px 10px 0px 20px 
-	}
-    @media (max-width:600px) {
-        grid-column: 1/1 
-        grid-row: 2/3
-    }
-
-    h4{
-        font-weight: 700 
-        font-size: 19px 
-        color: #666666 
-    }
-
-    p{
-        font-weight: 400 
-        font-size: 16px 
-        color: #666666 
-    }
-}
-.information{
-  grid-column: 2/3 
-  grid-row: 3/4 
-  padding: 30px 20px 20px 30px
-  margin: 0px 0px 30px 0px
-  @media (max-width:1024px){
-		grid-column: 1/1 
-        grid-row: 3/4 
-        padding: 30px 20px 20px 15px
-	}
-    @media (max-width:600px) {
-        grid-column: 1/1 
-        grid-row: 3/4 
-    } 
-
-    h4{
-        font-weight: 700 
-        font-size: 19px 
-        color: #666666 
-        margin: 0px 0px 20px 0px 
-    }
-    p{
-        font-weight: 400 
-        font-size: 16px 
-        color: #666666 
-    }
-    p:nth-child(5){
-        font-weight: 700 
-        margin: 30px 0px 10px 0px 
-    }
-    input{
-        width: 250px 
-        height: 38px 
-        background: #FFFFFF 
-        border: 1px solid #E8E8E8 
-        box-sizing: border-box 
-        border-radius: 5px 
-        padding: 0px 0px 0px 15px 
-        color: #666 
-    }
-    hr{
-        border: 0;
-        border-top: 1px solid #e8e8e8
-        margin: 30px 0px 30px 0px 
-    }
-    .formprice{
-        font-weight: 700;
-        color : rgba(102, 102, 102, 1)
-        text-align: right
-    }
-    button{
-        cursor:pointer
-        float: right
-        border: 0px 
-        box-shadow: none 
-        width: 173px 
-        height: 36px 
-        font-size: 20px 
-        background-color: #489 
-        color: #fff 
-        border-radius: 5px 
-        padding: 10px, 20px, 10px, 20px 
-        @media (max-width:1024px){
-            float:right
-            margin: auto 10px auto 10px
-        }
-        @media (max-width:600px) {
-        
-        }
-    }
 }
 
-// 信用卡資料
-.carfForm{
-    margin: 10px
-    display: flex
-    flex-direction: row
-    label{
-        margin: auto 0px auto 0px
-        font-weight: 400;
-        font-size: 16px;
-        color: #666;
 
-    }
-}
-.tpfield {
-    
-    width: 250px 
-    height: 38px 
-    background: #FFFFFF 
-    border: 1px solid #E8E8E8 
-    box-sizing: border-box 
-    border-radius: 5px 
-    padding: 0px 0px 0px 15px 
-    color: #666 
-    margin: 0px 0px 0px 5px
-    }
-.information input[type="text"] ,.creditCard input[type="text"]{
-    font-family: 'Noto Sans TC' 
-    font-weight: normal 
-    font-size: 16px 
-}
+
+
 
 .foot{
   grid-column: 1/4 
-  grid-row: 4/5 
+  grid-row: 3/4 
   padding-top: 20px 
   background-color: #757575 
   color: #fff 
   text-align: center
     @media (max-width:1024px){
             grid-column: 1/1 
-            grid-row: 4/5 
+            grid-row: 6/7 
         }
     @media (max-width:600px) {
         grid-column: 1/1 
-        grid-row: 4/5 
+        grid-row: 6/7 
     }
 }
-
-
-
-
-    // @media (max-width:1024px){
-		
-    // }
-    // @media (max-width:600px) {
-        
-    // }

@@ -35,61 +35,46 @@ const bookingDataGet = async() =>{
     .then(data=>{
         console.log(data) //從這裡開始差網頁，設定篩選條件如果有資料先插入
         if(data.data!==null){
-        let contentImg = document.querySelector('.contentImg')
-        let TitleImg = document.createElement('img')
-        TitleImg.src = data.data.image
-        contentImg.appendChild(TitleImg)
-        let contentText = document.querySelector('.contentText')
-        contentText.innerHTML = `
-        <p>台北一日遊: <span>${data.data.name}</span></p>
-		<p>日期: <span>${data.date}</span></p>
-		<p>時間: <span>${data.time}</span></p>
-		<p>費用: <span>${data.price}</span></p>
-		<p>地點: <span>${data.data.address}</span></p>
-        `
+            let contentImg = document.querySelector('.contentImg')
+            let TitleImg = document.createElement('img')
+            TitleImg.src = data.data.image
+            contentImg.appendChild(TitleImg)
+            let contentText = document.querySelector('.contentText')
+            contentText.innerHTML = `
+                <p>台北一日遊: <span>${data.data.name}</span></p>
+                <p>日期: <span>${data.date}</span></p>
+                <p>時間: <span>${data.time}</span></p>
+                <p>費用: <span>${data.price}</span></p>
+                <p>地點: <span>${data.data.address}</span></p>
+            `
         
-        let information = document.querySelector('.information')
-        information.innerHTML= `
-        <h4>您的聯絡資訊</h4>
-        <form>
-		<p><label for="bookName">聯絡姓名：<input type="text" id="bookName" name="Name"></label></p>
-		<p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail" name="Email"></label></p>
-		<p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile" name="Mobile"></label></p>
-		<p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
-        <hr/>
-        <h4>信用卡付款資訊</h4>
-        <div class="tpfield" id="card-number"></div>
-        <div class="tpfield" id="card-expiration-date"></div>
-        <div class="tpfield" id="card-ccv"></div></div>
-        <hr/>
-        <button type="submit" id="submit-button">確認訂購並付款</button>
-        <p>總價：新台幣 <span class="dollar">${data.price}</span> 元</p>
-        </form>
-        `
-        // let creditCard = document.querySelector('.creditCard')
-        // creditCard.innerHTML=`
-        // <h4>信用卡付款資訊</h4>
-        // <div class="tpfield" id="card-number"></div>
-        // <div class="tpfield" id="card-expiration-date"></div>
-        // <div class="tpfield" id="card-ccv"></div></div>
-        // `
-        // let price = document.querySelector('.price')
-        // price.innerHTML =`
-        // <p>總價：新台幣 <span class="dollar">${data.price}</span> 元</p>
-		// <button id="submit-button" >確認訂購並付款</button>
-        // `
+            let information = document.querySelector('.information')
+            information.innerHTML= `
+                <h4>您的聯絡資訊</h4>
+                <form>
+                <p><label for="bookName">聯絡姓名：<input type="text" id="bookName" name="Name"></label></p>
+                <p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail" name="Email"></label></p>
+                <p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile" name="Mobile"></label></p>
+                <p class = "contentMessage"></p>
+                <p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
+                <hr/>
+                <h4>信用卡付款資訊</h4>
+                <div class = 'carfForm'> <label>卡片號碼 :</label> <div class="tpfield" id="card-number"></div> </div>
+                <div class = 'carfForm'> <label>過期時間 :</label><div class="tpfield" id="card-expiration-date"></div></div>
+                <div class = 'carfForm'> <label>驗證密碼 :</label><div class="tpfield" id="card-ccv"></div></div> 
+                <hr/>
+                <p class = 'formprice'>總價：新台幣 <span class="dollar">${data.price}</span> 元</p>
+                <button type="submit" id="submit-button" class = 'formbtn'>確認訂購並付款</button>
+                
+                </form>  `
         }
         else{
             let body = document.querySelector('body')
             let content = document.querySelector('.content')
             let information = document.querySelector('.information')
-            let creditCard = document.querySelector('.creditCard')
-            let price = document.querySelector('.price')
             let foot = document.querySelector('.foot')
             body.removeChild(content)
             body.removeChild(information)
-            body.removeChild(creditCard)
-            body.removeChild(price)
             body.style = 'grid-template-rows: 50px 130px 1000px;'
             foot.style = 'grid-row: 3/4' ;
             let NullMessage = document.createElement('div') ;
@@ -130,7 +115,7 @@ async function DeleteBooking(e) {
         method: 'DELETE',
         headers: new Headers({'Content-Type': 'application/json'})
     })
-    window.location.href='/';
+    window.location.href='/booking';
 }
 
 contentDelete.addEventListener('click', DeleteBooking)
