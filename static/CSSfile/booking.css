@@ -9,13 +9,13 @@ body {
 @media (max-width: 1024px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px auto auto 100px;
+    grid-template-rows: 50px 3000px auto auto 100px;
   }
 }
 @media (max-width: 600px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px auto auto 100px;
+    grid-template-rows: 50px 3000px auto auto 100px;
   }
 }
 .empty {
@@ -23,7 +23,7 @@ body {
   grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
-  display: none;
+  display: block;
 }
 #shadow {
   display: none /* 載入不顯示 */;
