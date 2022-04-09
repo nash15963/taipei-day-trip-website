@@ -9,13 +9,13 @@ body {
 @media (max-width: 1024px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px 900px 100px;
+    grid-template-rows: 50px 200px 700px;
   }
 }
 @media (max-width: 600px) {
   body {
     grid-template-columns: 100%;
-    grid-template-rows: 50px 900px 100px;
+    grid-template-rows: 50px 200px 700px;
   }
 }
 #shadow {
@@ -346,12 +346,12 @@ body {
 @media (max-width: 1024px) {
   .foot {
     grid-column: 1/1;
-    grid-row: 6/7;
+    grid-row: 3/4;
   }
 }
 @media (max-width: 600px) {
   .foot {
     grid-column: 1/1;
-    grid-row: 6/7;
+    grid-row: 3/4;
   }
 }

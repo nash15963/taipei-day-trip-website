@@ -38,6 +38,7 @@
 			</div>
 		</div>
 	</div>
+	<div class="empty"></div>
 	<div class="content">
 		<div class="contentTitle"></div>
 		<div class="contentImg"></div>
@@ -46,13 +47,31 @@
 			<img src="/static/imgfile/icon_delete.png" alt="垃圾桶範例">
 		</div>
 	</div>
-	<div class="information"></div>
+	<div class="information">
+		<h4>您的聯絡資訊</h4>
+            <form>
+                <p><label for="bookName">聯絡姓名：<input type="text" id="bookName" name="Name"></label></p>
+                <p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail" name="Email"></label></p>
+                <p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile" name="Mobile"></label></p>
+                <p class = "contentMessage"></p>
+                <p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
+            <hr/>
+                <h4>信用卡付款資訊</h4>
+                <div class = 'carfForm'> <label>卡片號碼 :</label> <div class="tpfield" id="card-number"></div> </div>
+                <div class = 'carfForm'> <label>過期時間 :</label><div class="tpfield" id="card-expiration-date"></div></div>
+                <div class = 'carfForm'> <label>驗證密碼 :</label><div class="tpfield" id="card-ccv"></div></div> 
+			<hr/>
+                <p class = 'formprice'>總價：新台幣 <span class="dollar"></span> 元</p>
+                <button type="submit" id="submit-button" class = 'formbtn' >確認訂購並付款</button>    
+                </form> 
+	</div>
 	<div class="foot">
 		COPYRIGHT © 2021 台北一日遊
 	</div>
-<script src="/static/JSfile/booking_GET.js"></script>
-<script src="https://js.tappaysdk.com/tpdirect/v5.1.0"></script>
-<script src="/static/JSfile/pay.js"></script>
+	<script src="https://js.tappaysdk.com/tpdirect/v5.8.0"></script>
+	<script src="/static/JSfile/booking_GET.js"></script>
+	<script src="/static/JSfile/pay.js"></script>
+
 <!-- <script src="/static/JSfile/pay2.js"></script> -->
 </body>
 </html>

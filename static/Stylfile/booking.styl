@@ -4,7 +4,7 @@ body{
     margin: 0px;
     display: grid;
     grid-template-columns: 1fr 1200px 1fr;
-    grid-template-rows: 50px 400px auto 100px;
+    grid-template-rows: 50px 1200px auto auto 100px;
     font-family: Noto Sans;
     font-style: normal;
 // overflow-y:hidden 隱藏拉軸
@@ -18,6 +18,13 @@ body{
 		grid-template-rows: 50px auto auto 100px;
 	}
 
+}
+.empty{
+    grid-column-start: 1
+    grid-column-end: 4
+    grid-row-start: 2
+    grid-row-end: 3
+    display: none
 }
 //鎖上灰幕控制頁面滑動
 #shadow{
@@ -112,6 +119,7 @@ body{
             font-size: 19px
             cursor: pointer
             line-height: 8px
+            
         }
         form p:nth-child(6){
             font-style: normal
@@ -363,6 +371,9 @@ body{
 }
 .contentTitle{
   width: 90% 
+  @media (max-width:1024px){
+    width: 100% 
+    }
 }
 .contentImg{
   overflow: hidden 
@@ -395,16 +406,17 @@ body{
     @media (max-width:1024px){
 		width: 70%
     }
-    // @media (max-width:600px) {
-        
-    // }
+    @media (max-width:600px) {
+        width: 90%
+    }
     // p {
     //     padding: 10px 0px 10px 30px
     // }
 }
 .contentDelete{
   width: 5% 
-  cursor: pointer 
+  cursor: pointer
+  display: none 
         @media (max-width:1024px){
             float:right
             margin: auto 20px 20px 10px
@@ -506,7 +518,7 @@ body{
             margin: auto 10px auto 10px
         }
         @media (max-width:600px) {
-        
+            font-size: 17px
         }
     }
 }
@@ -516,16 +528,21 @@ body{
     margin: 10px
     display: flex
     flex-direction: row
+    @media(max-width:1024px){
+        margin: 10px auto 10px auto
+    }
+    @media(max-width:600px){
+        
+    }
     label{
         margin: auto 0px auto 0px
         font-weight: 400;
         font-size: 16px;
         color: #666;
-
     }
+
 }
 .tpfield {
-    
     width: 250px 
     height: 38px 
     background: #FFFFFF 
@@ -535,11 +552,22 @@ body{
     padding: 0px 0px 0px 15px 
     color: #666 
     margin: 0px 0px 0px 5px
-    }
-.information input[type="text"] ,.creditCard input[type="text"]{
     font-family: 'Noto Sans TC' 
     font-weight: normal 
     font-size: 16px 
+    }
+/* Bootstrap 的 focus style */
+.tappay-field-focus {
+    border-color: gray;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.information input[type="text"] {
+    font-family: 'Noto Sans TC' 
+    font-weight: normal 
+    font-size: 16px 
+    color: #666 
 }
 
 .foot{

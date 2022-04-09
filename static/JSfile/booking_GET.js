@@ -4,6 +4,12 @@ const signoutBtn = document.querySelector('.signout')
 let UserId = '';
 //一進入頁面檢查使用者狀態使否登入
 async function signinCheck() {
+    const empty = document.querySelector(".empty")
+    empty.style.dispay = 'none'
+    const contentDelete = document.querySelector(".contentDelete")
+    const body = document.querySelector("body")
+    body.style = "grid-template-rows: 50px auto auto 100px;"
+    contentDelete.style = 'display :block'
     const UserApi = '/api/user'
     await fetch(UserApi)
         .then(res => res.json())
@@ -28,7 +34,7 @@ async function signinCheck() {
 signinCheck();
 //渲染畫面
 let bookingApi = '/api/booking' ;
-const bookingDataGet = async() =>{
+const bookingDataGet = async(e) =>{
     signinCheck()
     await fetch(bookingApi,{headers: new Headers({'Content-Type': 'application/json'})})
     .then(result => result.json())
@@ -47,26 +53,8 @@ const bookingDataGet = async() =>{
                 <p>費用: <span>${data.price}</span></p>
                 <p>地點: <span>${data.data.address}</span></p>
             `
-        
-            let information = document.querySelector('.information')
-            information.innerHTML= `
-                <h4>您的聯絡資訊</h4>
-                <form>
-                <p><label for="bookName">聯絡姓名：<input type="text" id="bookName" name="Name"></label></p>
-                <p><label for="bookEmail">連絡信箱：<input type="text" id="bookEmail" name="Email"></label></p>
-                <p><label for="bookmobile">手機號碼：<input type="text" id="bookmobile" name="Mobile"></label></p>
-                <p class = "contentMessage"></p>
-                <p>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
-                <hr/>
-                <h4>信用卡付款資訊</h4>
-                <div class = 'carfForm'> <label>卡片號碼 :</label> <div class="tpfield" id="card-number"></div> </div>
-                <div class = 'carfForm'> <label>過期時間 :</label><div class="tpfield" id="card-expiration-date"></div></div>
-                <div class = 'carfForm'> <label>驗證密碼 :</label><div class="tpfield" id="card-ccv"></div></div> 
-                <hr/>
-                <p class = 'formprice'>總價：新台幣 <span class="dollar">${data.price}</span> 元</p>
-                <button type="submit" id="submit-button" class = 'formbtn'>確認訂購並付款</button>
-                
-                </form>  `
+            let dollar = document.querySelector('.dollar')
+            dollar.innerText = data.price
         }
         else{
             let body = document.querySelector('body')
@@ -119,3 +107,6 @@ async function DeleteBooking(e) {
 }
 
 contentDelete.addEventListener('click', DeleteBooking)
+
+//把渲染畫面寫在HTML上面
+
