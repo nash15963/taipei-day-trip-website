@@ -8,7 +8,7 @@ let attractionId = 0 ;
 let locationId = window.location.pathname.split('/')[2]
 
 //開始預訂行程//傳一組訂單資料到後端伺服器
-let startBooking = async(e) => {
+let startBooking = (e) => {
     e.preventDefault();
     //BookSigninCheck()
     //console.log('memberData :',memberData)
@@ -26,7 +26,7 @@ let startBooking = async(e) => {
             bookingMessage.innerText = '請完整填寫訂單資料'
         }
         else{ //訂單資料
-            await fetch(bookingApi, {
+            fetch(bookingApi, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: new Headers({

@@ -141,3 +141,5 @@ cython_debug/
 #我做的東西
 xxx.py
 node_modules
+pay.js
+pay2.js

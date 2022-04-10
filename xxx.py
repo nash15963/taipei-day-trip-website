@@ -1,3 +1,4 @@
+from re import T
 from flask import *
 app=Flask(__name__)
 
@@ -11,6 +12,9 @@ import os
 from dotenv import load_dotenv #python-dotenv
 import json
 from dbutils.pooled_db import PooledDB
+from datetime import datetime
+import urllib.parse
+import urllib.request
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('secret_key')
 
@@ -253,6 +257,146 @@ def  booking_DELETE():
     else :
         result_JSON = json.dumps({"error": bool(True) ,"message": "刪除資料方式錯誤"})
         return Response(result_JSON, mimetype='application/json')
+
+##設計邏輯 :
+#taipeitriporder table只存放達成出帳條件資料(資料正確且付款)
+#此資料庫不考慮庫存之部分
+
+@app.route('/api/orders', methods=['POST'])
+def orders_POSt():
+    Userid = session['id']
+    req_data = request.get_json()
+    # print(req_data)
+    Prime = req_data['prime']
+    AttractionId = req_data['order']['trip']['attraction']['id']
+    AttractionName = req_data['order']['trip']['attraction']['name']
+    AttractionAddress = req_data['order']['trip']['attraction']['address']
+    AttractionImg = req_data['order']['trip']['attraction']['image']
+    Date = req_data['order']['trip']['date']
+    Time = req_data['order']['trip']['time']
+    Price = req_data['order']['price']
+    BuyName = req_data['order']['trip']['contact']['name']
+    BuyEmail = req_data['order']['trip']['contact']['email']
+    BuyPhone = req_data['order']['trip']['contact']['phone']
+    setupOrder = datetime.now().strftime('%Y%m%d%H%M%S')
+    PARTNER_KEY = os.getenv("PARTNER_KEY")
+    MERCHANT_ID = os.getenv("MERCHANT_ID")
+    paidTime = None
+    Paid = False
+    #建立訂單資料
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    sql = "INSERT INTO taipeitriporder (UserID,AttractionId,AttractionName,AttractionAddress,\
+            AttractionImg,Date,Time,Price,BuyName,BuyEmail,BuyPhone,setupOrder,paidTime,Paid\
+            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    create_order = cursor.execute(sql, (Userid,AttractionId,AttractionName,AttractionAddress,
+    AttractionImg,Date,Time,Price,BuyName,BuyEmail,BuyPhone,setupOrder,paidTime,Paid))
+    conn.commit()
+    conn.close()
+    cursor.close()
+    #訂單建立失敗
+    if create_order !=True :
+        result_JSON = json.dumps({"error": bool(True),"message": "訂單建立失敗"})
+        return Response(result_JSON, mimetype='application/json')
+    #訂單建立完成
+    #向tappay申請費用
+    else :
+        payURL = 'https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime'
+        sendPrime = {
+            "prime": str(Prime),
+            "partner_key": PARTNER_KEY,
+            "merchant_id": '108254015_CTBC',
+            "amount": Price,
+            "currency": "TWD",
+            "details": "Taipei Trip",
+            "cardholder": {
+                "phone_number": BuyPhone,
+                "name": BuyName,
+                "email": BuyEmail
+            },
+            "remember": False
+        }
+        sendHeaders = {
+            'Content-Type': 'application/json',
+            'x-api-key': os.getenv("PARTNER_KEY")
+        }
+        reqbody = json.dumps(sendPrime)
+        reqbody = reqbody.encode('ascii')
+        req = urllib.request.Request(payURL, reqbody, sendHeaders)
+        with urllib.request.urlopen(req) as response:
+            the_page = json.loads(response.read())
+            print(the_page)
+        #如果付款成功
+        if the_page['status'] ==0 :
+            Paid = True
+            paidTime = datetime.now().strftime('%Y%m%d%H%M%S')
+            conn = POOL.connection()
+            cursor = conn.cursor()
+            cursor.execute("SET SQL_SAFE_UPDATES=0;")
+            sql = "UPDATE taipeitriporder SET Paid = %s ,paidTime=%s WHERE setupOrder = %s AND UserID = %s"
+            update_order = cursor.execute(sql, (Paid,paidTime,setupOrder,Userid))
+            cursor.execute("SET SQL_SAFE_UPDATES=1;")
+            conn.commit()
+            conn.close()
+            cursor.close()
+            print("update Done",update_order)
+            if update_order == True :  #雙重保險，確保在(收錢後)資料已經確實收在資料庫
+                result_JSON = json.dumps({'data':{
+                    "number": paidTime,
+                    'payment':{
+                        "status": 0,
+                        "message": "付款成功"
+                    }
+                }})
+                return Response(result_JSON, mimetype='application/json')
+            else :
+                result_JSON = json.dumps({"error": bool(True),"message": "資料庫上傳失敗，請立刻聯繫相關資訊部門"})
+                return Response(result_JSON, mimetype='application/json')
+        else :
+            #目前設計是如果付費失敗則不上傳付款帳單
+            result_JSON = json.dumps({"error": bool(True),"message": "付款失敗"}) 
+            return Response(result_JSON, mimetype='application/json')
+
+@app.route('/api/order/<orderNumber>', methods=['GET'])
+def orders_GET(orderNumber):
+    conn = POOL.connection()
+    cursor = conn.cursor()
+    sql = "SELECT UserID,AttractionId,AttractionName,AttractionAddress,\
+            AttractionImg,Date,Time,Price,BuyName,BuyEmail,BuyPhone,setupOrder,paidTime,Paid\
+            from taipeitrip.taipeitriporder where Paid = 1 and paidTime = %s ;"
+    cursor.execute(sql,(orderNumber))
+    result = cursor.fetchone()
+    conn.close()
+    cursor.close()
+    print(result)
+    if result != None :      
+        data= {
+            "number": result['paidTime'],
+            "price": result['Price'],
+            "trip": {
+                "attraction": {
+                    "id": result['AttractionId'],
+                    "name": result['AttractionName'],
+                    "address": result['AttractionAddress'],
+                    "image": result['AttractionImg']
+                },
+            "date": result['Date'],
+            "time": result['Time']
+            },
+            "contact": {
+                "name": result['BuyName'],
+                "email": result['BuyEmail'],
+                "phone": result['BuyPhone']
+            },
+            "status": 1
+            }
+        result_JSON = json.dumps({'data':data})
+        return Response(result_JSON, mimetype='application/json')
+    else :
+        result_JSON = json.dumps({"error": bool(True),"message": "no data or without signin"}) 
+        return Response(result_JSON, mimetype='application/json')
+    
+
 ###line###
 # Pages
 @app.route("/")
