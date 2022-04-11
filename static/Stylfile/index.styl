@@ -19,6 +19,9 @@ body{
         grid-template-rows: 50px 300px minmax(100px, max-content) 110px
     }
 }
+//增加載入動畫
+
+
 //鎖上灰幕控制頁面滑動
 #shadow{
     display: none /* 載入不顯示 */
@@ -426,10 +429,15 @@ body{
             float: left
             border: none
             background-color: rgba(68, 136, 153, 1)
-        }
-        button img{ 
-            width: 15px
-            height: 15px
+        
+            img{ 
+                width: 15px
+                height: 15px
+            }
+            &:hover{
+            filter: brightness(1.1)
+            cursor:pointer
+            }
         }
     }
         .main_img{
@@ -579,7 +587,7 @@ body{
         }
         &:hover{
         box-shadow:3px 3px 5px 6px #cccccc;
-        transform: scale(1.2)
+        filter: brightness(1.1)
         }
     }
 }

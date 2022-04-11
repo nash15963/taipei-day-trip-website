@@ -467,6 +467,10 @@ body {
   width: 15px;
   height: 15px;
 }
+.main .search button:hover {
+  filter: brightness(1.1);
+  cursor: pointer;
+}
 .main .main_img {
   width: 600px;
   height: 300px;
@@ -640,7 +644,7 @@ body {
 }
 .content .box:hover {
   box-shadow: 3px 3px 5px 6px #ccc;
-  transform: scale(1.2);
+  filter: brightness(1.1);
 }
 .foot {
   padding-top: 20px;
