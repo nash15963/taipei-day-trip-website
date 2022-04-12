@@ -4,7 +4,6 @@ const content = document.querySelector('.content')
 let input = ''
 function displayLoading() {
     loader.classList.add("display");
-    // to stop loading after some time
     setTimeout(() => {
         loader.classList.remove("display");
     }, 50000);
@@ -32,8 +31,7 @@ let RenderData = (page)=>{
         hideLoading()
         pageList.push(data.nextPage)
         console.log(pageList)
-        const contentArea = document.createElement('div')
-        contentArea.classList.add('contentArea')
+        let contentArea = document.querySelector('.contentArea')
         for(let i =0 ;i<data.data.length ;i++){
             const boxEle = document.createElement('div');
             boxEle.classList.add('box');
@@ -54,11 +52,11 @@ let RenderData = (page)=>{
         content.insertBefore(contentArea,loader)
     })
     .catch(error =>{
-        content.innerHTML = '';
         const errorMessage = document.createElement('h3')
         errorMessage.innerText = '沒有更多資料可以顯示'
         errorMessage.style.color = '#666666'
-        content.append(errorMessage)
+        let contentArea = document.querySelector('.contentArea')
+        contentArea.appendChild(errorMessage)
     })
 }
 RenderData(currentPage)
@@ -70,9 +68,6 @@ window.addEventListener('scroll', () => {
         scrollHeight,
         clientHeight
     } = document.documentElement;
-    //滑到頁面底部(scrollTop + clientHeight == scrollHeight)
-    //如果滑到底部且有更多=true的話(雙重條件)，則載入資料。
-    //if (scrollTop + clientHeight == scrollHeight &currentPage != '') {
     if (scrollTop + clientHeight == scrollHeight & pageList[currentPage] !=null) {
         RenderData(pageList[currentPage]);
         console.log(currentPage)  
@@ -90,7 +85,7 @@ let queryKeyword =(e)=>{
     console.log(input)
     if(input!=''){
         let contentArea = document.querySelector('.contentArea')
-        content.removeChild(contentArea)
+        contentArea.innerHTML = ''
         currentPage = 0 ;
         pageList = [0]
         RenderData(currentPage)

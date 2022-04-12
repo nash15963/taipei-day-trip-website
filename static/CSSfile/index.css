@@ -2,7 +2,7 @@ body {
   margin: 0px;
   display: grid;
   grid-template-columns: 1fr 1200px 1fr;
-  grid-template-rows: 50px 300px minmax(400px, auto) 110px;
+  grid-template-rows: 50px 300px minmax(700px, auto) 110px;
   font-family: Noto Sans;
   font-style: normal;
 }
@@ -20,21 +20,6 @@ body {
     grid-template-rows: 50px 300px minmax(100px, max-content) 110px;
   }
 }
-#loading {
-  width: 2rem;
-  height: 2rem;
-  border: 5px solid #f3f3f3;
-  border-top: 6px solid #489;
-  border-radius: 100%;
-  margin: 30px auto 10px auto;
-  visibility: hidden;
-  animation: spin 1s infinite linear;
-  opacity: 0.7;
-}
-#loading.display {
-  visibility: visible;
-}
-/* loader */
 #shadow {
   display: none /* 載入不顯示 */;
   position: fixed;
@@ -540,6 +525,10 @@ body {
     grid-row-end: 4;
   }
 }
+.content h3 {
+  text-align: center;
+  color: #757575;
+}
 .content .box {
   cursor: pointer;
   border-bottom: 1px solid #e8e8e8;
@@ -656,19 +645,50 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   flex-direction: row;
-  grid-auto-columns: min-content(500px, auto);
   gap: 40px;
-  min-height: 500px;
+  min-height: 100px;
   margin: 40px 0px 40px 0px;
 }
 @media (max-width: 1024px) {
   .contentArea {
     justify-content: center;
+    min-height: 450px;
+  }
+}
+@media (max-width: 600px) {
+  .contentArea {
+    justify-content: center;
+    min-height: 120px;
   }
 }
 .contentArea:nth-child(1) {
   margin: 20px 0px 40px 0px;
 }
+#loading {
+  width: 2rem;
+  height: 2rem;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid #489;
+  border-radius: 100%;
+  margin: 30px auto 10px auto;
+  visibility: hidden;
+  animation: spin 1s infinite linear;
+  opacity: 0.7;
+}
+@media (max-width: 1024px) {
+  #loading {
+    margin: 15px auto 10px auto;
+  }
+}
+@media (max-width: 600px) {
+  #loading {
+    margin: 10px auto 10px auto;
+  }
+}
+#loading.display {
+  visibility: visible;
+}
+/* loader */
 .foot {
   padding-top: 20px;
   background-color: #757575;
