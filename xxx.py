@@ -1,5 +1,5 @@
-from re import T
 from flask import *
+
 app=Flask(__name__)
 
 app.config["JSON_AS_ASCII"]=False
@@ -7,14 +7,16 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 
 ###line####
 
-import pymysql
-import os
-from dotenv import load_dotenv #python-dotenv
 import json
-from dbutils.pooled_db import PooledDB
-from datetime import datetime
+import os
 import urllib.parse
 import urllib.request
+from datetime import datetime
+
+import pymysql
+from dbutils.pooled_db import PooledDB
+from dotenv import load_dotenv  # python-dotenv
+
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('secret_key')
 

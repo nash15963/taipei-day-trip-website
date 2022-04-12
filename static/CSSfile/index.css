@@ -2,7 +2,7 @@ body {
   margin: 0px;
   display: grid;
   grid-template-columns: 1fr 1200px 1fr;
-  grid-template-rows: 50px 300px auto 110px;
+  grid-template-rows: 50px 300px minmax(400px, auto) 110px;
   font-family: Noto Sans;
   font-style: normal;
 }
@@ -20,6 +20,21 @@ body {
     grid-template-rows: 50px 300px minmax(100px, max-content) 110px;
   }
 }
+#loading {
+  width: 2rem;
+  height: 2rem;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid #489;
+  border-radius: 100%;
+  margin: 30px auto 10px auto;
+  visibility: hidden;
+  animation: spin 1s infinite linear;
+  opacity: 0.7;
+}
+#loading.display {
+  visibility: visible;
+}
+/* loader */
 #shadow {
   display: none /* 載入不顯示 */;
   position: fixed;
@@ -502,20 +517,12 @@ body {
   height: 100%;
 }
 .content {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 40px;
+  margin-bottom: 10px;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  grid-auto-columns: min-content(500px, auto);
-  gap: 40px;
-  display: -webkit-flex;
-  flex-direction: row;
-  min-height: 500px;
 }
 @media (max-width: 1024px) {
   .content {
@@ -523,7 +530,6 @@ body {
     grid-column-end: 1;
     grid-row-start: 3;
     grid-row-end: 4;
-    justify-content: center;
   }
 }
 @media (max-width: 600px) {
@@ -532,7 +538,6 @@ body {
     grid-column-end: 1;
     grid-row-start: 3;
     grid-row-end: 4;
-    justify-content: center;
   }
 }
 .content .box {
@@ -646,6 +651,24 @@ body {
   box-shadow: 3px 3px 5px 6px #ccc;
   filter: brightness(1.1);
 }
+.contentArea {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: row;
+  grid-auto-columns: min-content(500px, auto);
+  gap: 40px;
+  min-height: 500px;
+  margin: 40px 0px 40px 0px;
+}
+@media (max-width: 1024px) {
+  .contentArea {
+    justify-content: center;
+  }
+}
+.contentArea:nth-child(1) {
+  margin: 20px 0px 40px 0px;
+}
 .foot {
   padding-top: 20px;
   background-color: #757575;
@@ -670,5 +693,37 @@ body {
     grid-column-end: 1;
     grid-row-start: 4;
     grid-row-end: 5;
+  }
+}
+@-moz-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

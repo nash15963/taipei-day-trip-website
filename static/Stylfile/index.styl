@@ -4,7 +4,7 @@ body{
     margin: 0px
     display: grid
     grid-template-columns: 1fr 1200px 1fr
-    grid-template-rows: 50px 300px auto 110px
+    grid-template-rows: 50px 300px minmax(400px, auto) 110px
     font-family: Noto Sans
     font-style: normal
 // overflow-y:hidden 隱藏拉軸
@@ -20,7 +20,29 @@ body{
     }
 }
 //增加載入動畫
-
+#loading {
+    width: 2rem;
+    height: 2rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #489;
+    border-radius: 100%;
+    margin: 30px auto 10px auto
+    visibility: hidden;
+    animation: spin 1s infinite linear;
+    opacity :0.7
+}
+#loading.display {
+    visibility: visible;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* loader */
 
 //鎖上灰幕控制頁面滑動
 #shadow{
@@ -469,33 +491,26 @@ body{
 }
 
 .content{ 
-	margin-top: 50px
-	margin-bottom: 50px
+	margin-top: 40px
+	margin-bottom: 10px
 	grid-column-start: 2
 	grid-column-end: 3
 	grid-row-start: 3
 	grid-row-end: 4
-	display: flex
-	flex-wrap: wrap
-	justify-content: flex-start
-	grid-auto-columns: min-content(500px, auto)
-	gap: 40px
-	display: -webkit-flex
-	flex-direction: row
-	min-height: 500px
+	
     @media (max-width:1024px){
         grid-column-start: 1
 		grid-column-end: 1
 		grid-row-start: 3
 		grid-row-end: 4
-        justify-content: center
+       
     }
     @media (max-width:600px){
         grid-column-start: 1
 		grid-column-end: 1
 		grid-row-start: 3
 		grid-row-end: 4
-        justify-content: center
+
     }
 
     .box{ 
@@ -591,6 +606,22 @@ body{
         }
     }
 }
+.contentArea{
+    display: flex
+	flex-wrap: wrap
+	justify-content: flex-start
+    flex-direction: row
+	grid-auto-columns: min-content(500px, auto)
+	gap: 40px
+	min-height: 500px
+    margin: 40px 0px 40px 0px
+    @media (max-width:1024px) {
+         justify-content: center
+    }
+}
+.contentArea:nth-child(1){
+      margin: 20px 0px 40px 0px  
+} 
 .foot{ 
 	padding-top: 20px
 	background-color: #757575
