@@ -34,6 +34,7 @@ let startBooking = (e) => {
                 })
             })
             .then(result => result.json())
+            .then(data =>console.log(data))
             window.location.href='/booking';
         }
     }

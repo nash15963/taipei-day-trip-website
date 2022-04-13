@@ -173,6 +173,7 @@ def  booking_get():
         sql = "select BookingID,UserID,AttractionId FROM taipeitrip.book where (UserID = '%s') ;"
         sql_run =  cursor.execute(sql, (userid))
         result_from_order = cursor.fetchone()
+        print('sql_run :',sql_run,'result_from_order :',result_from_order)
         if sql_run == True: #有訂購資料
             sql = "select A.BookingID,A.UserID,A.AttractionId,A.Date,A.Time,A.Price,\
             B.id,B.name,B.address,B.img\
@@ -181,6 +182,7 @@ def  booking_get():
             where (UserID = '%s') ;"  
             cursor.execute(sql, (userid))
             result = cursor.fetchone()
+            print(result)
             conn.close()
             cursor.close()
             attraction ={
@@ -193,7 +195,7 @@ def  booking_get():
                                       'date':result['Date'],
                                       'time':result['Time'],
                                       'price':result['Price']},ensure_ascii=False)
-        elif sql_run == False: #沒有訂購資料
+        else : #沒有訂購資料
             result_JSON = json.dumps({"data": None,"message": "沒有訂購資料"})
     else:
         result_JSON = json.dumps({"error": True,"message": "沒有登入帳戶"})
@@ -213,25 +215,31 @@ def  booking_post():
     Date =req_data['Date']
     Price = req_data['Price']
     Time = req_data['Time']
+    print(id,AttractionId,Date,Price,Time)
     if Date == '' or Price == '' or Time == '' : #篩選填入資料不得為空
         result_JSON = json.dumps({"error": bool(True) ,"message": "填入資料不得為空"})
     elif id == '':
         result_JSON = json.dumps({"error": bool(True) ,"message": "需要登入會員"})
     else:
+        #開始SQL
         conn = POOL.connection()
         cursor = conn.cursor()
         sql = "select UserID FROM taipeitrip.book where (UserID = '%s') ;"
-        sql_run =  cursor.execute(sql, (id))
-        if sql_run !=0:
-            cursor.execute("SET SQL_SAFE_UPDATES=0;")
+        sql_run =  cursor.execute(sql, (id)) #sql_run=0 此會員沒有將商品加入清單
+        res = cursor.fetchone()
+        print('sql_run',sql_run)
+        print(res)
+        cursor.execute("SET SQL_SAFE_UPDATES=0;")
+        if sql_run == True:   #之後來改，sql_run不等於沒有資料
             cursor.execute("DELETE FROM `taipeitrip`.`book` WHERE (UserID = '%s');",(id))
-            cursor.execute("SET SQL_SAFE_UPDATES=1;")
         sql = "INSERT INTO book (UserID,AttractionID,Date, Price, Time) VALUES (%s,%s,%s,%s,%s)"
         sql_run =  cursor.execute(sql, (id,AttractionId, Date, Price, Time))
+        cursor.execute("SET SQL_SAFE_UPDATES=1;")
         # print('sql_run :',sql_run)   #成功執行結果等於1
         conn.commit()
         conn.close()
         cursor.close()
+        #結束SQL
         if sql_run == True :
             result_JSON = json.dumps({"ok": bool(True)})
         else :
@@ -417,5 +425,8 @@ def thankyou():
 
 app.run(host='0.0.0.0' ,port=3000,debug=True)
 
+#book api沒搞定(做到這裡)
 #手機沒辦法預定行程
-#預定行程切板問題
+#刷過信用卡的回應/或是刷不過呢
+#感謝頁面
+
