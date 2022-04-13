@@ -93,3 +93,21 @@ let queryKeyword =(e)=>{
 }
 
 searchBtn.addEventListener('click', queryKeyword);
+
+
+//“Scroll Back to Top” button
+let topBtn = document.querySelector('.topBtn')
+window.onscroll = function() {scrollfunc()};
+function scrollfunc() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    topBtn.style.display = "block";
+  } else {
+    topBtn.style.display = "none";
+  }
+}
+
+let scrollTop =()=>{
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+topBtn.addEventListener('click' , scrollTop)
