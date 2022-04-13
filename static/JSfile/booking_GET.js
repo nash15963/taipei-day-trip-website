@@ -2,10 +2,16 @@ let memberData = null ;
 const signinBtn = document.querySelector('.signin');
 const signoutBtn = document.querySelector('.signout')
 let UserId = '';
+
+//loading animation func
+const loader = document.querySelector("#loader");
+let CloseLoaderFunc =()=>{
+    loader.style.display = 'none'
+}
+
+
 //一進入頁面檢查使用者狀態使否登入
 async function signinCheck() {
-    const empty = document.querySelector(".empty")
-    empty.style.dispay = 'none'
     const contentDelete = document.querySelector(".contentDelete")
     const body = document.querySelector("body")
     body.style = "grid-template-rows: 50px auto auto 100px;"
@@ -55,6 +61,7 @@ const bookingDataGet = async(e) =>{
             `
             let dollar = document.querySelector('.dollar')
             dollar.innerText = data.price
+            CloseLoaderFunc()
         }
         else{
             let body = document.querySelector('body')
@@ -72,7 +79,7 @@ const bookingDataGet = async(e) =>{
             <p>目前沒有任何待預訂的行程</p>
             `
             body.insertBefore(NullMessage, foot);
-
+            CloseLoaderFunc()
         }
         
     })

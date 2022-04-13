@@ -417,3 +417,5 @@ def thankyou():
 
 app.run(host='0.0.0.0' ,port=3000,debug=True)
 
+#手機沒辦法預定行程
+#預定行程切板問題
