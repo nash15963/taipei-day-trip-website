@@ -5,18 +5,18 @@ body{
     display: grid;
     grid-template-columns: 1fr 1200px 1fr;
     // grid-template-rows: 50px 1000px 100px;
-    grid-template-rows: 50px 200px 700px;
+    grid-template-rows: 50px 100px 500px 400px;
     font-family: Noto Sans;
     font-style: normal;
 // overflow-y:hidden 隱藏拉軸
 
     @media (max-width:1024px){
 		grid-template-columns: 100%
-		grid-template-rows: 50px  200px 700px;
+		grid-template-rows: 50px 100px 1000px 100px;
 	}
     @media (max-width:600px){
 		grid-template-columns: 100%
-		grid-template-rows: 50px  200px 700px;
+		grid-template-rows: 50px 100px 800px 100px;
 	}
 
 }
@@ -310,12 +310,14 @@ body{
         grid-row: 2/3 
     }
     h4{ 
-        font-weight: 700 
+        font-weight: 700
+        
         font-size: 19px 
         color: #666666 
         padding: 10px 0px 10px 10px
         @media (max-width:1024px){
-
+            text-align: center 
+            padding: 10px 0px 10px 0px
         
 	    }
         @media (max-width:600px) {
@@ -342,23 +344,87 @@ body{
     }
 }
 
+.information{
+    color: #666666 
+    grid-column: 2/3 
+    grid-row: 3/4
+    display: flex 
+    @media (max-width:1024px){
+		grid-column: 1/1 
+        grid-row: 3/4
+        flex-wrap: wrap 
+	}
+    @media (max-width:600px) {
+        
+    }
+}
+.locationImg{
+    width: 35%
+    overflow: hidden
+    @media (max-width:1024px){
+        width: 100%
+        margin: 0px auto 0px auto
+	}
+    @media (max-width:600px) {
+        
+    }
+    
+    div{
+        width 90%
+        height: 80%
+        margin: 0px auto 0px auto
+            @media (max-width:1024px){
+                width 95%
+                height: 95%
+                margin: 0px auto 0px auto
 
+            }
+            @media (max-width:600px) {
+                
+            }
+        img{
+            width: 100%
+            height: 100%
+            object-fit: cover
+        }
+    }
+}
 
+.locationDetail{
+    width:45%
+    margin: 0px 0px 0px 20px
+        @media (max-width:1024px){
+            width:90%
+            margin: 0px 0px 0px 5%
+            }
+        @media (max-width:600px) {
+                
+            }
+    h4{
+        font-weight: 700 
+        font-size: 19px 
+        color: #666666 
+    }
+    hr{
+        border: 0;
+        border-top: 1px solid #d0d0d5;
+    }
+}
 
 
 .foot{
   grid-column: 1/4 
-  grid-row: 3/4 
+  grid-row: 4/5 
   padding-top: 20px 
   background-color: #757575 
   color: #fff 
   text-align: center
     @media (max-width:1024px){
             grid-column: 1/1 
-            grid-row: 3/4
+            grid-row: 4/5
         }
     @media (max-width:600px) {
         grid-column: 1/1 
-        grid-row: 3/4
+        grid-row: 4/5
     }
 }

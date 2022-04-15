@@ -45,7 +45,7 @@ const bookingDataGet = async(e) =>{
     await fetch(bookingApi,{headers: new Headers({'Content-Type': 'application/json'})})
     .then(result => result.json())
     .then(data=>{
-        console.log(data) //從這裡開始差網頁，設定篩選條件如果有資料先插入
+        // console.log(data) //從這裡開始差網頁，設定篩選條件如果有資料先插入
         if(data.data!==null){
             let contentImg = document.querySelector('.contentImg')
             let TitleImg = document.createElement('img')
@@ -64,6 +64,12 @@ const bookingDataGet = async(e) =>{
             CloseLoaderFunc()
         }
         else{
+            let NullMessage = document.createElement('div') ;
+            NullMessage.classList.add('NullMessage')
+            NullMessage.innerHTML =`
+            <h4>您好，${UserId}，待預訂的行程如下：</h4>
+            <p>目前沒有任何待預訂的行程</p>
+            `
             let body = document.querySelector('body')
             let content = document.querySelector('.content')
             let information = document.querySelector('.information')
@@ -72,12 +78,6 @@ const bookingDataGet = async(e) =>{
             body.removeChild(information)
             body.style = 'grid-template-rows: 50px 130px 1000px;'
             foot.style = 'grid-row: 3/4' ;
-            let NullMessage = document.createElement('div') ;
-            NullMessage.classList.add('NullMessage')
-            NullMessage.innerHTML =`
-            <h4>您好，${UserId}，待預訂的行程如下：</h4>
-            <p>目前沒有任何待預訂的行程</p>
-            `
             body.insertBefore(NullMessage, foot);
             CloseLoaderFunc()
         }
