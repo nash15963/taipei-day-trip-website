@@ -292,7 +292,7 @@ def orders_POSt():
     cursor.close()
     #訂單建立失敗
     if create_order !=True :
-        result_JSON = json.dumps({"error": bool(True),"message": "訂單建立失敗"})
+        result_JSON = json.dumps({"error": bool(True),"message": "訂單系統建立失敗"})
         return Response(result_JSON, mimetype='application/json')
     #訂單建立完成
     #向tappay申請費用
@@ -321,6 +321,7 @@ def orders_POSt():
         req = urllib.request.Request(payURL, reqbody, sendHeaders)
         with urllib.request.urlopen(req) as response:
             the_page = json.loads(response.read())
+        print(the_page)
         #如果付款成功
         if the_page['status'] ==0 :
             Paid = True
