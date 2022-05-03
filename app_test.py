@@ -1,5 +1,5 @@
-from re import T
 from flask import *
+
 app=Flask(__name__)
 
 app.config["JSON_AS_ASCII"]=False
@@ -7,14 +7,16 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 
 ###line####
 
-import pymysql
-import os
-from dotenv import load_dotenv #python-dotenv
 import json
-from dbutils.pooled_db import PooledDB
-from datetime import datetime
+import os
 import urllib.parse
 import urllib.request
+from datetime import datetime
+
+import pymysql
+from dbutils.pooled_db import PooledDB
+from dotenv import load_dotenv  # python-dotenv
+
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('secret_key')
 
@@ -124,7 +126,6 @@ def user_signup():
             sql = "INSERT INTO member (name, email, password) VALUES (%s,%s,%s)"
             cursor.execute(sql, (name, email, password))
             conn.commit()
-            print("Done")
             result_JSON = json.dumps({"ok": bool(True)})
         conn.close()
         cursor.close()
@@ -191,7 +192,7 @@ def  booking_get():
                                       'date':result['Date'],
                                       'time':result['Time'],
                                       'price':result['Price']},ensure_ascii=False)
-        elif sql_run == False: #沒有訂購資料
+        else : #沒有訂購資料
             result_JSON = json.dumps({"data": None,"message": "沒有訂購資料"})
     else:
         result_JSON = json.dumps({"error": True,"message": "沒有登入帳戶"})
@@ -211,25 +212,25 @@ def  booking_post():
     Date =req_data['Date']
     Price = req_data['Price']
     Time = req_data['Time']
-    if Date == '' or Price == '' or Time == '' : #篩選填入資料不得為空
+    if Date == '' or Price == '' or Time == '' or id == '': #篩選填入資料不得為空
         result_JSON = json.dumps({"error": bool(True) ,"message": "填入資料不得為空"})
-    elif id == '':
-        result_JSON = json.dumps({"error": bool(True) ,"message": "需要登入會員"})
     else:
+        #開始SQL
         conn = POOL.connection()
         cursor = conn.cursor()
-        sql = "select UserID FROM taipeitrip.book where (UserID = '%s') ;"
-        sql_run =  cursor.execute(sql, (id))
-        if sql_run !=0:
-            cursor.execute("SET SQL_SAFE_UPDATES=0;")
+        sql = "select UserID FROM taipeitrip.book where (UserID = %s) ;"
+        sql_run =  cursor.execute(sql, (id)) #sql_run=0 此會員沒有將商品加入清單
+        res = cursor.fetchone()
+        cursor.execute("SET SQL_SAFE_UPDATES=0;")
+        if sql_run == True:   #之後來改，sql_run不等於沒有資料
             cursor.execute("DELETE FROM `taipeitrip`.`book` WHERE (UserID = '%s');",(id))
-            cursor.execute("SET SQL_SAFE_UPDATES=1;")
         sql = "INSERT INTO book (UserID,AttractionID,Date, Price, Time) VALUES (%s,%s,%s,%s,%s)"
         sql_run =  cursor.execute(sql, (id,AttractionId, Date, Price, Time))
-        # print('sql_run :',sql_run)   #成功執行結果等於1
+        cursor.execute("SET SQL_SAFE_UPDATES=1;")
         conn.commit()
         conn.close()
         cursor.close()
+        #結束SQL
         if sql_run == True :
             result_JSON = json.dumps({"ok": bool(True)})
         else :
@@ -266,7 +267,6 @@ def  booking_DELETE():
 def orders_POSt():
     Userid = session['id']
     req_data = request.get_json()
-    # print(req_data)
     Prime = req_data['prime']
     AttractionId = req_data['order']['trip']['attraction']['id']
     AttractionName = req_data['order']['trip']['attraction']['name']
@@ -296,7 +296,7 @@ def orders_POSt():
     cursor.close()
     #訂單建立失敗
     if create_order !=True :
-        result_JSON = json.dumps({"error": bool(True),"message": "訂單建立失敗"})
+        result_JSON = json.dumps({"error": bool(True),"message": "訂單系統建立失敗"})
         return Response(result_JSON, mimetype='application/json')
     #訂單建立完成
     #向tappay申請費用
@@ -325,7 +325,7 @@ def orders_POSt():
         req = urllib.request.Request(payURL, reqbody, sendHeaders)
         with urllib.request.urlopen(req) as response:
             the_page = json.loads(response.read())
-            print(the_page)
+        print(the_page)
         #如果付款成功
         if the_page['status'] ==0 :
             Paid = True
@@ -339,7 +339,6 @@ def orders_POSt():
             conn.commit()
             conn.close()
             cursor.close()
-            print("update Done",update_order)
             if update_order == True :  #雙重保險，確保在(收錢後)資料已經確實收在資料庫
                 result_JSON = json.dumps({'data':{
                     "number": paidTime,
@@ -368,7 +367,6 @@ def orders_GET(orderNumber):
     result = cursor.fetchone()
     conn.close()
     cursor.close()
-    print(result)
     if result != None :      
         data= {
             "number": result['paidTime'],
@@ -414,4 +412,9 @@ def thankyou():
 
 
 app.run(host='0.0.0.0' ,port=3000,debug=True)
+
+#book api沒搞定(做到這裡)
+#手機沒辦法預定行程
+#刷過信用卡的回應/或是刷不過呢
+#感謝頁面
 

@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/static/imgfile/png_head.png" type="image/x-icon" >
     <link href="/static/CSSfile/booking.css" rel="stylesheet" type="text/css">
     <title>booking</title>
 </head>
 <body>
+	<div id="loader">
+		<div id="loading"></div>
+	</div>
     <div id="shadow"></div>
 	<div id="login">
 		<form action="/api/user" id="login_form" method="post" name="login_form">
@@ -38,7 +42,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="empty"></div>
 	<div class="content">
 		<div class="contentTitle"></div>
 		<div class="contentImg"></div>
@@ -59,7 +62,8 @@
                 <h4>信用卡付款資訊</h4>
                 <div class = 'carfForm'> <label>卡片號碼 :</label> <div class="tpfield" id="card-number"></div> </div>
                 <div class = 'carfForm'> <label>過期時間 :</label><div class="tpfield" id="card-expiration-date"></div></div>
-                <div class = 'carfForm'> <label>驗證密碼 :</label><div class="tpfield" id="card-ccv"></div></div> 
+                <div class = 'carfForm'> <label>驗證密碼 :</label><div class="tpfield" id="card-ccv"></div></div>
+				<p class="cardMessage"></p>
 			<hr/>
                 <p class = 'formprice'>總價：新台幣 <span class="dollar"></span> 元</p>
                 <button type="submit" id="submit-button" class = 'formbtn' >確認訂購並付款</button>    

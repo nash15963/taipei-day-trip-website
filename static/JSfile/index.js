@@ -1,124 +1,113 @@
-//一進入頁面就載入資料
-let content = document.querySelector('.content'); //增加可以填充資料的父代區塊
-let btn = document.querySelector('#btn'); //按鈕:點擊則搜尋資料
-
-//依照是否有搜尋條件來fetch api
-const getDatas = async(page) => {
-    if (input != '') {
-        API_URL = `/api/attractions?page=${page}&keyword=${input}`;
-    } else {
-        API_URL = `/api/attractions?page=${page}`;
-    }
-    const response = await fetch(API_URL);
-    //console.log(API_URL) 除錯發出的api為哪一條網址
-    // handle 404
-    if (!response.ok) {
-        throw new Error(`An error occurred: ${response.status}`);
-    } //若資料錯誤回傳結果
-    return await response.json(); //向global丟出得到的api資料，PS需要在
+// selecting loading div
+const loader = document.querySelector("#loading");
+const content = document.querySelector('.content')
+let input = ''
+function displayLoading() {
+    loader.classList.add("display");
+    setTimeout(() => {
+        loader.classList.remove("display");
+    }, 50000);
 }
 
-//將資料填入box裡
-const showDatas = (dataList) => {
+// hiding loading 
+function hideLoading() {
+    loader.classList.remove("display");
+}
 
-    dataList.forEach(data => {
-        const boxEle = document.createElement('div');
-        boxEle.classList.add('box');
-        boxEle.innerHTML = `
-        <div>
-            <img src="${data.img[0]}" >
-        </div>
-        
-        <p>${data.name}</p>
-        <p>${data.mrt}</p>
-        <p>${data.category}</p>
-    `;
-        boxEle.onclick = () => {
-                window.location.href = `/attraction/${data.id}`
+let currentPage = 0 ;
+let pageList = [0]
+let RenderData = (page)=>{
+    displayLoading()
+    if (input != '') {
+        attractionAPI = `/api/attractions?page=${page}&keyword=${input}`;
+    } else {
+        attractionAPI = `/api/attractions?page=${page}`;
+    }
+    currentPage++
+    fetch(attractionAPI)
+    .then(res => res.json())
+    .then(data =>{
+        console.log(data)
+        hideLoading()
+        pageList.push(data.nextPage)
+        console.log(pageList)
+        let contentArea = document.querySelector('.contentArea')
+        for(let i =0 ;i<data.data.length ;i++){
+            const boxEle = document.createElement('div');
+            boxEle.classList.add('box');
+            boxEle.innerHTML = `
+            <div>
+                <img src="${data.data[i].img[0]}" >
+            </div>
+            
+            <p>${data.data[i].name}</p>
+            <p>${data.data[i].mrt}</p>
+            <p>${data.data[i].category}</p>
+            `;
+            boxEle.onclick = () => {
+            window.location.href = `/attraction/${data.data[i].id}`
             } //增加超連結在每個元素中
-        content.appendChild(boxEle);
-    });
-};
-
-let nextPage = 0; //在hasMoreDatas的函式中代入第一筆資料(因為api的下一頁第一個編碼=1)
-//判斷api的下一頁
-const hasMoreDatas = (e) => {
-    //console.log(e !== null)
-    return e !== null;
-};
-const loadDatas = async(page) => {
-    // show the loader(keep it)
-    // 0.5 second later
-    setTimeout(async() => {
-        // if having more data to fetch
-        if (hasMoreDatas(nextPage)) {
-            // call the API to get data
-            const response = await getDatas(nextPage);
-            // show data
-            showDatas(response.data);
-            currentPage++;
-            // 在子代函式中更新nextPage
-            nextPage = response.nextPage;
-            // console.log('input:', input); 除錯輸入字串
+            contentArea.appendChild(boxEle);
         }
-    }, 800);
-};
-let currentPage = 0;
+        content.insertBefore(contentArea,loader)
+    })
+    .catch(error =>{
+        const errorMessage = document.createElement('h3')
+        errorMessage.innerText = '沒有更多資料可以顯示'
+        errorMessage.style.color = '#666666'
+        let contentArea = document.querySelector('.contentArea')
+        contentArea.appendChild(errorMessage)
+    })
+}
+RenderData(currentPage)
+
+//scroll
 window.addEventListener('scroll', () => {
     const {
         scrollTop,
         scrollHeight,
         clientHeight
     } = document.documentElement;
-    //滑到頁面底部(scrollTop + clientHeight == scrollHeight)
-    //如果滑到底部且有更多=true的話(雙重條件)，則載入資料。
-    if (scrollTop + clientHeight == scrollHeight && hasMoreDatas(nextPage)) {
-        loadDatas(currentPage);
+    if (scrollTop + clientHeight == scrollHeight & pageList[currentPage] !=null) {
+        RenderData(pageList[currentPage]);
+        console.log(currentPage)  
+        
     }
 }, {
     passive: true
-});
-// initialize
-let input = ''; //預設沒有輸入關鍵字查找
-loadDatas(currentPage); //載入頁面則跑一次函式
+}); 
 
-//查詢功能
-//當點擊查詢按鈕，則使用此函式
-let queryKeyword = (e) => {
-    //避免發出api要求後重新載入
+//搜尋功能
+let searchBtn = document.querySelector('#btn')
+let queryKeyword =(e)=>{
     e.preventDefault();
     input = document.querySelector('#keyWord').value;
-    quert_nextPage = 0; //刻意多寫一個變數來區分第一個函式
-    content.innerHTML = '';
-    setTimeout(async() => {
-        try {
-            // if having more data to fetch
-            if (hasMoreDatas(quert_nextPage)) {
-                // call the API to get data
-                const response = await getDatas(quert_nextPage, input);
-                // show data
-                showDatas(response.data);
-                // update the total
-                nextPage = response.nextPage;
-                console.log('nextPage :', nextPage)
-                    // console.log('input:', input); 除錯輸入字串
-            }
-            //只在第二個函式考慮會有查詢不到的問題，
-            //因為如果第一個函式抓不到資料或資料錯誤則可能的錯誤來源是來自後端出錯
-            //此條件與找不到資料的條件不符合。
-        } catch (error) {
-            content.innerHTML = '';
-            const errorMessage = document.createElement('h3')
-            errorMessage.innerText = '沒有更多資料可以顯示'
-            errorMessage.style.color = '#666666'
-            content.append(errorMessage)
-        }
-    }, 800);
+    console.log(input)
+    if(input!=''){
+        let contentArea = document.querySelector('.contentArea')
+        contentArea.innerHTML = ''
+        currentPage = 0 ;
+        pageList = [0]
+        RenderData(currentPage)
+    }
 }
-btn.addEventListener('click', queryKeyword);
+
+searchBtn.addEventListener('click', queryKeyword);
 
 
-//點擊box跳轉到相對應的
-const addHyperlink = async() => {
-    response = await getDatas(quert_nextPage, input);
+//“Scroll Back to Top” button
+let topBtn = document.querySelector('.topBtn')
+window.onscroll = function() {scrollfunc()};
+function scrollfunc() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    topBtn.style.display = "block";
+  } else {
+    topBtn.style.display = "none";
+  }
 }
+
+let scrollTop =()=>{
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+topBtn.addEventListener('click' , scrollTop)

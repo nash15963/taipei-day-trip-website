@@ -2,7 +2,7 @@ const bookingBtn = document.querySelector('#bookingBtn') ;
 const bookingForm = document.querySelector('#bookingForm') ;
 const bookingMessage = document.querySelector('.bookingMessage') ;
 //const signinBtn = document.querySelector('.signin');
-const bookingApi = '/api/booking' ;
+
 let attractionId = 0 ;
 // let locationData = '' ;
 let locationId = window.location.pathname.split('/')[2]
@@ -19,13 +19,13 @@ let startBooking = (e) => {
             Price: bookingForm['fullday'].value,
             Time:''
         }
-        if(data.Price==2000){data.Time = 'moring'}
-        else{data.Time = 'afternoon'}
-        console.log(data)
-        if (data['Date'] == '' | data['Time'] == '' | data['Price'] == ''){
-            bookingMessage.innerText = '請完整填寫訂單資料'
-        }
+            if(data.Price==2000){data.Time = 'moring'}
+            else{data.Time = 'afternoon'}
+            if (data['Date'] == '' | data['Time'] == '' | data['Price'] == ''){
+                bookingMessage.innerText = '請完整填寫訂單資料'
+            }
         else{ //訂單資料
+            const bookingApi = '/api/booking' ;
             fetch(bookingApi, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -34,7 +34,11 @@ let startBooking = (e) => {
                 })
             })
             .then(result => result.json())
-            window.location.href='/booking';
+            .then(data =>{
+                console.log(data)
+                window.location.href='/booking';
+            })
+            //window.location.href='/booking';
         }
     }
     else{
@@ -44,3 +48,5 @@ let startBooking = (e) => {
     
 }
 bookingBtn.addEventListener('click', startBooking)
+
+//手機版session掛取id的方式不同
